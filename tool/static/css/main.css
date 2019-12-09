@@ -1,0 +1,210 @@
+/*body{
+  background-color: #5c5f53;
+  color: white;
+  overflow: scroll;
+  min-width: 950px;
+}
+input{
+  background-color: #303325;
+  color: white;
+}*/
+html{
+    font-size: 1rem;
+}
+.navbar{
+    font-size: 1.2em;
+    
+}  
+.navbar-custom{
+  /*background: #293407;*/
+  /*background-image:linear-gradient(to left,black, rgb(41,52,7,1))*/
+  background-image:linear-gradient(to right, rgb(65, 80, 22),black);
+}
+.navbar-custom a{
+  color: white;
+}
+.navbar-brand{
+    padding-top: 1%;
+}
+.sidebar {
+    /*border-top: 0.1px solid white;*/
+    height: 100%;
+    width: 14%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    /*background-color: #343A40;*/
+    background-image:linear-gradient( rgb(65, 80, 22),black);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 40px;
+}
+  
+  .sidebar a {
+    padding: 12px 12px 12px 32px;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    font-size: 1em;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+    
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+.nav-item{
+    width: 100%;
+}
+.project-details,.release-plan,.recommender,.dependency-graphs{
+  margin: 5% 5% 2% 5%;
+  padding-top: 4%;
+}
+/*.dependency-graphs{
+  margin: 5% 10% 2% 10%;
+}*/
+#desc-tab-1,#desc-tab-2,#desc-tab-3,#desc-tab-4{
+  width: 86%;
+  margin-left: 14%;
+  /*background-color: #293407;*/
+}
+
+.crud_icons{
+  text-align: center;
+}
+.crud_icons img{
+    width:20px;
+    height: 20px;
+}
+#searchType,#dependencyFlag,#projectheading{
+  text-align: right;
+}
+#rqmt-1,#rqmt-2{
+  border: none;
+  text-align: center;
+  background: transparent;
+  outline: none;
+}
+#rqmtVal-1,#rqmtVal-2{
+  overflow-y: scroll;
+}
+.searchDropdown{
+  overflow:auto;
+  height: 250px;
+}
+.search-options .row{
+  margin:0% 1% 0% 1%;
+}
+
+.action-buttons{
+  text-align: center;
+}
+
+
+.selectGraph{
+    margin-bottom:5%;
+    width: 100%;
+}
+
+.heading .list-group{
+    width: 70%;
+    float: right;
+}
+
+
+#graphCarousel{
+  text-align: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+.carousel-control-next-icon:after{
+font-size: 30px;
+font-weight: bold;
+  content: '>';
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+    font-size: 30px;
+    font-weight: bold;
+    content: '<';
+     color: black;
+}
+.carousel-indicators li{
+    opacity:0.5;
+    background-color: black;
+}
+.carousel-caption{
+  color: black; /*default color not 
+  visible on white background*/
+}
+.carousel-item img{
+  width: 700px;
+  /*margin: 2%;*/
+  height: 400px;
+  
+}
+
+
+
+.release-plan-heading{
+    width: 30%;
+    float: left;
+
+}
+.release-plan-label{
+    width: 10%;
+    float: left;
+    text-align: center;
+ 
+}
+.noOfReleases{
+    width: 50%;
+    float: left;
+    margin-right: 10%;
+    
+}
+
+.release-plan,.recommender .row{
+    font-size: 1.25em;
+}
+
+.checkbox-2x{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+}
+
+.release-plan img{
+    width:100%;
+    height:auto;
+}
+

@@ -1,0 +1,9 @@
+input : ertmsCombinedUpdated.csv
+dependencyTypeNeeded : y
+initManualAnnotAvail : y
+classifier : NB
+testsize : 0.2
+trainingCount : 10 
+samplingType : leastConfidence
+manualAnnotationsCount : 2
+comments : NB-LC-2

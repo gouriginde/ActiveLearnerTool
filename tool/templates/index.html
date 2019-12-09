@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <!-- To make page responsive added viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename = 'css/main.css')}}">
+    
+    <title>SReYantra - SEDS Labs UCalgary</title>
+</head>
+<header>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-custom">
+        <button class="openbtn" onclick="openNav()">&#9776</button>
+        <!--☰ Unicode UTF-8-->
+        <a class="navbar-brand" href="/">
+            <h3>SReYantra </h3>
+        </a>
+
+        <ul class="navbar-nav float-right">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Details</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Profile
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Access Management</a>
+                    <a class="dropdown-item" href="#">Update Details</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <div id="side-nav-bar" class="sidebar" role="tablist">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a></li>
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab"  role="tab" aria-controls="desc-tab-1"
+                    id="tab-1" href="#desc-tab-1" onclick="openNav()">Intelligent Annotator</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="desc-tab-2" id="tab-2"
+                    href="#desc-tab-2" onclick="openNav()">Dependency Graphs</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="desc-tab-3" id="tab-3"
+                    href="#desc-tab-3" onclick="openNav()">Release plans</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="desc-tab-4" id="tab-4"
+                    href="#desc-tab-4" onclick="openNav()">Recommender</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div id="desc-tab-1" class="tab-pane active" role="tabpanel" aria-labelledby="tab-1">
+            <div class="project-details">
+                <form class="container" method="post" name="iAnnotator"action="" onsubmit="return validateDependency()">
+                    <div class="form-group row">
+                        <div class="col-sm-1"></div>
+                        <label for="projectName" id="projectheading" class="col-sm-3 col-form-label form-control-lg ">
+                            <h2>Project/CR</h2>
+                        </label>
+                        <div class="col-sm-5">
+                            <input list="projectName" value="Project 1" onfocusin="this.value='';"
+                                class="form-control-lg" style="width: 100%;">
+                            <datalist id="projectName">
+                               {% for name in content_Dict['projectName'] %} <!-- Value coming from render template -> init.py and contentmanagement.py-->
+                                    <option>{{name[0]}}</option>
+                                    {% endfor %}
+                            </datalist>
+                        </div>    
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-sm-3 form-control-lg">
+                            <h3>Requirements</h3>
+                        </label>
+                        <div class="col-sm-4"></div>
+                        <label for="searchOrder" id="searchType" class="col-sm-2">Search : </label>
+                        <div class="col-sm-3">
+                            <input list="searchOrder" value="Random" onfocusin="this.value='';" class="form-control-sm"
+                                style="width: 100%;">
+                            <datalist id="searchOrder">
+                                <option value="Random">Random</option>
+                                <option value="Manual">Manual</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    {% if rqmt_Combo %}
+                    <input type="text" name="ComboID" value={{rqmt_Combo.combo_id}} hidden>  <!--Not showing the combo Id in GUI, but need it to verify if user did any changes.-->
+                    
+                    <div class="form-group row">
+                        <input id="rqmt-1" name = "rqmt-1" list="rqmtId-1" class="col-sm-2 form-control" value= {{rqmt_Combo.rqmt1_id}} readonly>
+                        <!--When editing or manual entry, update values of border and outline in css.-->
+                       <!-- <datalist id="rqmtId-1">
+                            <option>1</option>
+                            <option>1.1</option>
+                            <option>1.1.1</option>
+                            <option>1.1.2</option>
+                            <option>1.2</option>
+                            <option>1.3</option>
+                            <option>1.4</option>
+                            <option>1.5</option>
+                            <option>1.5.1</option>
+                        </datalist>-->
+                        <input id="rqmtVal-1" name = "rqmtVal-1" type="text" class="form-control col-sm-8"
+                            placeholder="Requirement Description...."
+                            value="{{rqmt_Combo.rqmt1_dt}}"
+                            readonly>
+                        <div class="crud_icons col-sm-2">
+                            <img src="{{url_for('static',filename='images/icons/edit.png')}}"></img>
+                            <img src="{{url_for('static',filename='images/icons/correct.png')}}"></img>
+                            <img src="{{url_for('static',filename='images/icons/reset.png')}}"></img>
+                            <img src="{{url_for('static',filename='images/icons/delete.png')}}"></img>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <input id="rqmt-2" name="rqmt-2" list="rqmtId-2" class="col-sm-2 form-control" value="{{rqmt_Combo.rqmt2_id}}" readonly>
+                        <!--When editing or manual entry, update values of border and outline in css.-->
+                        <!--<datalist id="rqmtId-2">
+                            <option>1</option>
+                            <option>1.1</option>
+                            <option>1.1.1</option>
+                            <option>1.1.2</option>
+                            <option>1.2</option>
+                            <option>1.3</option>
+                            <option>1.4</option>
+                            <option>1.5</option>
+                            <option>1.5.1</option>
+                        </datalist>-->
+                        <input id="rqmtVal-2" name="rqmtVal-2" type="text" class="form-control col-sm-8"
+                            placeholder="Requirement Description...."
+                            value="{{rqmt_Combo.rqmt2_dt}}"
+                            readonly>
+                        <div class="crud_icons col-sm-2">
+                            
+                            <img src="{{url_for('static',filename='images/icons/edit.png')}}"></img>
+                            <img src="{{url_for('static',filename='images/icons/correct.png')}}"></img>
+                            <img src="{{url_for('static',filename='images/icons/reset.png')}}"></img>
+                            <img src="{{url_for('static',filename='images/icons/delete.png')}}"></img>
+                            
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-sm-3"></div>
+                        <label for="dependency_Flag" id="dependencyFlag" class="col-sm-2">Dependent : </label>
+                        <div class="col-sm-3">
+                            <input list="dependency_Flag" class="form-control-sm" id="dFlag" name="dependency_Flag" onchange = "ed_dependType()" onfocus="this.value='';" value={{rqmt_Combo.bClass}} >
+                            <datalist id="dependency_Flag">
+                                <option >Yes</option>
+                                <option > No</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="searchDropdown form-group-row" id="searchdrop" class="dropdown-content" >
+                        <div class="search-bar sticky-top">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text crud_icons"><img
+                                            src="{{url_for('static',filename='images/icons/search.png')}}"></span>
+                            
+                                </div>
+                                <input type="text" class="form-control" placeholder="Search..." >
+                            </div>
+
+                        </div>
+                        
+                        <div class="search-options">
+                            {% for dtype in content_Dict['dependencyType'][0:-1] %}
+                            {% if dtype[0] == rqmt_Combo.mClass%}
+                            <div class="input-group mb-3 col-sm-12">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="radio" name="dependencyType" value={{dtype[0]}} checked >
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control"  value={{dtype[0]}}  readonly>
+                                </div>
+                            {% else %}
+                            <div class="input-group mb-3 col-sm-12">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input  type="radio" name="dependencyType" value ="{{dtype[0]}}" >
+                                    </div>
+                                </div>
+                                <input type="text"  class="form-control" value={{dtype[0]}} readonly >
+                            </div>
+                            {% endif %}
+                            {% endfor%}
+                            
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <div class="row action-buttons">
+
+                       <!-- <div class="col-sm-4">
+                            <button class="btn btn-dark" type="submit">Previous</button>
+                        </div>-->
+                        <div class="col-sm-6">
+                            <button class="btn btn-dark" type="submit">Save</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-dark" type="submit">Next</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="desc-tab-2" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-2">
+
+            <div class="dependency-graphs">
+                <div class="selectGraph">
+                    <div class="heading">
+                        <h4>Select Graph : </h4>
+                    </div>
+                    <div class="list-group">
+
+                        <a href="#" id="slide-1" class="list-group-item list-group-item-action list-group-item-dark"
+                            data-target="#graphCarousel" data-slide-to="0" onclick="makeActive(this)">Similar</a>
+                        <a href="#" id="slide-2" class="list-group-item list-group-item-action"
+                            data-target="#graphCarousel" data-slide-to="1" onclick="makeActive(this)">Singular</a>
+                        <a href="#" id="slide-3" class="list-group-item list-group-item-action"
+                            data-target="#graphCarousel" data-slide-to="2" onclick="makeActive(this)">Highly
+                            dependent</a>
+                        <a href="#" id="slide-4" class="list-group-item list-group-item-action"
+                            data-target="#graphCarousel" data-slide-to="3" onclick="makeActive(this)">Conflicting</a>
+                    </div>
+                </div>
+
+                <div id="graphCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <!--
+                    <ul class="carousel-indicators">
+                        <li data-target="#graphCarousel" data-slide-to="0" class="active" id="similar"></li>
+                        <li data-target="#graphCarousel" data-slide-to="1" id="singular"></li>
+                        <li data-target="#graphCarousel" data-slide-to="2" id="highlydependent"></li>
+                        <li data-target="#graphCarousel" data-slide-to="3" id="conflicting"></li>
+                    </ul>
+                    -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img src="{{url_for('static',filename='images/dependencyGraphs/business_value_model.png')}}" alt="Graph 1">
+                            <div class="carousel-caption">
+                                <!--<h3>Graph 1</h3>
+                                <p>Description here......</p> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{url_for('static',filename='images/dependencyGraphs/graph.png')}}" alt="Graph 2">
+                            <div class="carousel-caption">
+                                <!--<h3>Graph 2</h3>
+                                <p>Description here......</p> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{url_for('static',filename='images/dependencyGraphs/neo4j-graph-starport-dependencies.png')}}" alt="Graph 3">
+                            <div class="carousel-caption">
+                                <!--<h3>Graph 3</h3>
+                                <p>Description here......</p> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{url_for('static',filename='images/dependencyGraphs/yellow_task.png')}}" alt="Graph 4">
+                            <div class="carousel-caption">
+                                <!--<h3>Graph 4</h3>
+                                <p>Description here......</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#graphCarousel" data-slide="prev" onclick="makePrevActive()">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#graphCarousel" data-slide="next" onclick="makeNextActive()">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="desc-tab-3" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-3">
+            <div class="release-plan">
+
+                <form method="GET" id ="release_plans" name="rPlans"  >  <!--target="_blank"-->
+                    <div class="form-group row">
+
+                        <label for="noOfReleases" class="col-sm-3 col-form-label">Number of Releases</label>
+                        <div class="col-sm-6">
+                            <input list="noOfReleases" class="form-control">
+                            <datalist id="noOfReleases">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label class="form-check-label" for="gridCheck1">
+                                Dependency based
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input class="form-check-input checkbox-2x" type="checkbox" id="gridCheck1">
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <label class="form-check-label" for="gridCheck1">
+                                Effort based
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input class="form-check-input checkbox-2x" type="checkbox" id="gridCheck1">
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group row">
+
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-dark">Generate Release Plans ></button>
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6" id ="RPlans" style="display: none" ><img src="{{url_for('static',filename='images/plans/RPP.png')}}" alt="Release Plan 1" class="img-fluid" >
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="desc-tab-4" class="tab-pane fade" role="tabpanel" aria-labelledby="tab-4">
+            <div class="recommender">
+                <form id="rcmd">
+                    <div class="form-group row">
+
+                        <label for="selectRequirement" class="col-sm-4 col-form-label">Select Requirement</label>
+                        <div class="col-sm-6">
+                            <input list="selectRequirement" class="form-control" required>
+                            <datalist id="selectRequirement">
+                                <option>Requirement 1</option>
+                                <option>Requirement 2</option>
+                                <option>Requirement 3</option>
+                                <option>Requirement 4</option>
+                                <option>Requirement 5</option>
+                                <option>Requirement 6</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="input" class="col-sm-4 col-form-label">Select Another Requirement &nbsp;
+                            <i>(Optional)</i></label>
+                        <div class="col-sm-6">
+                            <input list="selectOtherRequirement" class="form-control">
+                            <datalist id="selectOtherRequirement">
+                                <option>Requirement 1</option>
+                                <option>Requirement 2</option>
+                                <option>Requirement 3</option>
+                                <option>Requirement 4</option>
+                                <option>Requirement 5</option>
+                                <option>Requirement 6</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-dark">Submit ></button>
+                    </div>
+                </form>
+                <div class="form-group row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6" style="display: none;" id="rcmd_results"><img src="{{url_for('static',filename='images/recommender/Reco.png')}}" alt="Release Plan 1" class="img-fluid">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.4.1.min.js')}}"></script>   
+    <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/main.min.js')}}"> </script>
+    
+
+
+   <!--
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    -->
+</body>
+
+</html>

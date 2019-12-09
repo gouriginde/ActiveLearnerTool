@@ -1,0 +1,9 @@
+input 		       :  path to requirement combinations data file 
+dependencyTypeNeeded   :  Dependency Type Classification is needed or not. {y/n}
+initManualAnnotAvail   :  Initial Manual annotations are available or not. If yes, then those Labelled 'M' will be used for Training {y/n}
+classifier	       :  Please provide the classifier you wish to use for the prediction model - 'RF' for Random Forest / 'NB' for Naive Bayes / 'SVM' for Support Vector Machine. {RF/NB/SVM}
+testsize 	       :  Test Split ratio. Allowed value less than 1.0 {0.1,0.2....0.9,1.0}
+trainingCount 	       :  Number of manual annotations to be done initially which forms the training set. {1,2,3,4,5....}
+samplingType 	       :  Uncertainity Sampling Type {leastConfidence,minMargin,entropy}
+manualAnnotationsCount :  Number of manual annotations to be done in each iteration of active learning {1,2,3,4,5.....}
+comments 	       :  Any comments you wish to add in the logs for tracking purpose

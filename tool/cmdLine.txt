@@ -1,0 +1,60 @@
+Data Preprocessing
+-----------------------------------------------------------------------------------------
+python3 dataPreprocessing.py --input 'raw-data/blackLineSafety-LowestLevel.csv' --output 'blackLineSafety-combinations.csv' --prep_needed 'n'
+
+
+Active Learner
+------------------------------------------------------------------------------------------
+
+python3 activeLearner.py --input "blackLineSafety-combinations.csv" --initManualAnnotAvail 'y' --classifier 'RF' --testsize 0.2 --trainingCount 10 --samplingType 'minMargin' --manualAnnotations 1 --comments 'All default parameters'
+
+python3 activeLearner.py --helpusage: activeLearner.py [-h] --input INPUT [--dependencyTypeNeeded {y,n}]
+                        [--initManualAnnotAvail {y,n}]
+                        [--classifier {RF,NB,SVM}]
+                        [--testsize {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0}]
+                        [--trainingCount TRAININGCOUNT]
+                        [--samplingType {leastConfidence,minMargin,entropy}]
+                        [--manualAnnotationsCount MANUALANNOTATIONSCOUNT]
+                        [--logPath LOGPATH] [--comments COMMENTS]
+
+This script takes the requirement combinations as input, actively learns and
+predicts the dependency types.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --input INPUT, -i INPUT
+                        path to requirement combinations data file (default:
+                        None)
+  --dependencyTypeNeeded {y,n}, -dt {y,n}
+                        Dependency Type Classification is needed or not.
+                        (default: y)
+  --initManualAnnotAvail {y,n}, -imma {y,n}
+                        Initial Manual annotations are available or not. If
+                        yes, then those Labelled 'M' will be used for Training
+                        Classifier. (default: y)
+  --classifier {RF,NB,SVM}, -clf {RF,NB,SVM}
+                        Please provide the classifier you wish to use for the
+                        prediction model - 'RF' for Random Forest / 'NB' for
+                        Naive Bayes / 'SVM' for Support Vector Machine.
+                        (default: RF)
+  --testsize {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0}, -ts {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0}
+                        Test Split ratio. Allowed value less than 1.0
+                        (default: 0.2)
+  --trainingCount TRAININGCOUNT, -tc TRAININGCOUNT
+                        Number of manual annotations to be done initially
+                        which forms the training set. (default: 10)
+  --samplingType {leastConfidence,minMargin,entropy}, -st {leastConfidence,minMargin,entropy}
+                        Uncertainity Sampling Type : Allowed values are
+                        'leastConfidence','minMargin','entropy'. (default:
+                        leastConfidence)
+  --manualAnnotationsCount MANUALANNOTATIONSCOUNT, -mac MANUALANNOTATIONSCOUNT
+                        Number of manual annotations to be done in each
+                        iteration of active learning (default: 1)
+  --logPath LOGPATH, -lp LOGPATH
+                        The BinaryClass and MultiClass labels need to be
+                        updated Randomly. y/n (default: /Users/ikagarjotsingh/
+                        Documents/UCal/Internship/Code/repository/SReYantra/st
+                        atic/data/logs)
+  --comments COMMENTS, -c COMMENTS
+                        Any comments you wish to add in the logs for tracking
+                        purpose. (default: None)
