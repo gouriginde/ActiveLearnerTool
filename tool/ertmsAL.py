@@ -40,7 +40,7 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
     
     df_manuallyAnnotatedSet = shuffle(df_rqmts[df_rqmts[labelColumn]=='M'])
     #Splitting Initially Manually Annotated Data (300 Data points into Train and Validation Test Sets......)  
-    validationSetCount = 75
+    validationSetCount = int(len(df_manuallyAnnotatedSet)*.2) #retain 20% for testing (unseen data)
     df_validationSet = df_manuallyAnnotatedSet[:validationSetCount]
     logs.writeLog("\nSeparating Validation Set : "+str(len(df_validationSet))+" Rows\n"+str(df_validationSet[:10]))
     
