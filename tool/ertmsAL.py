@@ -70,20 +70,26 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
     else:
         #Create a dataframe to store the results after each iteration of active Learning...  #Added ORCount,ANDCount etc columns to keep a track of different dependency types
         #df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','AndCount','ORCount','RequiresCount','SimilarCount','CannotSayCount','f1Score','precisionScore','recallScore'])
-        df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','SimilarCount','OtherCount','f1Score','precisionScore','recallScore'])
-        
+        #df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','SimilarCount','OtherCount','f1Score','precisionScore','recallScore'])
+        df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','RefinesCount','ConflictsCount','f1Score','precisionScore','recallScore'])
+
         #Number of combinations which have been manually or intelligently labelled for different dependency types   
         #andCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
         #orCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
-        requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
-        similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts[labelColumn].isin(['M','I']))])
+        #requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
+        #similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts[labelColumn].isin(['M','I']))])
         #cannotSayCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==5) & (df_rqmts[labelColumn].isin(['M','I']))])
-        otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts[labelColumn].isin(['M','I']))])
+        #otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts[labelColumn].isin(['M','I']))])
 
+        requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
+        refinesCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
+        conflictsCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
+        
         #Add the initial analysis to the analysis dataFrame created.
         #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','AndCount':andCount,'ORCount':orCount,'RequiresCount':requiresCount,'SimilarCount':similarCount,'CannotSayCount':cannotSayCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)
-        df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'SimilarCount':similarCount,'OtherCount':otherCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)
-    
+        #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'SimilarCount':similarCount,'OtherCount':otherCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)
+        df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'RefinesCount':refinesCount,'ConflictsCount':conflictsCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)        
+
     logs.writeLog("\n\nInitial Data Analysis : \n"+str(df_resultTracker)+"\n")
     
     confidence = 0  #initial value of confidence; user will be providing value after looking for the probability distribution.
@@ -171,14 +177,17 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
         
             #andCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts['MLabelled'].isin(['M','I']))])
             #orCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts['MLabelled'].isin(['M','I']))])
-            requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts['MLabelled'].isin(['M','I']))])
-            similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts['MLabelled'].isin(['M','I']))])
+            #requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts['MLabelled'].isin(['M','I']))])
+            #similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts['MLabelled'].isin(['M','I']))])
             #cannotSayCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==5) & (df_rqmts['MLabelled'].isin(['M','I']))])
-            otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts['MLabelled'].isin(['M','I']))])
+            #otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts['MLabelled'].isin(['M','I']))])
 
-            #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':trainSize,'TestSize':testSize,'ValidationSize':validationSetCount,'ClassifierTestScore':classifierTestScore,'ClassifierValidationScore':classifierValidationScore,'AndCount':andCount,'ORCount':orCount,'RequiresCount':requiresCount,'SimilarCount':similarCount,'CannotSayCount':cannotSayCount,'f1Score':f1Score,'precisionScore':precisionScore,'recallScore':recallScore},ignore_index=True)
-            df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':trainSize,'TestSize':testSize,'ValidationSize':validationSetCount,'ClassifierTestScore':classifierTestScore,'ClassifierValidationScore':classifierValidationScore,'RequiresCount':requiresCount,'SimilarCount':similarCount,'OtherCount':otherCount,'f1Score':f1Score,'precisionScore':precisionScore,'recallScore':recallScore},ignore_index=True)
-            
+            requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
+            refinesCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
+            conflictsCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
+        
+            df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':trainSize,'TestSize':testSize,'ValidationSize':validationSetCount,'ClassifierTestScore':classifierTestScore,'ClassifierValidationScore':classifierValidationScore,'RequiresCount':requiresCount,'RefinesCount':refinesCount,'ConflictsCount':conflictsCount,'f1Score':f1Score,'precisionScore':precisionScore,'recallScore':recallScore},ignore_index=True)        
+
             logs.writeLog("\n\nAnalysis DataFrame : \n"+str(df_resultTracker))
     
     #Merge Validation Set back to the prediction set to ensure all the 19699 combinations are returned.

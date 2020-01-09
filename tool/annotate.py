@@ -158,12 +158,13 @@ def getManualAnnotation(req1,req2,target):
             logs.writeLog ("\nRequirement 1 : "+str(req1))
             logs.writeLog ("\nRequirement 2 : "+str(req2))
             #logs.writeLog ("\nPlease select one of the following choices. \n1 - AND\n2 - OR \n3 - Requires \n4 - Similar \n5 - Cannot Say \nEnter your Choice here :   ")   #Removed 0 - Independent
-            logs.writeLog ("\nPlease select one of the following choices. \n3 - Requires \n4 - Similar \n6 - Others \nEnter your Choice here :   ")   #Removed 0 - Independent
+            #logs.writeLog ("\nPlease select one of the following choices. \n3 - Requires \n4 - Similar \n6 - Others \nEnter your Choice here :   ")   #Removed 0 - Independent
+            logs.writeLog ("\nPlease select one of the following choices. \n1 - Requires \n2 - Reflects \n3 - Conflicts \nEnter your Choice here :   ")   
             
             userAnnotation = input("")
             #if userAnnotation in ['1','2','3','4','5']:
-            if userAnnotation in ['3','4','6']:
-             
+            #if userAnnotation in ['3','4','6']:
+            if userAnnotation in ['1','2','3']:             
                 logs.writeLog ("\nValue provided by the user :- "+str(userAnnotation.lower()))
                 return userAnnotation
             elif userAnnotation.lower() == "exit":
@@ -173,7 +174,8 @@ def getManualAnnotation(req1,req2,target):
             else:
                 logs.writeLog ("\nValue provided by the user :- "+str(userAnnotation.lower()))
                 #logs.writeLog ("Invalid Input. Allowed Values -- 1 / 2 / 3 / 4 / 5 ")
-                logs.writeLog ("Invalid Input. Allowed Values -- 3 / 4 / 6 ")
+                #logs.writeLog ("Invalid Input. Allowed Values -- 3 / 4 / 6 ")
+                logs.writeLog ("Invalid Input. Allowed Values -- 1 / 2 / 3 ")
                 logs.writeLog ("In order to exit from the program. Enter 'exit'")
                 continue
     return None    
