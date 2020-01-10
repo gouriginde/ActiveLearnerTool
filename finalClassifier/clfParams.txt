@@ -1,0 +1,6 @@
+labelledData : ertms.csv
+validationData : ermtsValidation.csv
+tobepredicted : m
+classifier : NB
+testsize : 0.2
+comments : NB-multiclass
