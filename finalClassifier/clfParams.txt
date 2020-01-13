@@ -1,6 +1,6 @@
 labelledData : ertms.csv
 validationData : ermtsValidation.csv
-tobepredicted : m
-classifier : NB
+tobepredicted : b
+classifiersList : NB;RF;SVM
 testsize : 0.2
-comments : NB-multiclass
+comments : NB,RF,SVM-binaryclass

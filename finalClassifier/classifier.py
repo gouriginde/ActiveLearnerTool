@@ -173,7 +173,7 @@ def testClassifier(clf_model,clf_name,test_features,test_labels):
     logs.writeLog ("\n\nConfusion Matrix : \n"+str(cm)+"\n")
     
     #Create a box plot.....
-    return None
+    return clf_test_score,f1,precision,recall
 
 def validateClassifier(clf_model,clf_name,validation_features,validation_labels):
     '''
@@ -191,7 +191,7 @@ def validateClassifier(clf_model,clf_name,validation_features,validation_labels)
     clf_validation_score = clf_model.score(validation_features,actualLabels)
     logs.writeLog ("\n"+clf_name+" Classifier Validation Score : "+str(clf_validation_score))
 
-    return None
+    return clf_validation_score
 
 def split_into_lemmas(text):
     text = str(text)
@@ -209,10 +209,9 @@ def main():
     vfileName = args.loc[0,'validationData']
     comments = args.loc[0,'comments']
     targetLabel = ['BinaryClass' if args.loc[0,'tobepredicted']=='b' else 'MultiClass'][0]
-    clf = args.loc[0,'classifier']
+    clf_list = args.loc[0,'classifiersList'].split(";")  #ClassifiersList is a string (RF;NB;SVM)
     testsize = float(args.loc[0,'testsize'])
-    #logFilePath,OFilePath = logs.createLogs(currentFileDir+"/static/data/Logs",args,comments)   #Creates the log file, default value is os.getcwd()+"/static/data/logs/" ; user still can provide his own logPath if needed.
-    logFilePath = logs.createLogs(currentFileDir+"/static/data/Logs",args,comments)   #Creates the log file, default value is os.getcwd()+"/static/data/logs/" ; user still can provide his own logPath if needed.
+    logFilePath,OFilePath = logs.createLogs(currentFileDir+"/static/data/Logs",args,comments)   #Creates the log file, default value is os.getcwd()+"/static/data/logs/" ; user still can provide his own logPath if needed.
     
     #Extract and remove NaN's from the labelled data file and validation data
     df_rqmtData = getData(currentFileDir+"/static/data/"+ifileName)   
@@ -225,20 +224,43 @@ def main():
     logs.writeLog("\n\nPreparing DataSet for classification....")
     trainFeatures,trainLabels,testFeatures,testLabels,validationFeatures,validationLabels = prepareData(testsize,df_rqmtData,df_valData,targetLabel)
     
-    logs.writeLog ("\n\nCreating Classifier....")
-    clfModel = createClassifier(clf,trainFeatures,trainLabels)
+    #DataFrame to store the results
+    df_Scores = pd.DataFrame(columns=["Classifier","Test_Accuracy","F1_Score","Precision","Recall","Validation_Accuracy","CV_5_Score","CV_10_Score","TrainCount","TestCount","ValidationCount"])
 
-    logs.writeLog ("\n\nTest Classifier....")
-    testClassifier(clfModel,clf,testFeatures,testLabels)
+    #Classification process will be repeated for all the classifiers mentioned in the classifier list (RF/SVM/NB)
+    for clf in clf_list:
+        clf = clf.strip()
+        logs.writeLog ("\n\nCreating "+clf+" Classifier....")
+        clfModel = createClassifier(clf,trainFeatures,trainLabels)
 
-    logs.writeLog ("\n\nValidate Classifier....")
-    validateClassifier(clfModel,clf,validationFeatures,validationLabels)
+        logs.writeLog ("\n\nTest Classifier....")
+        clf_test_score,f1_score,precision,recall = testClassifier(clfModel,clf,testFeatures,testLabels)
 
-    logs.writeLog("\n\nPerforming StratfiedKFold cross validation....")
-    crossv = StratifiedKFold(10)
-    scores = cross_val_score(clfModel, validationFeatures, validationLabels, cv=crossv) #https://scikit-learn.org/stable/modules/cross_validation.html
-    logs.writeLog("\nAccuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+        logs.writeLog ("\n\nValidate Classifier....")
+        clf_validation_score = validateClassifier(clfModel,clf,validationFeatures,validationLabels)
 
+        logs.writeLog("\n\nPerforming StratfiedKFold (5) cross validation....")
+        crossv_5 = StratifiedKFold(5)
+        scores_5 = cross_val_score(clfModel, validationFeatures, validationLabels, cv=crossv_5) #https://scikit-learn.org/stable/modules/cross_validation.html
+        accuracy_cv5 = str(round(scores_5.mean(),2))+" +/- "+str(round(scores_5.std(),2) * 2)
+        logs.writeLog("\nAccuracy: "+accuracy_cv5)
         
+        logs.writeLog("\n\nPerforming StratfiedKFold (10) cross validation....")
+        crossv_10 = StratifiedKFold(10)
+        scores_10 = cross_val_score(clfModel, validationFeatures, validationLabels, cv=crossv_10) 
+        accuracy_cv10 = str(round(scores_10.mean(),2))+" +/- "+str(round(scores_10.std(),2) * 2)
+        logs.writeLog("\nAccuracy: "+accuracy_cv10)
+
+        #Update Results in dataFrame
+        df_Scores = df_Scores.append({'Classifier':clf,'Test_Accuracy':clf_test_score,'F1_Score':f1_score,'Precision':precision,'Recall':recall,'Validation_Accuracy':clf_validation_score,'CV_5_Score':accuracy_cv5,'CV_10_Score':accuracy_cv10,'TrainCount':len(trainLabels),'TestCount':len(testLabels),'ValidationCount':len(validationLabels)},ignore_index=True)
+    
+    #Dump results obtained in csv file for tracking.
+    logs.writeLog("\n")
+    logs.addOutputToExcel(df_Scores,"Results Obtained") 
+    
+    #Provide locations of results to the user.
+    logs.writeLog("\n\nResults obtained are available at : "+str(OFilePath))
+    logs.writeLog("\n\nLogs are available at : "+str(logFilePath))
+
 if __name__ == '__main__':
     main()

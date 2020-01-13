@@ -1,0 +1,161 @@
+
+----------------------------------------------------------------------------------------------------
+Arguments :- 
+labelledData : ertms.csv
+validationData : ermtsValidation.csv
+tobepredicted : b
+classifiersList : NB;RF;SVM
+testsize : 0.2
+comments : NB,RF,SVM-binaryclass
+----------------------------------------------------------------------------------------------------
+
+Data Fetched from the Labelled combinations file : 207 Rows 
+                                                  req1                                               req2  BinaryClass  MultiClass
+21   the etcs on-board shall be capable of receivin...  the etcs on-board shall be capable of receivin...          1.0         3.0
+272  the dmi shall indicate the result of the self-...  the occurrence of a failure shall be displayed...          1.0         2.0
+328  when the train is stationary or after a certai...  the emergency stop shall be indicated to the d...          0.0         0.0
+214  route unsuitability shall be indicated on the dmi              information shall be shown on the dmi          1.0         3.0
+183  the supervised shunting speed shall be indicat...  the driver shall know the distance to the next...          1.0         2.0
+293  if the release speed is calculated on board it...  when the train is stationary or after a certai...          1.0         3.0
+155  on lines fitted with rbc the etcs trainborne e...  if there are failures of the trainborne equipm...          0.0         0.0
+372  the driver shall be able to consult train data...  on demand the position of the front end of the...          1.0         3.0
+380  the train shall as a minimum be supervised to ...  when the train is stationary or after a certai...          0.0         0.0
+12   the current application level shall be indicat...  the current operational status shall be indica...          1.0         2.0
+
+Data Fetched from the Validation combinations file : 30 Rows 
+                                                 req1                                               req2  BinaryClass  MultiClass
+1     the release speed shall be indicated on the dmi  route unsuitability shall be indicated on the dmi          1.0         2.0
+25  on demand the position of the front end of the...  the occurrence of a failure shall be displayed...          1.0         2.0
+26  if the train or the shunting movement exceeds ...  if decided by a national value the driver may ...          1.0         2.0
+30  the emergency stop shall be indicated to the d...  the driver shall be able to confirm the train ...          0.0         0.0
+7   the driver shall be able to override the funct...  the driver shall be able to use the reversing ...          0.0         0.0
+13         actual speed shall be indicated on the dmi  route unsuitability shall be indicated on the dmi          1.0         2.0
+6   on request of the rbc the driver shall have th...  on demand the position of the front end of the...          0.0         0.0
+29  the emergency brake shall be applied until the...  when the traction unit is stationary the drive...          1.0         1.0
+31  the train shall as a minimum be supervised to ...    the release speed shall be indicated on the dmi          0.0         0.0
+3   on lines fitted with rbc the etcs trainborne e...  the etcs trainborne equipment shall transmit i...          1.0         2.0
+
+Preparing DataSet for classification....
+
+Performing Balancing of Data....
+
+Training Set Size : 134
+Train Set Value Count : 
+1.0    67
+0.0    67
+Name: BinaryClass, dtype: int64
+
+Test Set Size : 32
+Test Set Value Count : 
+1.0    16
+0.0    16
+Name: BinaryClass, dtype: int64
+
+Validation Set Size : 30
+Validation Set Value Count : 
+1.0    20
+0.0    10
+Name: BinaryClass, dtype: int64
+
+Passing features through NLP Pipeline....
+
+Creating NB Classifier....
+NB Classifier created.
+
+Test Classifier....
+NB Classifier Test Score : 0.84375
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           0       0.79      0.94      0.86        16
+           1       0.92      0.75      0.83        16
+
+    accuracy                           0.84        32
+   macro avg       0.86      0.84      0.84        32
+weighted avg       0.86      0.84      0.84        32
+
+
+Confusion Matrix : 
+[[15  1]
+ [ 4 12]]
+
+
+Validate Classifier....
+NB Classifier Validation Score : 0.8
+
+Performing StratfiedKFold (5) cross validation....
+Accuracy: 0.63 +/- 0.14
+
+Performing StratfiedKFold (10) cross validation....
+Accuracy: 0.63 +/- 0.2
+
+Creating RF Classifier....
+RF Classifier created.
+
+Test Classifier....
+RF Classifier Test Score : 0.84375
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           0       0.79      0.94      0.86        16
+           1       0.92      0.75      0.83        16
+
+    accuracy                           0.84        32
+   macro avg       0.86      0.84      0.84        32
+weighted avg       0.86      0.84      0.84        32
+
+
+Confusion Matrix : 
+[[15  1]
+ [ 4 12]]
+
+
+Validate Classifier....
+RF Classifier Validation Score : 0.8
+
+Performing StratfiedKFold (5) cross validation....
+Accuracy: 0.7 +/- 0.58
+
+Performing StratfiedKFold (10) cross validation....
+Accuracy: 0.7 +/- 0.36
+
+Creating SVM Classifier....
+SVM Classifier created.
+
+Test Classifier....
+SVM Classifier Test Score : 0.78125
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           0       0.71      0.94      0.81        16
+           1       0.91      0.62      0.74        16
+
+    accuracy                           0.78        32
+   macro avg       0.81      0.78      0.78        32
+weighted avg       0.81      0.78      0.78        32
+
+
+Confusion Matrix : 
+[[15  1]
+ [ 6 10]]
+
+
+Validate Classifier....
+SVM Classifier Validation Score : 0.8333333333333334
+
+Performing StratfiedKFold (5) cross validation....
+Accuracy: 0.6 +/- 0.26
+
+Performing StratfiedKFold (10) cross validation....
+Accuracy: 0.63 +/- 0.2
+
+
+Results obtained are available at : /Users/ikagarjotsingh/Documents/UCal/Internship/ActiveLearnerTool/ActiveLearnerTool/finalClassifier/static/data/Logs/2020-01-13/12-12-12-NB;RF;SVM-NB,RF,SVM-binaryclass.csv
+
+Logs are available at : /Users/ikagarjotsingh/Documents/UCal/Internship/ActiveLearnerTool/ActiveLearnerTool/finalClassifier/static/data/Logs/2020-01-13/12-12-12-NB;RF;SVM-NB,RF,SVM-binaryclass.txt
