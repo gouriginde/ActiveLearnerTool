@@ -1,4 +1,4 @@
-Unnamed: 0.1.1,req1,req1_id,req2,req2_id,similarity,cosine,BinaryClass,MultiClass,BLabelled,MLabelled
+comb_id,req1,req1_id,req2,req2_id,similarity,cosine,BinaryClass,MultiClass,BLabelled,MLabelled
 19298,it shall be possible to send plain text messages from track to train,4.8.8.1,it shall be possible to send fixed text messages from track to train,4.8.9.1,0,0.876351105,1,3,M,M
 14651,when changing to a lower speed level the front end of the train shall respect the dynamic train speed profile,4.3.2.2a,when changing to a higher speed level the rear end of the train shall respect the static train speed profile,4.3.2.2b,0,0.81438335,1,2,M,M
 15242,the release speed shall be indicated on the dmi,4.3.3.2c,actual speed shall be indicated on the dmi,4.3.51a,0,0.771651025,1,2,M,M

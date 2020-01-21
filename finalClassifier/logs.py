@@ -10,7 +10,7 @@ def createLogs(fPath,args,comments):
     current_time = datetime.datetime.now().strftime("%H-%M-%S")
     if not os.path.exists(fPath+"/"+current_date):
         os.makedirs(fPath+"/"+current_date)
-    global logFilePath,outputFilePath,resultsPath,annotationsPath
+    global logFilePath,outputFilePath#,resultsPath,annotationsPath
     logFilePath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-"+comments+".txt"
     outputFilePath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-"+comments+".csv"
     #resultsPath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-RESULTS-"+comments+".csv"
