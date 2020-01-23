@@ -46,7 +46,7 @@ def getData(fPath):
     df_data['MLabelled'].fillna('A',inplace=True)
     df_data['BinaryClass'].fillna(0,inplace=True)    
     df_data['MultiClass'].fillna(0,inplace=True)
-    df_data = shuffle(df_data[['req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled']])   #shuffle's the rows and ignores columns except [req1,req2,Binary,MultiClass,Labelled]
+    df_data = shuffle(df_data[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']])   #shuffle's the rows and ignores columns except [req1,req2,Binary,MultiClass,Labelled]
     return df_data
 
 def learnTargetLabel(args,df_rqmts,targetLabel):

@@ -17,11 +17,8 @@ def createInitialTrainingSet(df_data,count,label):
     Randomly selects the requirement combinations and get's them annotated by the user and marks them Labelled - 'M'. 
     Returns the updated dataset.
     '''
-    
     i=0  #Counter Variable
     logs.writeLog("\nPlease annotate the following requirement combinations...(For Training Set)")
-    
-    df_trainingSet = pd.DataFrame(columns = df_data.columns)  #Create a dummy dataframe to save the annotations provided by the user.
     
     while i<count:
         logs.writeLog("\nCombination "+str(i+1)+" .....")
@@ -29,43 +26,58 @@ def createInitialTrainingSet(df_data,count,label):
         #The requirement combination is updated and added to the dataFrame
         if label == 'BinaryClass':
             selection = df_data[df_data['BLabelled']=='A'].sample(1)  #Samples one requirement combination which is To Be annotated ie. Marked as 'A'
-        
+            selectedIndex = selection.index.values[0]
+            selection.reset_index(inplace=True)
+            
             #Get the requirements
-            req1 = selection.iloc[0,0]   
-            req2 = selection.iloc[0,1]
-        
-            df_data.drop(index=selection.index.values[0],inplace=True)  #Drops the particular requirement combination from the original DataFrame
-        
-            userAnnot = getManualAnnotation(req1,req2,label) #User provides the annotation for the requirement combination
+            req1_id = selection.loc[0,'req1_id']
+            req2_id = selection.loc[0,'req2_id']
+            req1 = selection.loc[0,'req1']   
+            req2 = selection.loc[0,'req2']
+            
+            #logs.writeLog("Removed Index : "+str(selectedIndex))
+            df_data.drop(index=selectedIndex,inplace=True)  #Drops the particular requirement combination from the original DataFrame
+            
+            df_userAnnot = pd.DataFrame(columns = df_data.columns)
+            userAnnot = getManualAnnotation(req1_id,req2_id,req1,req2,label) #User provides the annotation for the requirement combination
+            
             if userAnnot == "exit":
-                #Dump df_trainingSet into Annotations.csv (These are the manual annotations done before active learning actually starts)
-                logs.createAnnotationsFile(df_trainingSet)
                 raise Exception ('\nExited the Program successfully!')
             
-            df_trainingSet = df_trainingSet.append({'req1':req1,'req2':req2,'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+            df_userAnnot = df_userAnnot.append({'req1_id':req1_id,'req1':req1,'req2_id':req2_id,'req2':req2,'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+            logs.createAnnotationsFile(df_userAnnot)
+            
+            df_data = pd.concat([df_data,df_userAnnot],axis=0) #Manually Annotated Values are concatenated with the original dataset and the resultant is returned.
+            
         else:
             print (df_data)
             selection = df_data[df_data['MLabelled']=='A'].sample(1)  #Samples one requirement combination which is To Be annotated ie. Marked as 'A'
-        
+            selectedIndex = selection.index.values[0]
+            selection.reset_index(inplace=True)
+            
             #Get the requirements
-            req1 = selection.iloc[0,0]   
-            req2 = selection.iloc[0,1]
+            req1_id = selection.loc[0,'req1_id']
+            req2_id = selection.loc[0,'req2_id']
+            req1 = selection.loc[0,'req1']   
+            req2 = selection.loc[0,'req2']
         
-            df_data.drop(index=selection.index.values[0],inplace=True)  #Drops the particular requirement combination from the original DataFrame
-        
-            userAnnot = getManualAnnotation(req1,req2,label) #User provides the annotation for the requirement combination
-
+            #logs.writeLog("Removed Index : "+str(selectedIndex))
+            df_data.drop(index=selectedIndex,inplace=True)  #Drops the particular requirement combination from the original DataFrame
+            
+            df_userAnnot = pd.DataFrame(columns = df_data.columns)
+            userAnnot = getManualAnnotation(req1_id,req2_id,req1,req2,label) #User provides the annotation for the requirement combination
+            
             if userAnnot == "exit":
-                #Dump df_trainingSet into Annotations.csv (These are the manual annotations done before active learning actually starts)
-                logs.createAnnotationsFile(df_trainingSet)
                 raise Exception ('\nExited the Program successfully!')
-            df_trainingSet = df_trainingSet.append({'req1':req1,'req2':req2,'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':'M','MLabelled':'M'},ignore_index=True)  #Added BinaryClass as 1 because we are learning the MultiClass labels only for the dependent Combinations (for which BinaryClass is 1)
+            
+            df_userAnnot = df_userAnnot.append({'req1_id':req1_id,'req1':req1,'req2_id':req2_id,'req2':req2,'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':'M','MLabelled':'M'},ignore_index=True)   #Added BinaryClass as 1 because we are learning the MultiClass labels only for the dependent Combinations (for which BinaryClass is 1)
+            logs.createAnnotationsFile(df_userAnnot)
+
+            df_data = pd.concat([df_data,df_userAnnot],axis=0) #Manually Annotated Values are concatenated with the original dataset and the resultant is returned.
+            
         i=i+1
 
-    #Dump df_trainingSet into Annotations.csv (These are the manual annotations done before active learning actually starts)
-    logs.createAnnotationsFile(df_trainingSet)
     
-    df_data = pd.concat([df_data,df_trainingSet],axis=0) #Manually Annotated Values are concatenated with the original dataset and the resultant is returned.
     logs.writeLog("Initial Manual Annotations completed.")
     
     return df_data
@@ -193,14 +205,15 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     #logs.writeLog ("\n\nAccuracy : "+str(acc))
     return count_vect, tfidf_transformer, clf_model,clf_test_score,len(X_train),len(X_test),f1,precision,recall  
 
-def predictLabels(cv,tfidf,clf,df_toBePredictData,targetLabel):
+def predictLabels(cv,tfidf,clf,df_toBePredictedData,targetLabel):
     '''
     Count Vectorizer (cv) applies Bag of Words on the Features 
     Next, tfidf Transformation is applied.
     predicts and returns the labels for the input data in a form of DataFrame.
     '''
-    predictData = np.array(df_toBePredictData.loc[:,['req1','req2','BLabelled','MLabelled']])
-    #logs.writeLog(str(predictData))
+    #predictData = np.array(df_toBePredictedData.loc[:,['req1','req2','BLabelled','MLabelled']])
+    predictData = np.array(df_toBePredictedData.loc[:,['req1','req2']])
+    #logs.writeLog(str(df_toBePredictedData))
     
     predict_counts = cv.transform(predictData)
     predict_tfidf = tfidf.transform(predict_counts)
@@ -227,12 +240,20 @@ def predictLabels(cv,tfidf,clf,df_toBePredictData,targetLabel):
     
     if targetLabel =='BinaryClass':
         #Save the prediction results.... predictedProb saves the prediction probabilities in a list form for each prediction.
-        df_predictionResults = pd.DataFrame({'req1':predictData[:,0],'req2':predictData[:,1],'BinaryClass':predict_labels[:],'MultiClass':0,'predictedProb':predict_prob.tolist(),'BLabelled':predictData[:,2],'MLabelled':predictData[:,3]})  #added 0 as dummy value to MultiClass because we are predicting BinaryClass
+        #df_predictionResults = pd.DataFrame({'req1_id':df_toBePredictedData.loc[:,'req1_id'],'req1':df_toBePredictedData.loc[:],'req2':predictData[:,1],'BinaryClass':predict_labels[:],'MultiClass':0,'predictedProb':predict_prob.tolist(),'BLabelled':predictData[:,2],'MLabelled':predictData[:,3]})  #added 0 as dummy value to MultiClass because we are predicting BinaryClass
+        df_toBePredictedData['BinaryClass']=predict_labels[:]
+        df_toBePredictedData['MultiClass'] = 0
+        df_toBePredictedData['predictedProb'] = predict_prob.tolist() 
+        df_toBePredictedData['maxProb'] = np.amax(predict_prob,axis=1)
     else:
         #Save the prediction results.... predictedProb saves the prediction probabilities in a list form for each prediction.
-        df_predictionResults = pd.DataFrame({'req1':predictData[:,0],'req2':predictData[:,1],'BinaryClass':1,'MultiClass':predict_labels[:],'predictedProb':predict_prob.tolist(),'BLabelled':predictData[:,2],'MLabelled':predictData[:,3]})  #added 1 as Binary Class because we do MultiClass prediction only for dependent combinations.
-
-    return df_predictionResults    #f1,precision,recall,clf_pred_score,acc
+        #df_predictionResults = pd.DataFrame({'req1':predictData[:,0],'req2':predictData[:,1],'BinaryClass':1,'MultiClass':predict_labels[:],'predictedProb':predict_prob.tolist(),'BLabelled':predictData[:,2],'MLabelled':predictData[:,3]})  #added 1 as Binary Class because we do MultiClass prediction only for dependent combinations.
+        df_toBePredictedData['BinaryClass']= 1
+        df_toBePredictedData['MultiClass'] = predict_labels[:]
+        df_toBePredictedData['predictedProb'] = predict_prob.tolist() 
+        df_toBePredictedData['maxProb'] = np.amax(predict_prob,axis=1)
+    
+    return df_toBePredictedData    #f1,precision,recall,clf_pred_score,acc
 
 def validateClassifier(cv,tfidf,clf_model,df_validationSet,targetLabel):
     print ("\nCalculating Validation Score.....\n")

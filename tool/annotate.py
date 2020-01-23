@@ -17,9 +17,7 @@ def analyzePredictions(args,df_predictions,targetLabel,confidence):
     else:
         labelColumn = "MLabelled"
 
-    logs.writeLog("\n\nAnalyzing Predictions... Calculating the Maximum Probability Value for each combination.")
-    df_predictions['maxProb'] = pd.DataFrame(df_predictions['predictedProb'].values.tolist()).max(axis=1)  #Add another column named 'maxProb' which will contain the maximum of all the available probability values
-    logs.writeLog("\n\n"+str(df_predictions[:10]))
+    logs.writeLog("\n\nAnalyzing Predictions... Based on the Maximum Probability Value for each combination.")
     
     if confidence == 0:
         #probabilityBins = df_predictions['maxProb'].value_counts()
@@ -42,7 +40,7 @@ def analyzePredictions(args,df_predictions,targetLabel,confidence):
     df_ConfidentPredictions[labelColumn]='I'  
     logs.writeLog("\n\nConfident Predictions : "+str(len(df_ConfidentPredictions))+" Rows\n"+str(df_ConfidentPredictions[:10]))
     
-    df_ConfidentPredictions=df_ConfidentPredictions[['req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]  #Remove the extra columns.
+    df_ConfidentPredictions=df_ConfidentPredictions[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]  #Remove the extra columns.
     
     #Predictions which are not part of the ConfidentPredictions
     logs.writeLog("\n\nSegregating the doubtful predictions...")
@@ -90,10 +88,12 @@ def annotUncertainSamples(args,df_uncertainSamples,targetLabel):
         
             sample = df_uncertainSamples.loc[indexValue,:]
             logs.writeLog("\n\nMost Uncertain Sample : \n"+str(sample))
-            userAnnot = getManualAnnotation(sample['req1'],sample['req2'],targetLabel)   #Passes the requirements to the user and requests annotation.
+            
+            df_userAnnot = pd.DataFrame(columns = ['req1_id','req2_id','req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled'])
+            userAnnot = getManualAnnotation(sample['req1_id'],sample['req2_id'],sample['req1'],sample['req2'],targetLabel)   #Passes the requirements to the user and requests annotation.
+            
             if userAnnot == "exit":
                 #Dump df_trainingSet into Annotations.csv (These are the manual annotations done before active learning actually starts)
-                logs.createAnnotationsFile(df_manuallyAnnotated)
                 raise Exception ('\nExited the Program successfully!')
             
             #Remove the selected sample from the original dataframe
@@ -103,29 +103,33 @@ def annotUncertainSamples(args,df_uncertainSamples,targetLabel):
 
             if targetLabel == "BinaryClass":
                 #Add the newly annotated combination in the manuallyAnnotatedDf
-                df_manuallyAnnotated = df_manuallyAnnotated.append({'req1':sample['req1'],'req2':sample['req2'],'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':sample['MLabelled']},ignore_index=True)
+                df_userAnnot = df_userAnnot.append({'req1_id':sample['req1_id'],'req1':sample['req1'],'req2_id':sample['req2_id'],'req2':sample['req2'],'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+                logs.createAnnotationsFile(df_userAnnot)
+            
+                df_manuallyAnnotated = pd.concat([df_manuallyAnnotated,df_userAnnot])
                 #logs.writeLog("Manually Annotated DataFrame : \n"+str(manuallyAnnotatedDf))
             else:
                 #Add the newly annotated combination in the manuallyAnnotatedDf
-                df_manuallyAnnotated = df_manuallyAnnotated.append({'req1':sample['req1'],'req2':sample['req2'],'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':sample['BLabelled'],'MLabelled':'M'},ignore_index=True)
+                df_userAnnot = df_userAnnot.append({'req1_id':sample['req1_id'],'req1':sample['req1'],'req2_id':sample['req2_id'],'req2':sample['req2'],'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':sample['BLabelled'],'MLabelled':'M'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+                logs.createAnnotationsFile(df_userAnnot)
+            
+                df_manuallyAnnotated = pd.concat([df_manuallyAnnotated,df_userAnnot])
                 #logs.writeLog("Manually Annotated DataFrame : \n"+str(manuallyAnnotatedDf))
+
         iteration+=1
     
     #Remove all the extra columns. df now contains only combinations marked 'A'
-    df_uncertainSamples=df_uncertainSamples[['req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
+    df_uncertainSamples=df_uncertainSamples[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
     #logs.writeLog(str(df_uncertainSamples))
 
     #Remove all the extra columns. df now contains only combinations marked 'M'
-    df_manuallyAnnotated=df_manuallyAnnotated[['req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
+    df_manuallyAnnotated=df_manuallyAnnotated[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
     logs.writeLog("\n\nManually Annotated Combinations... "+str(len(df_manuallyAnnotated))+"Rows \n"+str(df_manuallyAnnotated[:10]))
     
-    #Dump df_trainingSet into Annotations.csv (These are the manual annotations done before active learning actually starts)
-    logs.createAnnotationsFile(df_manuallyAnnotated)
-
     return pd.concat([df_manuallyAnnotated,df_uncertainSamples],axis=0)
 
 
-def getManualAnnotation(req1,req2,target):
+def getManualAnnotation(req1_id,req2_id,req1,req2,target):
     '''
     The user get's the two requirements and is expected to provide the annotation for the combination. 
     The target can be BinaryClass or MultiClass based on the arguments provided by the user.
@@ -135,8 +139,8 @@ def getManualAnnotation(req1,req2,target):
         while True:  #While loop to make sure the user provides proper input. 
     
             logs.writeLog ("\n\nAre the following Requirements Dependent or Not?")
-            logs.writeLog ("\n\nRequirement 1 : "+str(req1))
-            logs.writeLog ("\nRequirement 2 : "+str(req2))
+            logs.writeLog ("\n\nRequirement 1 ("+req1_id+") : "+str(req1))
+            logs.writeLog ("\nRequirement 2 ("+req2_id+") : "+str(req2))
             logs.writeLog ("\nPlease enter 1 for Dependent, 0 for Independent   :   ")
             userAnnotation = input("")
             if userAnnotation in ['1','0']:
@@ -155,16 +159,16 @@ def getManualAnnotation(req1,req2,target):
         while True:  #While loop to make sure the user provides proper input. 
     
             logs.writeLog ("\n\nPlease provide the dependency type for the following requirements.")
-            logs.writeLog ("\nRequirement 1 : "+str(req1))
-            logs.writeLog ("\nRequirement 2 : "+str(req2))
+            logs.writeLog ("\n\nRequirement 1 ("+req1_id+") : "+str(req1))
+            logs.writeLog ("\nRequirement 2 ("+req2_id+") : "+str(req2))
             #logs.writeLog ("\nPlease select one of the following choices. \n1 - AND\n2 - OR \n3 - Requires \n4 - Similar \n5 - Cannot Say \nEnter your Choice here :   ")   #Removed 0 - Independent
-            #logs.writeLog ("\nPlease select one of the following choices. \n3 - Requires \n4 - Similar \n6 - Others \nEnter your Choice here :   ")   #Removed 0 - Independent
-            logs.writeLog ("\nPlease select one of the following choices. \n1 - Requires \n2 - Reflects \n3 - Conflicts \nEnter your Choice here :   ")   
+            logs.writeLog ("\nPlease select one of the following choices. \n3 - Requires \n4 - Similar \n6 - Others \nEnter your Choice here :   ")   #Removed 0 - Independent
+            #logs.writeLog ("\nPlease select one of the following choices. \n1 - Requires \n2 - Reflects \n3 - Conflicts \nEnter your Choice here :   ")   
             
             userAnnotation = input("")
             #if userAnnotation in ['1','2','3','4','5']:
-            #if userAnnotation in ['3','4','6']:
-            if userAnnotation in ['1','2','3']:             
+            if userAnnotation in ['3','4','6']:
+            #if userAnnotation in ['1','2','3']:             
                 logs.writeLog ("\nValue provided by the user :- "+str(userAnnotation.lower()))
                 return userAnnotation
             elif userAnnotation.lower() == "exit":
@@ -174,8 +178,8 @@ def getManualAnnotation(req1,req2,target):
             else:
                 logs.writeLog ("\nValue provided by the user :- "+str(userAnnotation.lower()))
                 #logs.writeLog ("Invalid Input. Allowed Values -- 1 / 2 / 3 / 4 / 5 ")
-                #logs.writeLog ("Invalid Input. Allowed Values -- 3 / 4 / 6 ")
-                logs.writeLog ("Invalid Input. Allowed Values -- 1 / 2 / 3 ")
+                logs.writeLog ("Invalid Input. Allowed Values -- 3 / 4 / 6 ")
+                #logs.writeLog ("Invalid Input. Allowed Values -- 1 / 2 / 3 ")
                 logs.writeLog ("In order to exit from the program. Enter 'exit'")
                 continue
     return None    

@@ -7,12 +7,47 @@ from sklearn.utils import shuffle
 import logs 
 from clf_model import createInitialTrainingSet,createClassifier,predictLabels,validateClassifier
 from annotate import analyzePredictions 
-from activeLearner import get_args,getData
 import uncertaintySampling
 
 warnings.filterwarnings("ignore")
 pd.set_option('display.max_columns', 500)   #To make sure all the columns are visible in the logs.
 pd.set_option('display.width', 1000)
+
+def get_args():
+    
+    parser = argparse.ArgumentParser(description="This script takes the requirement combinations as input, actively learns and predicts the dependency types.", formatter_class = argparse.ArgumentDefaultsHelpFormatter)
+    
+    parser.add_argument("--input","-i",type=str,required = True, help="path to requirement combinations data file")
+    #parser.add_argument("--targetLabel","-tl",type=str,required=False,choices=['b','m'],default='b',help="Which label you wish to predict? Enter 'b' for BinaryClass or 'm' for MultiClass")
+    parser.add_argument("--dependencyTypeNeeded",'-dt',type=str,required=False,default='y',choices=['y','n'], help = "Dependency Type Classification is needed or not.")
+    parser.add_argument("--initManualAnnotAvail","-imma",type=str,required=False, choices = ['y','n'], default='y', help="Initial Manual annotations are available or not. If yes, then those Labelled 'M' will be used for Training Classifier.")
+    parser.add_argument("--classifier","-clf",type=str,required=False,choices=['RF','NB','SVM'],default='RF', help="Please provide the classifier you wish to use for the prediction model - 'RF' for Random Forest / 'NB' for Naive Bayes / 'SVM' for Support Vector Machine.")
+    parser.add_argument("--testsize","-ts",type=float,required=False, default=0.2,choices=[x/10 for x in range(0,11)], help="Test Split ratio. Allowed value less than 1.0")
+    #parser.add_argument("--confidence",'-conf',type=float,required=False, default = 0.8, choices = [x/100 for x in range(0,101)], help = "Threshold maximum probability value for marking the prediction as confident. Allowed value less than 1")
+    parser.add_argument("--trainingCount","-tc",type=int,default = 10,required = False, help="Number of manual annotations to be done initially which forms the training set.")
+    parser.add_argument("--samplingType","-st",type=str,default = 'leastConfidence',choices= ['leastConfidence','minMargin','entropy'],help="Uncertainity Sampling Type : Allowed values are 'leastConfidence','minMargin','entropy'.")
+    parser.add_argument("--manualAnnotationsCount","-mac",type=int,default=1,required=False, help="Number of manual annotations to be done in each iteration of active learning")
+    parser.add_argument("--logPath","-lp",type=str,default=os.getcwd()+"/static/data/logs", required=False,help="Path to save the logs and outputs.")
+    parser.add_argument("--comments","-c",type=str,required=False,help="Any comments you wish to add in the logs for tracking purpose.")
+    
+    return parser.parse_args()
+
+def getData(fPath):
+
+    '''
+    Fetches data from the file path provided and does the preprocessing.
+    1. Fills the NaN values in Labelled column with 'A' in order to mark them as to be annotated combinations.
+    2. Fills the NaN values in label [BinaryClass/MultiClass] column with 0 as dummy value.
+    3. Shuffles the requirement combinations
+    '''
+
+    df_data = pd.read_csv(fPath,',',encoding="utf-8")#ISO-8859-1
+    df_data['BLabelled'].fillna('A',inplace=True)
+    df_data['MLabelled'].fillna('A',inplace=True)
+    df_data['BinaryClass'].fillna(0,inplace=True)    
+    df_data['MultiClass'].fillna(0,inplace=True)
+    df_data = shuffle(df_data[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']])   #shuffle's the rows and ignores columns except [req1,req2,Binary,MultiClass,Labelled]
+    return df_data
 
 def learnTargetLabel(args,df_rqmts,targetLabel):
     #Based on scenario, user can provide the initial manual annotations in the input file and mark them as 'M' in Labelled Column
@@ -70,25 +105,25 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
     else:
         #Create a dataframe to store the results after each iteration of active Learning...  #Added ORCount,ANDCount etc columns to keep a track of different dependency types
         #df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','AndCount','ORCount','RequiresCount','SimilarCount','CannotSayCount','f1Score','precisionScore','recallScore'])
-        #df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','SimilarCount','OtherCount','f1Score','precisionScore','recallScore'])
-        df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','RefinesCount','ConflictsCount','f1Score','precisionScore','recallScore'])
+        df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','SimilarCount','OtherCount','f1Score','precisionScore','recallScore'])
+        #df_resultTracker = pd.DataFrame(columns=['Iteration','ManuallyAnnotated','IntelligentlyAnnotated','ToBeAnnotated','TrainingSize','TestSize','ValidationSize','ClassifierTestScore','ClassifierValidationScore','RequiresCount','RefinesCount','ConflictsCount','f1Score','precisionScore','recallScore'])
 
         #Number of combinations which have been manually or intelligently labelled for different dependency types   
         #andCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
         #orCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
-        #requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
-        #similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts[labelColumn].isin(['M','I']))])
+        requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
+        similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts[labelColumn].isin(['M','I']))])
         #cannotSayCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==5) & (df_rqmts[labelColumn].isin(['M','I']))])
-        #otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts[labelColumn].isin(['M','I']))])
+        otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts[labelColumn].isin(['M','I']))])
 
-        requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
-        refinesCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
-        conflictsCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
+        #requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
+        #refinesCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
+        #conflictsCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
         
         #Add the initial analysis to the analysis dataFrame created.
         #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','AndCount':andCount,'ORCount':orCount,'RequiresCount':requiresCount,'SimilarCount':similarCount,'CannotSayCount':cannotSayCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)
-        #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'SimilarCount':similarCount,'OtherCount':otherCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)
-        df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'RefinesCount':refinesCount,'ConflictsCount':conflictsCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)        
+        df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'SimilarCount':similarCount,'OtherCount':otherCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)
+        #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':'-','TestSize':'-','ValidationSize':validationSetCount,'ClassifierTestScore':'-','ClassifierValidationScore':'-','RequiresCount':requiresCount,'RefinesCount':refinesCount,'ConflictsCount':conflictsCount,'f1Score':'-','precisionScore':'-','recallScore':'-'},ignore_index=True)        
 
     logs.writeLog("\n\nInitial Data Analysis : \n"+str(df_resultTracker)+"\n")
     
@@ -177,17 +212,18 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
         
             #andCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts['MLabelled'].isin(['M','I']))])
             #orCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts['MLabelled'].isin(['M','I']))])
-            #requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts['MLabelled'].isin(['M','I']))])
-            #similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts['MLabelled'].isin(['M','I']))])
+            requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts['MLabelled'].isin(['M','I']))])
+            similarCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==4) & (df_rqmts['MLabelled'].isin(['M','I']))])
             #cannotSayCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==5) & (df_rqmts['MLabelled'].isin(['M','I']))])
-            #otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts['MLabelled'].isin(['M','I']))])
+            otherCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==6) & (df_rqmts['MLabelled'].isin(['M','I']))])
 
-            requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
-            refinesCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
-            conflictsCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
+            #requiresCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==1) & (df_rqmts[labelColumn].isin(['M','I']))])
+            #refinesCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==2) & (df_rqmts[labelColumn].isin(['M','I']))])
+            #conflictsCount = len(df_rqmts[(df_rqmts['MultiClass'].astype('int')==3) & (df_rqmts[labelColumn].isin(['M','I']))])
         
-            df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':trainSize,'TestSize':testSize,'ValidationSize':validationSetCount,'ClassifierTestScore':classifierTestScore,'ClassifierValidationScore':classifierValidationScore,'RequiresCount':requiresCount,'RefinesCount':refinesCount,'ConflictsCount':conflictsCount,'f1Score':f1Score,'precisionScore':precisionScore,'recallScore':recallScore},ignore_index=True)        
-
+            #df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':trainSize,'TestSize':testSize,'ValidationSize':validationSetCount,'ClassifierTestScore':classifierTestScore,'ClassifierValidationScore':classifierValidationScore,'RequiresCount':requiresCount,'RefinesCount':refinesCount,'ConflictsCount':conflictsCount,'f1Score':f1Score,'precisionScore':precisionScore,'recallScore':recallScore},ignore_index=True)        
+            df_resultTracker = df_resultTracker.append({'Iteration':iteration,'ManuallyAnnotated':manuallyAnnotatedCount,'IntelligentlyAnnotated':intelligentlyAnnotatedCount,'ToBeAnnotated':toBeAnnotatedCount,'TrainingSize':trainSize,'TestSize':testSize,'ValidationSize':validationSetCount,'ClassifierTestScore':classifierTestScore,'ClassifierValidationScore':classifierValidationScore,'RequiresCount':requiresCount,'SimilarCount':similarCount,'OtherCount':otherCount,'f1Score':f1Score,'precisionScore':precisionScore,'recallScore':recallScore},ignore_index=True)        
+            
             logs.writeLog("\n\nAnalysis DataFrame : \n"+str(df_resultTracker))
     
     #Merge Validation Set back to the prediction set to ensure all the 19699 combinations are returned.

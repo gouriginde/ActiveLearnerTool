@@ -117,6 +117,8 @@ def createAnnotationsFile(df_rqmts):
     '''
     Dumps the manuall Annotations data into a csv file.
     '''
-    df_rqmts.to_csv(annotationsPath,mode="a",index=False,header=False)
-    
+    if not os.path.exists(annotationsPath):
+        df_rqmts.to_csv(annotationsPath,mode="a",index=False,header=True)
+    else:
+        df_rqmts.to_csv(annotationsPath,mode="a",index=False,header=False)
     return resultsPath

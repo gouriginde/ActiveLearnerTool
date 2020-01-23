@@ -1,0 +1,14 @@
+req1_id,req2_id,req1,req2,BinaryClass,MultiClass,BLabelled,MLabelled
+4.1.2.11,4.3.3.4,stored train data shall be offered to the driver to be confirmed when data entry starts,each railway shall have the possibility of allowing a different release speed for every signal,1,3,I,M
+4.1.4.1,4.7.1.4,partial supervision shall be selected either by the driver or by information received from track-to-train transmission,the train running number shall consist of a maximum of 8 numeric digits,1,4,I,M
+4.1.3.5b,5.2.1.1,the supervised shunting speed shall be indicated to the driver on request,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,1,3,I,M
+4.3.9.1c,5.2.1.1,the roll away/reverse movement intervention shall be indicated on the dmi,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,1,3,I,M
+4.1.2.14a,4.1.8.1,the entry of driver identification and the selection of the language shall be possible,unfitted operation shall be possible if ordered by trackside,1,3,I,M
+4.1.6.1a,4.6.12.2,the etcs trainborne equipment shall be capable of being isolated,operation of the train trip shall be indicated on the dmi,1,4,I,M
+3.10.1.3,4.4.1.2,national values shall be applicable to a defined area,information received shall not influence the traction unit(s) with in-operative cabs,1,3,I,M
+4.4.1.2,4.7.1.4,information received shall not influence the traction unit(s) with in-operative cabs,the train running number shall consist of a maximum of 8 numeric digits,1,4,I,M
+3.9.1.2d,4.1.8.3,for transitions to and from national operation (stm) the etcs shall request an acknowledgement by the driver,the on board shall supervise the train against a ceiling speed,1,3,I,M
+4.1.8.2,4.6.12.5a,unfitted operation shall be possible if selected by the driver at start up,after the acknowledgement the driver shall be able to continue the movement,1,4,I,M
+4.1.1.3a,4.4.1.2,at start up the on board equipment shall perform an automatic self-test,information received shall not influence the traction unit(s) with in-operative cabs,1,3,I,M
+3.9.1.6,4.1.6.1a,the current operational status shall be indicated to the driver on the dmi,the etcs trainborne equipment shall be capable of being isolated,1,4,I,M
+3.9.1.1,4.1.3.2a,the etcs trainborne equipment shall be capable of supervising the following operational states,transfer to shunting on driver’s selection shall only be possible when stationary,1,6,I,M

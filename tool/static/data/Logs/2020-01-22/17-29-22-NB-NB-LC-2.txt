@@ -1,0 +1,1879 @@
+
+----------------------------------------------------------------------------------------------------
+Arguments :- 
+input : ertmsCombinedUpdated.csv
+dependencyTypeNeeded : y
+initManualAnnotAvail : y
+classifier : NB
+testsize : 0.2
+trainingCount : 10
+samplingType : leastConfidence
+manualAnnotationsCount : 2
+comments : NB-LC-2
+
+
+Data Fetched from the input file : 19699 Rows 
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+5162   4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...          0.0         0.0         A         A
+3261    4.3.4.1  the etcs trainborne equipment shall be able to...  4.3.10.7        the following information shall be recorded          0.0         0.0         A         A
+18152  4.1.5.1a  transferring to full supervision shall occur a...   4.2.2.2  the target distance to be displayed on the dmi...          0.0         0.0         A         A
+4333   4.9.10.2  the co-operative revocation of the ma shall be...   5.2.1.1  if there are failures of the trainborne equipm...          0.0         0.0         A         A
+3502   4.1.2.16  the following data may be entered manually by ...   4.6.4.8  the emergency stop shall be indicated to the d...          0.0         0.0         A         A
+9613   4.1.3.4a  automatic transfer to shunting may be from ful...  4.1.1.3b  it shall also be possible to allow the driver ...          0.0         0.0         A         A
+18283  4.1.3.5a  etcs shall supervise shunting operation to a p...  4.1.5.1b  it shall be possible for the trackside to ask ...          0.0         0.0         A         A
+522     4.1.2.9  the driver shall be able to consult train data...  4.1.2.15  following successful completion of train data ...          0.0         0.0         A         A
+16527   4.8.8.6  the character set used shall support different...  5.2.1.2c  in etcs with rbc this restriction on performan...          0.0         0.0         A         A
+13054  4.1.2.3a  entering or overwriting data manually by the d...  4.6.4.1b  it shall be possible to command an immediate t...          0.0         0.0         A         A
+
+Step 1 :- Learning BinaryClass Label
+
+Separating Validation Set : 60 Rows
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+150     4.3.7.3  if the train or the shunting movement exceeds ...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         6.0         M         M
+194    4.1.4.4c  this ceiling speed shall not be shown continua...   4.8.10.2              information shall be shown on the dmi          1.0         3.0         M         M
+50      4.3.51a         actual speed shall be indicated on the dmi   4.6.4.1c  route unsuitability shall be indicated on the dmi          1.0         4.0         M         M
+19641  4.1.2.16  the following data may be entered manually by ...   4.1.3.5a  etcs shall supervise shunting operation to a p...          0.0         0.0         M         M
+60      4.6.4.2  the driver shall be able to override the funct...  4.6.12.5a  after the acknowledgement the driver shall be ...          0.0         0.0         M         M
+201     4.1.4.3  partial supervision shall be indicated on the dmi   4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         4.0         M         M
+19657   4.1.4.7  it shall be possible to order a train trip whe...    4.1.8.4  the ceiling speed value for the unfitted opera...          0.0         0.0         M         M
+349     4.3.3.3  when the train is stationary or after a certai...    4.3.7.3  if the train or the shunting movement exceeds ...          0.0         0.0         M         M
+353     4.1.2.2  the driver shall be able to select train data ...    4.2.2.2  the target distance to be displayed on the dmi...          0.0         0.0         M         M
+19574   4.1.3.1  an etcs equipped traction unit shall be capabl...   4.3.7.4c  if decided by a national value the driver may ...          0.0         0.0         M         M
+
+Initial Data Analysis : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore DependentCount IndependentCount f1Score precisionScore recallScore
+0         0               256                      0         19392            -        -             60                   -                         -            112              144       -              -           -
+
+
+Iteration : 1
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 256 Rows 
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+365    4.1.1.3a  it shall be possible to send information on ad...  4.1.1.3b  it shall also be possible to allow the driver ...          1.0         3.0         M         M
+283     3.9.1.6  the current operational status shall be indica...   4.9.9.1  the on board shall be capable of sending train...          0.0         0.0         M         M
+217     4.7.3.2  on demand the position of the front end of the...   4.9.5.4  the driver shall be able to confirm the train ...          0.0         0.0         M         M
+76     3.2.1.3d  the current application level shall be indicat...   4.3.51a         actual speed shall be indicated on the dmi          1.0         4.0         M         M
+19586   3.9.1.3  during the transition period between two opera...   4.1.3.1  an etcs equipped traction unit shall be capabl...          0.0         0.0         M         M
+141    4.3.3.2c    the release speed shall be indicated on the dmi  5.2.1.2a  the occurrence of a failure shall be displayed...          1.0         4.0         M         M
+183    4.3.3.2c    the release speed shall be indicated on the dmi   4.8.8.3  when the plain text message appears on the dmi...          0.0         0.0         M         M
+375     4.8.8.3  when the plain text message appears on the dmi...   4.9.9.1  the on board shall be capable of sending train...          0.0         0.0         M         M
+263     4.1.2.9  the driver shall be able to consult train data...  4.6.12.4  when the traction unit is stationary the drive...          0.0         0.0         M         M
+70     4.3.3.2c    the release speed shall be indicated on the dmi  4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         4.0         M         M
+
+Unlabelled Data : 19392 Rows 
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+5162   4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...          0.0         0.0         A         A
+3261    4.3.4.1  the etcs trainborne equipment shall be able to...  4.3.10.7        the following information shall be recorded          0.0         0.0         A         A
+18152  4.1.5.1a  transferring to full supervision shall occur a...   4.2.2.2  the target distance to be displayed on the dmi...          0.0         0.0         A         A
+4333   4.9.10.2  the co-operative revocation of the ma shall be...   5.2.1.1  if there are failures of the trainborne equipm...          0.0         0.0         A         A
+3502   4.1.2.16  the following data may be entered manually by ...   4.6.4.8  the emergency stop shall be indicated to the d...          0.0         0.0         A         A
+9613   4.1.3.4a  automatic transfer to shunting may be from ful...  4.1.1.3b  it shall also be possible to allow the driver ...          0.0         0.0         A         A
+18283  4.1.3.5a  etcs shall supervise shunting operation to a p...  4.1.5.1b  it shall be possible for the trackside to ask ...          0.0         0.0         A         A
+522     4.1.2.9  the driver shall be able to consult train data...  4.1.2.15  following successful completion of train data ...          0.0         0.0         A         A
+16527   4.8.8.6  the character set used shall support different...  5.2.1.2c  in etcs with rbc this restriction on performan...          0.0         0.0         A         A
+13054  4.1.2.3a  entering or overwriting data manually by the d...  4.6.4.1b  it shall be possible to command an immediate t...          0.0         0.0         A         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 180
+Train Set Value Count : 
+0.0    90
+1.0    90
+Name: BinaryClass, dtype: int64
+Test Set Size : 44
+Test Set Value Count : 
+1.0    22
+0.0    22
+Name: BinaryClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.75
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           0       0.69      0.91      0.78        22
+           1       0.87      0.59      0.70        22
+
+    accuracy                           0.75        44
+   macro avg       0.78      0.75      0.74        44
+weighted avg       0.78      0.75      0.74        44
+
+
+Confusion Matrix : 
+[[20  2]
+ [ 9 13]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.8666666666666667
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 19392
+Prediction Results :  19392 Rows 
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                              predictedProb   maxProb
+5162   4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...            1           0         A         A   [0.3718590554345555, 0.6281409445654432]  0.628141
+3261    4.3.4.1  the etcs trainborne equipment shall be able to...  4.3.10.7        the following information shall be recorded            0           0         A         A   [0.6876879947148565, 0.3123120052851449]  0.687688
+18152  4.1.5.1a  transferring to full supervision shall occur a...   4.2.2.2  the target distance to be displayed on the dmi...            0           0         A         A   [0.7183992345892276, 0.2816007654107733]  0.718399
+4333   4.9.10.2  the co-operative revocation of the ma shall be...   5.2.1.1  if there are failures of the trainborne equipm...            0           0         A         A  [0.6681869007087043, 0.33181309929129504]  0.668187
+3502   4.1.2.16  the following data may be entered manually by ...   4.6.4.8  the emergency stop shall be indicated to the d...            0           0         A         A   [0.6020199962653996, 0.3979800037346005]  0.602020
+9613   4.1.3.4a  automatic transfer to shunting may be from ful...  4.1.1.3b  it shall also be possible to allow the driver ...            0           0         A         A   [0.6931125758500919, 0.3068874241499104]  0.693113
+18283  4.1.3.5a  etcs shall supervise shunting operation to a p...  4.1.5.1b  it shall be possible for the trackside to ask ...            0           0         A         A   [0.6870397314009438, 0.3129602685990564]  0.687040
+522     4.1.2.9  the driver shall be able to consult train data...  4.1.2.15  following successful completion of train data ...            0           0         A         A    [0.549804760052824, 0.4501952399471775]  0.549805
+16527   4.8.8.6  the character set used shall support different...  5.2.1.2c  in etcs with rbc this restriction on performan...            0           0         A         A  [0.6579881801017354, 0.34201181989826307]  0.657988
+13054  4.1.2.3a  entering or overwriting data manually by the d...  4.6.4.1b  it shall be possible to command an immediate t...            0           0         A         A    [0.7016038138821906, 0.298396186117809]  0.701604
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Following is the observed maximum probability distribution : 
+(0.9, 1.0]     141
+(0.8, 0.9]    1492
+(0.7, 0.8]    4717
+(0.6, 0.7]    6821
+(0.5, 0.6]    6221
+(0.4, 0.5]       0
+(0.3, 0.4]       0
+(0.2, 0.3]       0
+(0.1, 0.2]       0
+(0.0, 0.1]       0
+Name: maxProb, dtype: int64
+
+Please select the threshold probability value to mark the predictions confident : User Input : 0.5
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.5
+
+Confident Predictions : 19392 Rows
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                              predictedProb   maxProb
+5162   4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...            1           0         I         A   [0.3718590554345555, 0.6281409445654432]  0.628141
+3261    4.3.4.1  the etcs trainborne equipment shall be able to...  4.3.10.7        the following information shall be recorded            0           0         I         A   [0.6876879947148565, 0.3123120052851449]  0.687688
+18152  4.1.5.1a  transferring to full supervision shall occur a...   4.2.2.2  the target distance to be displayed on the dmi...            0           0         I         A   [0.7183992345892276, 0.2816007654107733]  0.718399
+4333   4.9.10.2  the co-operative revocation of the ma shall be...   5.2.1.1  if there are failures of the trainborne equipm...            0           0         I         A  [0.6681869007087043, 0.33181309929129504]  0.668187
+3502   4.1.2.16  the following data may be entered manually by ...   4.6.4.8  the emergency stop shall be indicated to the d...            0           0         I         A   [0.6020199962653996, 0.3979800037346005]  0.602020
+9613   4.1.3.4a  automatic transfer to shunting may be from ful...  4.1.1.3b  it shall also be possible to allow the driver ...            0           0         I         A   [0.6931125758500919, 0.3068874241499104]  0.693113
+18283  4.1.3.5a  etcs shall supervise shunting operation to a p...  4.1.5.1b  it shall be possible for the trackside to ask ...            0           0         I         A   [0.6870397314009438, 0.3129602685990564]  0.687040
+522     4.1.2.9  the driver shall be able to consult train data...  4.1.2.15  following successful completion of train data ...            0           0         I         A    [0.549804760052824, 0.4501952399471775]  0.549805
+16527   4.8.8.6  the character set used shall support different...  5.2.1.2c  in etcs with rbc this restriction on performan...            0           0         I         A  [0.6579881801017354, 0.34201181989826307]  0.657988
+13054  4.1.2.3a  entering or overwriting data manually by the d...  4.6.4.1b  it shall be possible to command an immediate t...            0           0         I         A    [0.7016038138821906, 0.298396186117809]  0.701604
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 0 Rows
+Empty DataFrame
+Columns: [req1_id, req1, req2_id, req2, BinaryClass, MultiClass, BLabelled, MLabelled, predictedProb, maxProb]
+Index: []
+
+Final Predictions : 19392 Rows 
+    req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+0  4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...            1           0         I         A
+1   4.3.4.1  the etcs trainborne equipment shall be able to...  4.3.10.7        the following information shall be recorded            0           0         I         A
+2  4.1.5.1a  transferring to full supervision shall occur a...   4.2.2.2  the target distance to be displayed on the dmi...            0           0         I         A
+3  4.9.10.2  the co-operative revocation of the ma shall be...   5.2.1.1  if there are failures of the trainborne equipm...            0           0         I         A
+4  4.1.2.16  the following data may be entered manually by ...   4.6.4.8  the emergency stop shall be indicated to the d...            0           0         I         A
+5  4.1.3.4a  automatic transfer to shunting may be from ful...  4.1.1.3b  it shall also be possible to allow the driver ...            0           0         I         A
+6  4.1.3.5a  etcs shall supervise shunting operation to a p...  4.1.5.1b  it shall be possible for the trackside to ask ...            0           0         I         A
+7   4.1.2.9  the driver shall be able to consult train data...  4.1.2.15  following successful completion of train data ...            0           0         I         A
+8   4.8.8.6  the character set used shall support different...  5.2.1.2c  in etcs with rbc this restriction on performan...            0           0         I         A
+9  4.1.2.3a  entering or overwriting data manually by the d...  4.6.4.1b  it shall be possible to command an immediate t...            0           0         I         A
+
+Updated Database : 19648 Rows 
+    req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+0  4.1.1.3a  it shall be possible to send information on ad...  4.1.1.3b  it shall also be possible to allow the driver ...            1         3.0         M         M
+1   3.9.1.6  the current operational status shall be indica...   4.9.9.1  the on board shall be capable of sending train...            0         0.0         M         M
+2   4.7.3.2  on demand the position of the front end of the...   4.9.5.4  the driver shall be able to confirm the train ...            0         0.0         M         M
+3  3.2.1.3d  the current application level shall be indicat...   4.3.51a         actual speed shall be indicated on the dmi            1         4.0         M         M
+4   3.9.1.3  during the transition period between two opera...   4.1.3.1  an etcs equipped traction unit shall be capabl...            0         0.0         M         M
+5  4.3.3.2c    the release speed shall be indicated on the dmi  5.2.1.2a  the occurrence of a failure shall be displayed...            1         4.0         M         M
+6  4.3.3.2c    the release speed shall be indicated on the dmi   4.8.8.3  when the plain text message appears on the dmi...            0         0.0         M         M
+7   4.8.8.3  when the plain text message appears on the dmi...   4.9.9.1  the on board shall be capable of sending train...            0         0.0         M         M
+8   4.1.2.9  the driver shall be able to consult train data...  4.6.12.4  when the traction unit is stationary the drive...            0         0.0         M         M
+9  4.3.3.2c    the release speed shall be indicated on the dmi  4.3.9.1c  the roll away/reverse movement intervention sh...            1         4.0         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore DependentCount IndependentCount f1Score precisionScore recallScore
+0         0               256                      0         19392            -        -             60                   -                         -            112              144       -              -           -
+1         1               256                  19392             0          180       44             60                0.75                  0.866667           6076            13572    0.74           0.78        0.75
+
+Iteration : 2
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 19648 Rows 
+    req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+0  4.1.1.3a  it shall be possible to send information on ad...  4.1.1.3b  it shall also be possible to allow the driver ...            1         3.0         M         M
+1   3.9.1.6  the current operational status shall be indica...   4.9.9.1  the on board shall be capable of sending train...            0         0.0         M         M
+2   4.7.3.2  on demand the position of the front end of the...   4.9.5.4  the driver shall be able to confirm the train ...            0         0.0         M         M
+3  3.2.1.3d  the current application level shall be indicat...   4.3.51a         actual speed shall be indicated on the dmi            1         4.0         M         M
+4   3.9.1.3  during the transition period between two opera...   4.1.3.1  an etcs equipped traction unit shall be capabl...            0         0.0         M         M
+5  4.3.3.2c    the release speed shall be indicated on the dmi  5.2.1.2a  the occurrence of a failure shall be displayed...            1         4.0         M         M
+6  4.3.3.2c    the release speed shall be indicated on the dmi   4.8.8.3  when the plain text message appears on the dmi...            0         0.0         M         M
+7   4.8.8.3  when the plain text message appears on the dmi...   4.9.9.1  the on board shall be capable of sending train...            0         0.0         M         M
+8   4.1.2.9  the driver shall be able to consult train data...  4.6.12.4  when the traction unit is stationary the drive...            0         0.0         M         M
+9  4.3.3.2c    the release speed shall be indicated on the dmi  4.3.9.1c  the roll away/reverse movement intervention sh...            1         4.0         M         M
+
+Unlabelled Data : 0 Rows 
+Empty DataFrame
+Columns: [req1_id, req1, req2_id, req2, BinaryClass, MultiClass, BLabelled, MLabelled]
+Index: []
+There are no more Unlabelled Data Points....
+
+Step 2 :- Learning MultiClass Label
+Following is the data set to be used for MultiClass classification : 6107 Rows
+     req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+0   4.1.1.3a  it shall be possible to send information on ad...   4.1.1.3b  it shall also be possible to allow the driver ...          1.0         3.0         M         M
+3   3.2.1.3d  the current application level shall be indicat...    4.3.51a         actual speed shall be indicated on the dmi          1.0         4.0         M         M
+5   4.3.3.2c    the release speed shall be indicated on the dmi   5.2.1.2a  the occurrence of a failure shall be displayed...          1.0         4.0         M         M
+9   4.3.3.2c    the release speed shall be indicated on the dmi   4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         4.0         M         M
+12  4.9.12.2  if the train is equipped with two operational ...   4.9.12.3  if the train is equipped with only one operati...          1.0         6.0         M         M
+19   4.3.7.3  if the train or the shunting movement exceeds ...   4.6.12.4  when the traction unit is stationary the drive...          1.0         6.0         M         M
+21  4.2.3.6d  on request of the rbc the driver shall have th...    4.3.4.2  on lines fitted with rbc the etcs trainborne e...          1.0         4.0         M         M
+23  3.10.1.1  the etcs on-board shall be capable of receivin...    4.1.1.1  the etcs on-board shall be capable of receivin...          1.0         4.0         M         M
+26  4.6.12.4  when the traction unit is stationary the drive...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         6.0         M         M
+28  4.2.3.6a  the train shall be supervised according to tra...    4.3.7.1  a train shall be supervised to its static and ...          1.0         4.0         M         M
+Separating Validation Set : 28 Rows
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+71   4.1.1.4c  the dmi shall indicate the result of the self-...  5.2.1.2a  the occurrence of a failure shall be displayed...          1.0         4.0         M         M
+70    4.1.4.3  partial supervision shall be indicated on the dmi   4.6.4.8  the emergency stop shall be indicated to the d...          1.0         4.0         M         M
+221   4.3.9.2  when the traction unit has come to a standstil...  4.6.12.3  the emergency brake shall be applied until the...          1.0         6.0         M         M
+222   4.3.2.7  where failure to apply the full service brake ...   5.2.1.1  if there are failures of the trainborne equipm...          1.0         4.0         M         M
+95    4.8.2.1  the etcs on-board shall be capable of receivin...   4.9.5.1  the etcs on-board shall be capable of sending ...          1.0         6.0         M         M
+195   4.3.51a         actual speed shall be indicated on the dmi  4.8.10.2              information shall be shown on the dmi          1.0         3.0         M         M
+131   4.6.4.8  the emergency stop shall be indicated to the d...   4.7.3.2  on demand the position of the front end of the...          1.0         4.0         M         M
+9    4.3.3.2c    the release speed shall be indicated on the dmi  4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         4.0         M         M
+175  3.2.1.3d  the current application level shall be indicat...  4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         4.0         M         M
+45   3.2.1.3d  the current application level shall be indicat...  4.8.10.2              information shall be shown on the dmi          1.0         3.0         M         M
+
+Initial Data Analysis : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+
+
+Iteration : 1
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 134 Rows 
+     req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+28  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...          1.0         4.0         M         M
+29  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi          1.0         4.0         M         M
+30   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...          1.0         3.0         M         M
+31  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...          1.0         4.0         M         M
+32  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi          1.0         4.0         M         M
+33   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...          1.0         3.0         M         M
+34  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi          1.0         3.0         M         M
+37   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi          1.0         3.0         M         M
+39   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...          1.0         3.0         M         M
+44   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...          1.0         6.0         M         M
+
+Unlabelled Data : 5964 Rows 
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled
+256  4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...          1.0         0.0         I         A
+266   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...          1.0         0.0         I         A
+267  4.1.2.10  current train data shall be stored (except at ...  4.1.4.4c  this ceiling speed shall not be shown continua...          1.0         0.0         I         A
+269  4.5.2.5b  the supervised speed shall not be shown on the...  5.2.1.2a  the occurrence of a failure shall be displayed...          1.0         0.0         I         A
+272  4.1.3.5b  the supervised shunting speed shall be indicat...  4.6.12.3  the emergency brake shall be applied until the...          1.0         0.0         I         A
+273   4.1.4.7  it shall be possible to order a train trip whe...   4.2.2.1  the etcs trainborne equipment shall supervise ...          1.0         0.0         I         A
+274  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...          1.0         0.0         I         A
+279  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...          1.0         0.0         I         A
+281  4.1.1.4b  if track data at least to the location where t...  4.9.10.8  once the train starts reversing the ma shall b...          1.0         0.0         I         A
+282   4.3.9.2  when the traction unit has come to a standstil...   4.4.2.2                            the train trip function          1.0         0.0         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 36
+Train Set Value Count : 
+6.0    12
+4.0    12
+3.0    12
+Name: MultiClass, dtype: int64
+Test Set Size : 9
+Test Set Value Count : 
+3.0    3
+6.0    3
+4.0    3
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 1.0
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       1.00      1.00      1.00         3
+           4       1.00      1.00      1.00         3
+           6       1.00      1.00      1.00         3
+
+    accuracy                           1.00         9
+   macro avg       1.00      1.00      1.00         9
+weighted avg       1.00      1.00      1.00         9
+
+
+Confusion Matrix : 
+[[3 0 0]
+ [0 3 0]
+ [0 0 3]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.75
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 5964
+Prediction Results :  5964 Rows 
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+256  4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...            1           4         I         A  [0.34022998278752264, 0.42400432319552456, 0.2...  0.424004
+266   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...            1           6         I         A  [0.37897843057260455, 0.23667985707449685, 0.3...  0.384342
+267  4.1.2.10  current train data shall be stored (except at ...  4.1.4.4c  this ceiling speed shall not be shown continua...            1           3         I         A  [0.4891059490484605, 0.2585367711815108, 0.252...  0.489106
+269  4.5.2.5b  the supervised speed shall not be shown on the...  5.2.1.2a  the occurrence of a failure shall be displayed...            1           4         I         A  [0.41603034503130504, 0.4701888034113893, 0.11...  0.470189
+272  4.1.3.5b  the supervised shunting speed shall be indicat...  4.6.12.3  the emergency brake shall be applied until the...            1           4         I         A  [0.26865782658974, 0.4523268862444705, 0.27901...  0.452327
+273   4.1.4.7  it shall be possible to order a train trip whe...   4.2.2.1  the etcs trainborne equipment shall supervise ...            1           6         I         A  [0.34733884916783797, 0.2240023600707719, 0.42...  0.428659
+274  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...            1           4         I         A  [0.3435297975378263, 0.398498389188963, 0.2579...  0.398498
+279  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.39060483206298097, 0.22742102520798518, 0.3...  0.390605
+281  4.1.1.4b  if track data at least to the location where t...  4.9.10.8  once the train starts reversing the ma shall b...            1           6         I         A  [0.3281496057380286, 0.25859689511549994, 0.41...  0.413253
+282   4.3.9.2  when the traction unit has come to a standstil...   4.4.2.2                            the train trip function            1           6         I         A  [0.20612658986021917, 0.3091604158578557, 0.48...  0.484713
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Following is the observed maximum probability distribution : 
+(0.9, 1.0]       0
+(0.8, 0.9]       0
+(0.7, 0.8]       2
+(0.6, 0.7]     186
+(0.5, 0.6]    1352
+(0.4, 0.5]    2977
+(0.3, 0.4]    1447
+(0.2, 0.3]       0
+(0.1, 0.2]       0
+(0.0, 0.1]       0
+Name: maxProb, dtype: int64
+
+Please select the threshold probability value to mark the predictions confident : User Input : 0.4
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 4517 Rows
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+256  4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...            1           4         I         I  [0.34022998278752264, 0.42400432319552456, 0.2...  0.424004
+267  4.1.2.10  current train data shall be stored (except at ...  4.1.4.4c  this ceiling speed shall not be shown continua...            1           3         I         I  [0.4891059490484605, 0.2585367711815108, 0.252...  0.489106
+269  4.5.2.5b  the supervised speed shall not be shown on the...  5.2.1.2a  the occurrence of a failure shall be displayed...            1           4         I         I  [0.41603034503130504, 0.4701888034113893, 0.11...  0.470189
+272  4.1.3.5b  the supervised shunting speed shall be indicat...  4.6.12.3  the emergency brake shall be applied until the...            1           4         I         I  [0.26865782658974, 0.4523268862444705, 0.27901...  0.452327
+273   4.1.4.7  it shall be possible to order a train trip whe...   4.2.2.1  the etcs trainborne equipment shall supervise ...            1           6         I         I  [0.34733884916783797, 0.2240023600707719, 0.42...  0.428659
+281  4.1.1.4b  if track data at least to the location where t...  4.9.10.8  once the train starts reversing the ma shall b...            1           6         I         I  [0.3281496057380286, 0.25859689511549994, 0.41...  0.413253
+282   4.3.9.2  when the traction unit has come to a standstil...   4.4.2.2                            the train trip function            1           6         I         I  [0.20612658986021917, 0.3091604158578557, 0.48...  0.484713
+283  4.3.10.7        the following information shall be recorded   4.5.2.4       actual speed shall still be shown on the dmi            1           3         I         I  [0.4331112957315836, 0.42219127456871836, 0.14...  0.433111
+294  3.9.1.2b  transitions which occur while the train is sta...  4.1.4.4c  this ceiling speed shall not be shown continua...            1           3         I         I  [0.5733070262191889, 0.2516290596992523, 0.175...  0.573307
+299   4.6.4.2  the driver shall be able to override the funct...   4.8.2.1  the etcs on-board shall be capable of receivin...            1           6         I         I  [0.2541930361687634, 0.18866513625657946, 0.55...  0.557142
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 1447 Rows
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+266   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...          1.0         6.0         I         A  [0.37897843057260455, 0.23667985707449685, 0.3...  0.384342
+274  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...          1.0         4.0         I         A  [0.3435297975378263, 0.398498389188963, 0.2579...  0.398498
+279  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.39060483206298097, 0.22742102520798518, 0.3...  0.390605
+291  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.4.1  the etcs trainborne equipment shall be able to...          1.0         3.0         I         A  [0.3914504471876773, 0.37415441974925356, 0.23...  0.391450
+296   4.6.4.8  the emergency stop shall be indicated to the d...   4.9.9.1  the on board shall be capable of sending train...          1.0         6.0         I         A  [0.2748808913028023, 0.34964792693255403, 0.37...  0.375471
+314   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.12.2  operation of the train trip shall be indicated...          1.0         6.0         I         A  [0.32840982556025233, 0.3289914825164198, 0.34...  0.342599
+341   4.1.8.2  unfitted operation shall be possible if select...  4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         3.0         I         A  [0.3883158858055128, 0.3789834064281103, 0.232...  0.388316
+370   3.9.1.5  if an etcs equipped train passes a level trans...  4.1.1.4c  the dmi shall indicate the result of the self-...          1.0         3.0         I         A  [0.3489702492548045, 0.3362687689860394, 0.314...  0.348970
+373   4.1.7.2  the dmi shall display or be compatible with in...  4.9.10.7  the distance supervised can be extended from t...          1.0         6.0         I         A  [0.32528481237418655, 0.2846847067017587, 0.39...  0.390030
+383   4.1.2.9  the driver shall be able to consult train data...  4.3.10.3  information shall be recorded to an accuracy w...          1.0         3.0         I         A  [0.38989151326139715, 0.2202733674795875, 0.38...  0.389892
+
+ Iteration : 1
+
+Least Confidence Calculations...1447 Rows
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+14175  4.1.2.11  stored train data shall be offered to the driv...   4.3.3.4  each railway shall have the possibility of all...          1.0         3.0         I         A  [0.3356661123268947, 0.3287017508776383, 0.335...  0.335666  0.664334
+16232   4.1.4.1  partial supervision shall be selected either b...   4.7.1.4  the train running number shall consist of a ma...          1.0         4.0         I         A  [0.33496477836630717, 0.33698468607933807, 0.3...  0.336985  0.663015
+6417   3.2.1.3b  it shall be possible to implement one or more ...   4.4.1.2  information received shall not influence the t...          1.0         3.0         I         A  [0.33718893118335574, 0.3355915460528316, 0.32...  0.337189  0.662811
+11597   3.9.1.1  the etcs trainborne equipment shall be capable...   4.3.3.1  the release speed shall be calculated on board...          1.0         6.0         I         A  [0.33597899464584396, 0.3263846308466267, 0.33...  0.337636  0.662364
+11173   4.4.1.3                            the train trip function  4.9.12.3  if the train is equipped with only one operati...          1.0         4.0         I         A  [0.3319902469474059, 0.3379008863361659, 0.330...  0.337901  0.662099
+3796    4.4.2.2                            the train trip function  4.9.12.3  if the train is equipped with only one operati...          1.0         4.0         I         A  [0.3319902469474059, 0.3379008863361659, 0.330...  0.337901  0.662099
+18989  3.10.1.1  the etcs on-board shall be capable of receivin...   4.5.2.4       actual speed shall still be shown on the dmi          1.0         4.0         I         A  [0.3338091724370484, 0.33864060222545966, 0.32...  0.338641  0.661359
+4075    3.9.1.6  the current operational status shall be indica...   4.1.6.6  isolation of the etcs trainborne equipment sha...          1.0         6.0         I         A  [0.3324277118151809, 0.3288946850734248, 0.338...  0.338678  0.661322
+2991   3.2.1.3a  the following definitions shall apply for the ...   4.3.6.5  visual and acoustic warnings to the driver abo...          1.0         3.0         I         A  [0.33882238699028255, 0.33121044903770863, 0.3...  0.338822  0.661178
+19366  4.3.1.4a  the etcs trainborne equipment calculates the s...  4.6.12.2  operation of the train trip shall be indicated...          1.0         3.0         I         A  [0.3393080135062217, 0.32207413896466497, 0.33...  0.339308  0.660692
+
+Most Uncertain Sample : 
+req1_id                                                   4.1.2.11
+req1             stored train data shall be offered to the driv...
+req2_id                                                    4.3.3.4
+req2             each railway shall have the possibility of all...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3356661123268947, 0.3287017508776383, 0.335...
+maxProb                                                   0.335666
+lconf                                                     0.664334
+Name: 14175, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.2.11) : stored train data shall be offered to the driver to be confirmed when data entry starts
+Requirement 2 (4.3.3.4) : each railway shall have the possibility of allowing a different release speed for every signal
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+ Iteration : 2
+
+Least Confidence Calculations...1446 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+1189   4.1.4.1  partial supervision shall be selected either b...   4.7.1.4  the train running number shall consist of a ma...          1.0         4.0         I         A  [0.33496477836630717, 0.33698468607933807, 0.3...  0.336985  0.663015
+440   3.2.1.3b  it shall be possible to implement one or more ...   4.4.1.2  information received shall not influence the t...          1.0         3.0         I         A  [0.33718893118335574, 0.3355915460528316, 0.32...  0.337189  0.662811
+837    3.9.1.1  the etcs trainborne equipment shall be capable...   4.3.3.1  the release speed shall be calculated on board...          1.0         6.0         I         A  [0.33597899464584396, 0.3263846308466267, 0.33...  0.337636  0.662364
+802    4.4.1.3                            the train trip function  4.9.12.3  if the train is equipped with only one operati...          1.0         4.0         I         A  [0.3319902469474059, 0.3379008863361659, 0.330...  0.337901  0.662099
+250    4.4.2.2                            the train trip function  4.9.12.3  if the train is equipped with only one operati...          1.0         4.0         I         A  [0.3319902469474059, 0.3379008863361659, 0.330...  0.337901  0.662099
+1392  3.10.1.1  the etcs on-board shall be capable of receivin...   4.5.2.4       actual speed shall still be shown on the dmi          1.0         4.0         I         A  [0.3338091724370484, 0.33864060222545966, 0.32...  0.338641  0.661359
+273    3.9.1.6  the current operational status shall be indica...   4.1.6.6  isolation of the etcs trainborne equipment sha...          1.0         6.0         I         A  [0.3324277118151809, 0.3288946850734248, 0.338...  0.338678  0.661322
+206   3.2.1.3a  the following definitions shall apply for the ...   4.3.6.5  visual and acoustic warnings to the driver abo...          1.0         3.0         I         A  [0.33882238699028255, 0.33121044903770863, 0.3...  0.338822  0.661178
+1421  4.3.1.4a  the etcs trainborne equipment calculates the s...  4.6.12.2  operation of the train trip shall be indicated...          1.0         3.0         I         A  [0.3393080135062217, 0.32207413896466497, 0.33...  0.339308  0.660692
+1290   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.4.1c  route unsuitability shall be indicated on the dmi          1.0         3.0         I         A  [0.3393247421219626, 0.336216797958624, 0.3244...  0.339325  0.660675
+
+Most Uncertain Sample : 
+req1_id                                                    4.1.4.1
+req1             partial supervision shall be selected either b...
+req2_id                                                    4.7.1.4
+req2             the train running number shall consist of a ma...
+BinaryClass                                                      1
+MultiClass                                                       4
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.33496477836630717, 0.33698468607933807, 0.3...
+maxProb                                                   0.336985
+lconf                                                     0.663015
+Name: 1189, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.4.1) : partial supervision shall be selected either by the driver or by information received from track-to-train transmission
+Requirement 2 (4.7.1.4) : the train running number shall consist of a maximum of 8 numeric digits
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 4
+
+Manually Annotated Combinations... 2Rows 
+    req1_id                                               req1  req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.2.11  stored train data shall be offered to the driv...  4.3.3.4  each railway shall have the possibility of all...           1          3         I         M
+0   4.1.4.1  partial supervision shall be selected either b...  4.7.1.4  the train running number shall consist of a ma...           1          4         I         M
+
+Annotated Data : 1447 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.2.11  stored train data shall be offered to the driv...   4.3.3.4  each railway shall have the possibility of all...           1          3         I         M
+0   4.1.4.1  partial supervision shall be selected either b...   4.7.1.4  the train running number shall consist of a ma...           1          4         I         M
+0   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...           1          6         I         A
+1  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...           1          4         I         A
+2  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...           1          3         I         A
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.4.1  the etcs trainborne equipment shall be able to...           1          3         I         A
+4   4.6.4.8  the emergency stop shall be indicated to the d...   4.9.9.1  the on board shall be capable of sending train...           1          6         I         A
+5   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.12.2  operation of the train trip shall be indicated...           1          6         I         A
+6   4.1.8.2  unfitted operation shall be possible if select...  4.3.9.1c  the roll away/reverse movement intervention sh...           1          3         I         A
+7   3.9.1.5  if an etcs equipped train passes a level trans...  4.1.1.4c  the dmi shall indicate the result of the self-...           1          3         I         A
+
+Final Predictions : 5964 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.3.8a  exit from shunting shall only be possible when...  4.6.12.2  operation of the train trip shall be indicated...           1          4         I         I
+1  4.1.2.10  current train data shall be stored (except at ...  4.1.4.4c  this ceiling speed shall not be shown continua...           1          3         I         I
+2  4.5.2.5b  the supervised speed shall not be shown on the...  5.2.1.2a  the occurrence of a failure shall be displayed...           1          4         I         I
+3  4.1.3.5b  the supervised shunting speed shall be indicat...  4.6.12.3  the emergency brake shall be applied until the...           1          4         I         I
+4   4.1.4.7  it shall be possible to order a train trip whe...   4.2.2.1  the etcs trainborne equipment shall supervise ...           1          6         I         I
+5  4.1.1.4b  if track data at least to the location where t...  4.9.10.8  once the train starts reversing the ma shall b...           1          6         I         I
+6   4.3.9.2  when the traction unit has come to a standstil...   4.4.2.2                            the train trip function           1          6         I         I
+7  4.3.10.7        the following information shall be recorded   4.5.2.4       actual speed shall still be shown on the dmi           1          3         I         I
+8  3.9.1.2b  transitions which occur while the train is sta...  4.1.4.4c  this ceiling speed shall not be shown continua...           1          3         I         I
+9   4.6.4.2  the driver shall be able to override the funct...   4.8.2.1  the etcs on-board shall be capable of receivin...           1          6         I         I
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+
+Iteration : 2
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 4653 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 1445 Rows 
+       req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+4653   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...           1          6         I         A
+4654  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...           1          4         I         A
+4655  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...           1          3         I         A
+4656  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.4.1  the etcs trainborne equipment shall be able to...           1          3         I         A
+4657   4.6.4.8  the emergency stop shall be indicated to the d...   4.9.9.1  the on board shall be capable of sending train...           1          6         I         A
+4658   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.12.2  operation of the train trip shall be indicated...           1          6         I         A
+4659   4.1.8.2  unfitted operation shall be possible if select...  4.3.9.1c  the roll away/reverse movement intervention sh...           1          3         I         A
+4660   3.9.1.5  if an etcs equipped train passes a level trans...  4.1.1.4c  the dmi shall indicate the result of the self-...           1          3         I         A
+4661   4.1.7.2  the dmi shall display or be compatible with in...  4.9.10.7  the distance supervised can be extended from t...           1          6         I         A
+4662   4.1.2.9  the driver shall be able to consult train data...  4.3.10.3  information shall be recorded to an accuracy w...           1          3         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 3228
+Train Set Value Count : 
+6.0    1076
+3.0    1076
+4.0    1076
+Name: MultiClass, dtype: int64
+Test Set Size : 804
+Test Set Value Count : 
+6.0    268
+4.0    268
+3.0    268
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.9017412935323383
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       0.92      0.83      0.87       268
+           4       0.86      0.92      0.89       268
+           6       0.93      0.96      0.94       268
+
+    accuracy                           0.90       804
+   macro avg       0.90      0.90      0.90       804
+weighted avg       0.90      0.90      0.90       804
+
+
+Confusion Matrix : 
+[[222  32  14]
+ [ 15 247   6]
+ [  5   7 256]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.75
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 1445
+Prediction Results :  1445 Rows 
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+4653   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...            1           6         I         A  [0.22511862908598976, 0.025653722686408083, 0....  0.749228
+4654  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...            1           4         I         A  [0.20361566443838452, 0.6555209916855214, 0.14...  0.655521
+4655  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...            1           6         I         A  [0.32908904529514915, 0.07436850490271689, 0.5...  0.596542
+4656  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.4.1  the etcs trainborne equipment shall be able to...            1           3         I         A  [0.5256097648696614, 0.3114904274309168, 0.162...  0.525610
+4657   4.6.4.8  the emergency stop shall be indicated to the d...   4.9.9.1  the on board shall be capable of sending train...            1           6         I         A  [0.10905429191449131, 0.44512731815794476, 0.4...  0.445818
+4658   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.12.2  operation of the train trip shall be indicated...            1           6         I         A  [0.2997999129029589, 0.17140572581384284, 0.52...  0.528794
+4659   4.1.8.2  unfitted operation shall be possible if select...  4.3.9.1c  the roll away/reverse movement intervention sh...            1           4         I         A  [0.36673965312183016, 0.5348933833048698, 0.09...  0.534893
+4660   3.9.1.5  if an etcs equipped train passes a level trans...  4.1.1.4c  the dmi shall indicate the result of the self-...            1           4         I         A  [0.2446453886284214, 0.5022502206715377, 0.253...  0.502250
+4661   4.1.7.2  the dmi shall display or be compatible with in...  4.9.10.7  the distance supervised can be extended from t...            1           6         I         A  [0.12662495227788578, 0.02382441299079093, 0.8...  0.849551
+4662   4.1.2.9  the driver shall be able to consult train data...  4.3.10.3  information shall be recorded to an accuracy w...            1           6         I         A  [0.3627223081360576, 0.031442971560654676, 0.6...  0.605835
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 1349 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+4653   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...            1           6         I         I  [0.22511862908598976, 0.025653722686408083, 0....  0.749228
+4654  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...            1           4         I         I  [0.20361566443838452, 0.6555209916855214, 0.14...  0.655521
+4655  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...            1           6         I         I  [0.32908904529514915, 0.07436850490271689, 0.5...  0.596542
+4656  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.4.1  the etcs trainborne equipment shall be able to...            1           3         I         I  [0.5256097648696614, 0.3114904274309168, 0.162...  0.525610
+4657   4.6.4.8  the emergency stop shall be indicated to the d...   4.9.9.1  the on board shall be capable of sending train...            1           6         I         I  [0.10905429191449131, 0.44512731815794476, 0.4...  0.445818
+4658   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.12.2  operation of the train trip shall be indicated...            1           6         I         I  [0.2997999129029589, 0.17140572581384284, 0.52...  0.528794
+4659   4.1.8.2  unfitted operation shall be possible if select...  4.3.9.1c  the roll away/reverse movement intervention sh...            1           4         I         I  [0.36673965312183016, 0.5348933833048698, 0.09...  0.534893
+4660   3.9.1.5  if an etcs equipped train passes a level trans...  4.1.1.4c  the dmi shall indicate the result of the self-...            1           4         I         I  [0.2446453886284214, 0.5022502206715377, 0.253...  0.502250
+4661   4.1.7.2  the dmi shall display or be compatible with in...  4.9.10.7  the distance supervised can be extended from t...            1           6         I         I  [0.12662495227788578, 0.02382441299079093, 0.8...  0.849551
+4662   4.1.2.9  the driver shall be able to consult train data...  4.3.10.3  information shall be recorded to an accuracy w...            1           6         I         I  [0.3627223081360576, 0.031442971560654676, 0.6...  0.605835
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 96 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+4671   4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...          1.0         3.0         I         A  [0.3898048577393206, 0.2528714644860139, 0.357...  0.389805
+4678   4.1.7.1  the etcs trainborne equipment shall be capable...  4.9.10.4  if a train cannot stop at the proposed new tar...          1.0         6.0         I         A  [0.2937750169008667, 0.3438549956830025, 0.362...  0.362370
+4721  3.10.1.1  if the on-board has no valid national values f...  4.1.1.4c  the dmi shall indicate the result of the self-...          1.0         3.0         I         A  [0.3993726869431656, 0.24524115144748834, 0.35...  0.399373
+4773   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.37291051432888933, 0.3717762529852694, 0.25...  0.372911
+4786   4.1.8.2  unfitted operation shall be possible if select...   4.6.4.3  after overriding this function the movement au...          1.0         6.0         I         A  [0.3123977862051667, 0.32573493924504593, 0.36...  0.361867
+4799  3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...          1.0         6.0         I         A  [0.3368183942426328, 0.2989592131373765, 0.364...  0.364222
+4801  4.2.3.6a  the train shall be supervised according to tra...  4.9.12.1  the train shall be able to automatically pass ...          1.0         6.0         I         A  [0.26439503825839156, 0.33631209985662286, 0.3...  0.399293
+4811   4.2.2.1  the etcs trainborne equipment shall supervise ...   4.3.9.3  after releasing the emergency brake etcs will ...          1.0         4.0         I         A  [0.33277970237675, 0.39971788448996004, 0.2675...  0.399718
+4842   3.9.1.4  if an etcs equipped train passes a level trans...  4.9.12.3  if the train is equipped with only one operati...          1.0         4.0         I         A  [0.2493748093903324, 0.38435226748663137, 0.36...  0.384352
+4845   4.1.8.5  the onboard shall be capable to switch to anot...   4.5.2.4       actual speed shall still be shown on the dmi          1.0         4.0         I         A  [0.2835458902030586, 0.3808686328586974, 0.335...  0.380869
+
+ Iteration : 1
+
+Least Confidence Calculations...96 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+5745  4.1.3.5b  the supervised shunting speed shall be indicat...   5.2.1.1  if there are failures of the trainborne equipm...          1.0         3.0         I         A  [0.3392816137829755, 0.322099621875512, 0.3386...  0.339282  0.660718
+5539  4.3.9.1c  the roll away/reverse movement intervention sh...   5.2.1.1  if there are failures of the trainborne equipm...          1.0         6.0         I         A  [0.3225168504566016, 0.33609290765938277, 0.34...  0.341390  0.658610
+4870  4.1.2.11  stored train data shall be offered to the driv...  4.1.3.8a  exit from shunting shall only be possible when...          1.0         6.0         I         A  [0.3259034141864108, 0.3323014959439006, 0.341...  0.341795  0.658205
+5759  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.5  visual and acoustic warnings to the driver abo...          1.0         3.0         I         A  [0.3423700424978777, 0.3180874741125311, 0.339...  0.342370  0.657630
+5789   4.3.6.5  visual and acoustic warnings to the driver abo...  4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         6.0         I         A  [0.3233323404070337, 0.3341706365721818, 0.342...  0.342497  0.657503
+5310  4.3.9.1b  the trainborne equipment shall apply the emerg...  4.9.12.3  if the train is equipped with only one operati...          1.0         3.0         I         A  [0.3461218492412773, 0.3104685532381992, 0.343...  0.346122  0.653878
+5033  4.2.3.6c  the target distance shall not be shown on the ...   4.4.1.1  it shall be possible to use multiple traction ...          1.0         6.0         I         A  [0.32343733746137177, 0.3295393809334569, 0.34...  0.347023  0.652977
+5908  4.1.2.11  stored train data shall be offered to the driv...   4.4.2.5               the driver shall enter the driver id          1.0         4.0         I         A  [0.31192270760837104, 0.3475177724662105, 0.34...  0.347518  0.652482
+5630  3.1.1.1c  if the supervision is performed by a rbc it sh...   4.1.4.3  partial supervision shall be indicated on the dmi          1.0         6.0         I         A  [0.3157814159614815, 0.33515886691041, 0.34905...  0.349060  0.650940
+5322  4.1.2.11  stored train data shall be offered to the driv...   4.4.1.3                            the train trip function          1.0         6.0         I         A  [0.3067585103653232, 0.3434938817794912, 0.349...  0.349748  0.650252
+
+Most Uncertain Sample : 
+req1_id                                                   4.1.3.5b
+req1             the supervised shunting speed shall be indicat...
+req2_id                                                    5.2.1.1
+req2             if there are failures of the trainborne equipm...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3392816137829755, 0.322099621875512, 0.3386...
+maxProb                                                   0.339282
+lconf                                                     0.660718
+Name: 5745, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.3.5b) : the supervised shunting speed shall be indicated to the driver on request
+Requirement 2 (5.2.1.1) : if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+ Iteration : 2
+
+Least Confidence Calculations...95 Rows
+     req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+55  4.3.9.1c  the roll away/reverse movement intervention sh...   5.2.1.1  if there are failures of the trainborne equipm...          1.0         6.0         I         A  [0.3225168504566016, 0.33609290765938277, 0.34...  0.341390  0.658610
+11  4.1.2.11  stored train data shall be offered to the driv...  4.1.3.8a  exit from shunting shall only be possible when...          1.0         6.0         I         A  [0.3259034141864108, 0.3323014959439006, 0.341...  0.341795  0.658205
+72  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.5  visual and acoustic warnings to the driver abo...          1.0         3.0         I         A  [0.3423700424978777, 0.3180874741125311, 0.339...  0.342370  0.657630
+75   4.3.6.5  visual and acoustic warnings to the driver abo...  4.3.9.1c  the roll away/reverse movement intervention sh...          1.0         6.0         I         A  [0.3233323404070337, 0.3341706365721818, 0.342...  0.342497  0.657503
+40  4.3.9.1b  the trainborne equipment shall apply the emerg...  4.9.12.3  if the train is equipped with only one operati...          1.0         3.0         I         A  [0.3461218492412773, 0.3104685532381992, 0.343...  0.346122  0.653878
+20  4.2.3.6c  the target distance shall not be shown on the ...   4.4.1.1  it shall be possible to use multiple traction ...          1.0         6.0         I         A  [0.32343733746137177, 0.3295393809334569, 0.34...  0.347023  0.652977
+81  4.1.2.11  stored train data shall be offered to the driv...   4.4.2.5               the driver shall enter the driver id          1.0         4.0         I         A  [0.31192270760837104, 0.3475177724662105, 0.34...  0.347518  0.652482
+61  3.1.1.1c  if the supervision is performed by a rbc it sh...   4.1.4.3  partial supervision shall be indicated on the dmi          1.0         6.0         I         A  [0.3157814159614815, 0.33515886691041, 0.34905...  0.349060  0.650940
+42  4.1.2.11  stored train data shall be offered to the driv...   4.4.1.3                            the train trip function          1.0         6.0         I         A  [0.3067585103653232, 0.3434938817794912, 0.349...  0.349748  0.650252
+66  4.1.2.11  stored train data shall be offered to the driv...   4.4.2.2                            the train trip function          1.0         6.0         I         A  [0.3067585103653232, 0.3434938817794912, 0.349...  0.349748  0.650252
+
+Most Uncertain Sample : 
+req1_id                                                   4.3.9.1c
+req1             the roll away/reverse movement intervention sh...
+req2_id                                                    5.2.1.1
+req2             if there are failures of the trainborne equipm...
+BinaryClass                                                      1
+MultiClass                                                       6
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3225168504566016, 0.33609290765938277, 0.34...
+maxProb                                                    0.34139
+lconf                                                      0.65861
+Name: 55, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.3.9.1c) : the roll away/reverse movement intervention shall be indicated on the dmi
+Requirement 2 (5.2.1.1) : if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+Manually Annotated Combinations... 2Rows 
+    req1_id                                               req1  req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.3.5b  the supervised shunting speed shall be indicat...  5.2.1.1  if there are failures of the trainborne equipm...           1          3         I         M
+0  4.3.9.1c  the roll away/reverse movement intervention sh...  5.2.1.1  if there are failures of the trainborne equipm...           1          3         I         M
+
+Annotated Data : 96 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.3.5b  the supervised shunting speed shall be indicat...   5.2.1.1  if there are failures of the trainborne equipm...           1          3         I         M
+0  4.3.9.1c  the roll away/reverse movement intervention sh...   5.2.1.1  if there are failures of the trainborne equipm...           1          3         I         M
+0   4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...           1          3         I         A
+1   4.1.7.1  the etcs trainborne equipment shall be capable...  4.9.10.4  if a train cannot stop at the proposed new tar...           1          6         I         A
+2  3.10.1.1  if the on-board has no valid national values f...  4.1.1.4c  the dmi shall indicate the result of the self-...           1          3         I         A
+3   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+4   4.1.8.2  unfitted operation shall be possible if select...   4.6.4.3  after overriding this function the movement au...           1          6         I         A
+5  3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...           1          6         I         A
+6  4.2.3.6a  the train shall be supervised according to tra...  4.9.12.1  the train shall be able to automatically pass ...           1          6         I         A
+7   4.2.2.1  the etcs trainborne equipment shall supervise ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          4         I         A
+
+Final Predictions : 1445 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0   4.8.1.1  the etcs on-board shall be capable of receivin...   4.8.8.3  when the plain text message appears on the dmi...           1          6         I         I
+1  4.1.5.1a  transferring to full supervision shall occur a...  5.2.1.2a  the occurrence of a failure shall be displayed...           1          4         I         I
+2  3.1.1.1b  etcs shall be able to supervise train and shun...   3.9.1.1  the etcs trainborne equipment shall be capable...           1          6         I         I
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.4.1  the etcs trainborne equipment shall be able to...           1          3         I         I
+4   4.6.4.8  the emergency stop shall be indicated to the d...   4.9.9.1  the on board shall be capable of sending train...           1          6         I         I
+5   4.2.2.1  the etcs trainborne equipment shall supervise ...  4.6.12.2  operation of the train trip shall be indicated...           1          6         I         I
+6   4.1.8.2  unfitted operation shall be possible if select...  4.3.9.1c  the roll away/reverse movement intervention sh...           1          4         I         I
+7   3.9.1.5  if an etcs equipped train passes a level trans...  4.1.1.4c  the dmi shall indicate the result of the self-...           1          4         I         I
+8   4.1.7.2  the dmi shall display or be compatible with in...  4.9.10.7  the distance supervised can be extended from t...           1          6         I         I
+9   4.1.2.9  the driver shall be able to consult train data...  4.3.10.3  information shall be recorded to an accuracy w...           1          6         I         I
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+2         2               138                   5866            94         3228      804             28            0.901741                      0.75          1748         1776       2480     0.9            0.9         0.9
+
+Iteration : 3
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 6004 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 94 Rows 
+       req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+6004   4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...           1          3         I         A
+6005   4.1.7.1  the etcs trainborne equipment shall be capable...  4.9.10.4  if a train cannot stop at the proposed new tar...           1          6         I         A
+6006  3.10.1.1  if the on-board has no valid national values f...  4.1.1.4c  the dmi shall indicate the result of the self-...           1          3         I         A
+6007   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+6008   4.1.8.2  unfitted operation shall be possible if select...   4.6.4.3  after overriding this function the movement au...           1          6         I         A
+6009  3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...           1          6         I         A
+6010  4.2.3.6a  the train shall be supervised according to tra...  4.9.12.1  the train shall be able to automatically pass ...           1          6         I         A
+6011   4.2.2.1  the etcs trainborne equipment shall supervise ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          4         I         A
+6012   3.9.1.4  if an etcs equipped train passes a level trans...  4.9.12.3  if the train is equipped with only one operati...           1          4         I         A
+6013   4.1.8.5  the onboard shall be capable to switch to anot...   4.5.2.4       actual speed shall still be shown on the dmi           1          4         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 4197
+Train Set Value Count : 
+6.0    1399
+4.0    1399
+3.0    1399
+Name: MultiClass, dtype: int64
+Test Set Size : 1047
+Test Set Value Count : 
+6.0    349
+4.0    349
+3.0    349
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.8662846227316141
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       0.86      0.80      0.83       349
+           4       0.84      0.89      0.87       349
+           6       0.90      0.91      0.90       349
+
+    accuracy                           0.87      1047
+   macro avg       0.87      0.87      0.87      1047
+weighted avg       0.87      0.87      0.87      1047
+
+
+Confusion Matrix : 
+[[280  44  25]
+ [ 26 311  12]
+ [ 19  14 316]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.7142857142857143
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 94
+Prediction Results :  94 Rows 
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6004   4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...            1           4         I         A  [0.35830431815894953, 0.3817341213108239, 0.25...  0.381734
+6005   4.1.7.1  the etcs trainborne equipment shall be capable...  4.9.10.4  if a train cannot stop at the proposed new tar...            1           4         I         A  [0.2726119812831228, 0.4150565859418984, 0.312...  0.415057
+6006  3.10.1.1  if the on-board has no valid national values f...  4.1.1.4c  the dmi shall indicate the result of the self-...            1           4         I         A  [0.3771752409127692, 0.4163028413444867, 0.206...  0.416303
+6007   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.3804777100009162, 0.3672772441136632, 0.252...  0.380478
+6008   4.1.8.2  unfitted operation shall be possible if select...   4.6.4.3  after overriding this function the movement au...            1           3         I         A  [0.4436068637129178, 0.3235194115110848, 0.232...  0.443607
+6009  3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...            1           3         I         A  [0.39811850787292524, 0.3587041014157828, 0.24...  0.398119
+6010  4.2.3.6a  the train shall be supervised according to tra...  4.9.12.1  the train shall be able to automatically pass ...            1           3         I         A  [0.4225277023158511, 0.289843022398706, 0.2876...  0.422528
+6011   4.2.2.1  the etcs trainborne equipment shall supervise ...   4.3.9.3  after releasing the emergency brake etcs will ...            1           4         I         A  [0.18450664900127664, 0.56120445886796, 0.2542...  0.561204
+6012   3.9.1.4  if an etcs equipped train passes a level trans...  4.9.12.3  if the train is equipped with only one operati...            1           4         I         A  [0.39779846618933246, 0.498321029600864, 0.103...  0.498321
+6013   4.1.8.5  the onboard shall be capable to switch to anot...   4.5.2.4       actual speed shall still be shown on the dmi            1           4         I         A  [0.26727353670715503, 0.47828092551310764, 0.2...  0.478281
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 78 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6005   4.1.7.1  the etcs trainborne equipment shall be capable...  4.9.10.4  if a train cannot stop at the proposed new tar...            1           4         I         I  [0.2726119812831228, 0.4150565859418984, 0.312...  0.415057
+6006  3.10.1.1  if the on-board has no valid national values f...  4.1.1.4c  the dmi shall indicate the result of the self-...            1           4         I         I  [0.3771752409127692, 0.4163028413444867, 0.206...  0.416303
+6008   4.1.8.2  unfitted operation shall be possible if select...   4.6.4.3  after overriding this function the movement au...            1           3         I         I  [0.4436068637129178, 0.3235194115110848, 0.232...  0.443607
+6010  4.2.3.6a  the train shall be supervised according to tra...  4.9.12.1  the train shall be able to automatically pass ...            1           3         I         I  [0.4225277023158511, 0.289843022398706, 0.2876...  0.422528
+6011   4.2.2.1  the etcs trainborne equipment shall supervise ...   4.3.9.3  after releasing the emergency brake etcs will ...            1           4         I         I  [0.18450664900127664, 0.56120445886796, 0.2542...  0.561204
+6012   3.9.1.4  if an etcs equipped train passes a level trans...  4.9.12.3  if the train is equipped with only one operati...            1           4         I         I  [0.39779846618933246, 0.498321029600864, 0.103...  0.498321
+6013   4.1.8.5  the onboard shall be capable to switch to anot...   4.5.2.4       actual speed shall still be shown on the dmi            1           4         I         I  [0.26727353670715503, 0.47828092551310764, 0.2...  0.478281
+6014   4.4.1.2  information received shall not influence the t...  4.9.10.2  reversing shall be possible as defined by a va...            1           6         I         I  [0.25098573348092346, 0.3260219920214303, 0.42...  0.422992
+6015  4.1.2.11  stored train data shall be offered to the driv...  4.1.3.8a  exit from shunting shall only be possible when...            1           3         I         I  [0.4173269128842502, 0.37125662357576406, 0.21...  0.417327
+6016   4.1.8.1  unfitted operation shall be possible if ordere...  4.2.3.6a  the train shall be supervised according to tra...            1           3         I         I  [0.46015146004338053, 0.26463386013266194, 0.2...  0.460151
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 16 Rows
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6004    4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...          1.0         4.0         I         A  [0.35830431815894953, 0.3817341213108239, 0.25...  0.381734
+6007    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.3804777100009162, 0.3672772441136632, 0.252...  0.380478
+6009   3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...          1.0         3.0         I         A  [0.39811850787292524, 0.3587041014157828, 0.24...  0.398119
+6018  4.1.2.14a  the entry of driver identification and the sel...   4.1.8.1  unfitted operation shall be possible if ordere...          1.0         4.0         I         A  [0.3141906702897257, 0.3513116569779852, 0.334...  0.351312
+6033   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...          1.0         6.0         I         A  [0.2899522752447462, 0.3220731473255089, 0.387...  0.387975
+6036   3.9.1.2d  for transitions to and from national operation...   4.1.8.3  the on board shall supervise the train against...          1.0         6.0         I         A  [0.32772411399242773, 0.28808590536120704, 0.3...  0.384190
+6043  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.30662414948880257, 0.354856017898653, 0.338...  0.354856
+6049    4.3.7.1  a train shall be supervised to its static and ...   4.6.4.7  when a train has received an emergency stop et...          1.0         4.0         I         A  [0.3603340259172024, 0.3741864768524694, 0.265...  0.374186
+6053   3.10.1.3  national values shall be applicable to a defin...   4.4.1.2  information received shall not influence the t...          1.0         6.0         I         A  [0.26145570070879753, 0.35058176462387747, 0.3...  0.387963
+6054   4.1.2.11  stored train data shall be offered to the driv...  4.3.10.7        the following information shall be recorded          1.0         3.0         I         A  [0.3732506072557577, 0.35603427764465023, 0.27...  0.373251
+
+ Iteration : 1
+
+Least Confidence Calculations...16 Rows
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+6018  4.1.2.14a  the entry of driver identification and the sel...    4.1.8.1  unfitted operation shall be possible if ordere...          1.0         4.0         I         A  [0.3141906702897257, 0.3513116569779852, 0.334...  0.351312  0.648688
+6059   4.1.6.1a  the etcs trainborne equipment shall be capable...   4.6.12.2  operation of the train trip shall be indicated...          1.0         3.0         I         A  [0.35141458446248514, 0.3078771914027649, 0.34...  0.351415  0.648585
+6043  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.30662414948880257, 0.354856017898653, 0.338...  0.354856  0.645144
+6054   4.1.2.11  stored train data shall be offered to the driv...   4.3.10.7        the following information shall be recorded          1.0         3.0         I         A  [0.3732506072557577, 0.35603427764465023, 0.27...  0.373251  0.626749
+6049    4.3.7.1  a train shall be supervised to its static and ...    4.6.4.7  when a train has received an emergency stop et...          1.0         4.0         I         A  [0.3603340259172024, 0.3741864768524694, 0.265...  0.374186  0.625814
+6095    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         3.0         I         A  [0.37616014684515936, 0.366781082421587, 0.257...  0.376160  0.623840
+6007    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.3804777100009162, 0.3672772441136632, 0.252...  0.380478  0.619522
+6004    4.4.1.2  information received shall not influence the t...    4.7.1.4  the train running number shall consist of a ma...          1.0         4.0         I         A  [0.35830431815894953, 0.3817341213108239, 0.25...  0.381734  0.618266
+6077    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         4.0         I         A  [0.32315779133030004, 0.38312911586112863, 0.2...  0.383129  0.616871
+6036   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...          1.0         6.0         I         A  [0.32772411399242773, 0.28808590536120704, 0.3...  0.384190  0.615810
+
+Most Uncertain Sample : 
+req1_id                                                  4.1.2.14a
+req1             the entry of driver identification and the sel...
+req2_id                                                    4.1.8.1
+req2             unfitted operation shall be possible if ordere...
+BinaryClass                                                      1
+MultiClass                                                       4
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3141906702897257, 0.3513116569779852, 0.334...
+maxProb                                                   0.351312
+lconf                                                     0.648688
+Name: 6018, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.2.14a) : the entry of driver identification and the selection of the language shall be possible
+Requirement 2 (4.1.8.1) : unfitted operation shall be possible if ordered by trackside
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+ Iteration : 2
+
+Least Confidence Calculations...15 Rows
+      req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+9    4.1.6.1a  the etcs trainborne equipment shall be capable...   4.6.12.2  operation of the train trip shall be indicated...          1.0         3.0         I         A  [0.35141458446248514, 0.3078771914027649, 0.34...  0.351415  0.648585
+5   4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.30662414948880257, 0.354856017898653, 0.338...  0.354856  0.645144
+8    4.1.2.11  stored train data shall be offered to the driv...   4.3.10.7        the following information shall be recorded          1.0         3.0         I         A  [0.3732506072557577, 0.35603427764465023, 0.27...  0.373251  0.626749
+6     4.3.7.1  a train shall be supervised to its static and ...    4.6.4.7  when a train has received an emergency stop et...          1.0         4.0         I         A  [0.3603340259172024, 0.3741864768524694, 0.265...  0.374186  0.625814
+14    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         3.0         I         A  [0.37616014684515936, 0.366781082421587, 0.257...  0.376160  0.623840
+1     3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.3804777100009162, 0.3672772441136632, 0.252...  0.380478  0.619522
+0     4.4.1.2  information received shall not influence the t...    4.7.1.4  the train running number shall consist of a ma...          1.0         4.0         I         A  [0.35830431815894953, 0.3817341213108239, 0.25...  0.381734  0.618266
+11    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         4.0         I         A  [0.32315779133030004, 0.38312911586112863, 0.2...  0.383129  0.616871
+4    3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...          1.0         6.0         I         A  [0.32772411399242773, 0.28808590536120704, 0.3...  0.384190  0.615810
+10    4.3.6.5  visual and acoustic warnings to the driver abo...   4.9.10.2  the co-operative revocation of the ma shall be...          1.0         3.0         I         A  [0.38685071356588996, 0.23795864859484694, 0.3...  0.386851  0.613149
+
+Most Uncertain Sample : 
+req1_id                                                   4.1.6.1a
+req1             the etcs trainborne equipment shall be capable...
+req2_id                                                   4.6.12.2
+req2             operation of the train trip shall be indicated...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.35141458446248514, 0.3078771914027649, 0.34...
+maxProb                                                   0.351415
+lconf                                                     0.648585
+Name: 9, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.6.1a) : the etcs trainborne equipment shall be capable of being isolated
+Requirement 2 (4.6.12.2) : operation of the train trip shall be indicated on the dmi
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 4
+
+Manually Annotated Combinations... 2Rows 
+     req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.2.14a  the entry of driver identification and the sel...   4.1.8.1  unfitted operation shall be possible if ordere...           1          3         I         M
+0   4.1.6.1a  the etcs trainborne equipment shall be capable...  4.6.12.2  operation of the train trip shall be indicated...           1          4         I         M
+
+Annotated Data : 16 Rows 
+     req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.2.14a  the entry of driver identification and the sel...   4.1.8.1  unfitted operation shall be possible if ordere...           1          3         I         M
+0   4.1.6.1a  the etcs trainborne equipment shall be capable...  4.6.12.2  operation of the train trip shall be indicated...           1          4         I         M
+0    4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...           1          4         I         A
+1    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+2   3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...           1          3         I         A
+3   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          6         I         A
+4   3.9.1.2d  for transitions to and from national operation...   4.1.8.3  the on board shall supervise the train against...           1          6         I         A
+5  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...           1          4         I         A
+6    4.3.7.1  a train shall be supervised to its static and ...   4.6.4.7  when a train has received an emergency stop et...           1          4         I         A
+7   3.10.1.3  national values shall be applicable to a defin...   4.4.1.2  information received shall not influence the t...           1          6         I         A
+
+Final Predictions : 94 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0   4.1.7.1  the etcs trainborne equipment shall be capable...  4.9.10.4  if a train cannot stop at the proposed new tar...           1          4         I         I
+1  3.10.1.1  if the on-board has no valid national values f...  4.1.1.4c  the dmi shall indicate the result of the self-...           1          4         I         I
+2   4.1.8.2  unfitted operation shall be possible if select...   4.6.4.3  after overriding this function the movement au...           1          3         I         I
+3  4.2.3.6a  the train shall be supervised according to tra...  4.9.12.1  the train shall be able to automatically pass ...           1          3         I         I
+4   4.2.2.1  the etcs trainborne equipment shall supervise ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          4         I         I
+5   3.9.1.4  if an etcs equipped train passes a level trans...  4.9.12.3  if the train is equipped with only one operati...           1          4         I         I
+6   4.1.8.5  the onboard shall be capable to switch to anot...   4.5.2.4       actual speed shall still be shown on the dmi           1          4         I         I
+7   4.4.1.2  information received shall not influence the t...  4.9.10.2  reversing shall be possible as defined by a va...           1          6         I         I
+8  4.1.2.11  stored train data shall be offered to the driv...  4.1.3.8a  exit from shunting shall only be possible when...           1          3         I         I
+9   4.1.8.1  unfitted operation shall be possible if ordere...  4.2.3.6a  the train shall be supervised according to tra...           1          3         I         I
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+2         2               138                   5866            94         3228      804             28            0.901741                      0.75          1748         1776       2480     0.9            0.9         0.9
+3         3               140                   5944            14         4197     1047             28            0.866285                  0.714286          1771         1808       2505    0.87           0.87        0.87
+
+Iteration : 4
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 6084 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 14 Rows 
+        req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+6084    4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...           1          4         I         A
+6085    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+6086   3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...           1          3         I         A
+6087   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          6         I         A
+6088   3.9.1.2d  for transitions to and from national operation...   4.1.8.3  the on board shall supervise the train against...           1          6         I         A
+6089  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...           1          4         I         A
+6090    4.3.7.1  a train shall be supervised to its static and ...   4.6.4.7  when a train has received an emergency stop et...           1          4         I         A
+6091   3.10.1.3  national values shall be applicable to a defin...   4.4.1.2  information received shall not influence the t...           1          6         I         A
+6092   4.1.2.11  stored train data shall be offered to the driv...  4.3.10.7        the following information shall be recorded           1          3         I         A
+6093    4.3.6.5  visual and acoustic warnings to the driver abo...  4.9.10.2  the co-operative revocation of the ma shall be...           1          3         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 4251
+Train Set Value Count : 
+6.0    1417
+4.0    1417
+3.0    1417
+Name: MultiClass, dtype: int64
+Test Set Size : 1062
+Test Set Value Count : 
+6.0    354
+4.0    354
+3.0    354
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.8653483992467044
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       0.86      0.82      0.84       354
+           4       0.84      0.86      0.85       354
+           6       0.90      0.91      0.90       354
+
+    accuracy                           0.87      1062
+   macro avg       0.87      0.87      0.87      1062
+weighted avg       0.87      0.87      0.87      1062
+
+
+Confusion Matrix : 
+[[292  42  20]
+ [ 33 304  17]
+ [ 14  17 323]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.75
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 14
+Prediction Results :  14 Rows 
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6084    4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...            1           3         I         A  [0.3524180605498865, 0.3415775866621799, 0.306...  0.352418
+6085    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...            1           4         I         A  [0.35668326965518843, 0.36381127354638515, 0.2...  0.363811
+6086   3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...            1           4         I         A  [0.3963483580826558, 0.4295657640345722, 0.174...  0.429566
+6087   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...            1           3         I         A  [0.3826498087478163, 0.2740863224588144, 0.343...  0.382650
+6088   3.9.1.2d  for transitions to and from national operation...   4.1.8.3  the on board shall supervise the train against...            1           6         I         A  [0.35399059187664866, 0.263934026609099, 0.382...  0.382075
+6089  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...            1           6         I         A  [0.3646332289465167, 0.26685959593015524, 0.36...  0.368507
+6090    4.3.7.1  a train shall be supervised to its static and ...   4.6.4.7  when a train has received an emergency stop et...            1           4         I         A  [0.35706765066298063, 0.42051225220000993, 0.2...  0.420512
+6091   3.10.1.3  national values shall be applicable to a defin...   4.4.1.2  information received shall not influence the t...            1           4         I         A  [0.3344299046519605, 0.3394855153222992, 0.326...  0.339486
+6092   4.1.2.11  stored train data shall be offered to the driv...  4.3.10.7        the following information shall be recorded            1           3         I         A  [0.4032562475615042, 0.32567578015716725, 0.27...  0.403256
+6093    4.3.6.5  visual and acoustic warnings to the driver abo...  4.9.10.2  the co-operative revocation of the ma shall be...            1           6         I         A  [0.3254706471814015, 0.22763165683497585, 0.44...  0.446898
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 6 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6086  3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...            1           4         I         I  [0.3963483580826558, 0.4295657640345722, 0.174...  0.429566
+6090   4.3.7.1  a train shall be supervised to its static and ...   4.6.4.7  when a train has received an emergency stop et...            1           4         I         I  [0.35706765066298063, 0.42051225220000993, 0.2...  0.420512
+6092  4.1.2.11  stored train data shall be offered to the driv...  4.3.10.7        the following information shall be recorded            1           3         I         I  [0.4032562475615042, 0.32567578015716725, 0.27...  0.403256
+6093   4.3.6.5  visual and acoustic warnings to the driver abo...  4.9.10.2  the co-operative revocation of the ma shall be...            1           6         I         I  [0.3254706471814015, 0.22763165683497585, 0.44...  0.446898
+6095  4.5.2.5b  the supervised speed shall not be shown on the...   4.9.9.1  the on board shall be capable of sending train...            1           4         I         I  [0.2625150418382621, 0.41309766625917205, 0.32...  0.413098
+6096   4.3.6.3  the indication provided shall enable the drive...  5.2.1.2a  the occurrence of a failure shall be displayed...            1           3         I         I  [0.40578557967393175, 0.2472009348438016, 0.34...  0.405786
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 8 Rows
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6084    4.4.1.2  information received shall not influence the t...    4.7.1.4  the train running number shall consist of a ma...          1.0         3.0         I         A  [0.3524180605498865, 0.3415775866621799, 0.306...  0.352418
+6085    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         4.0         I         A  [0.35668326965518843, 0.36381127354638515, 0.2...  0.363811
+6087   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...          1.0         3.0         I         A  [0.3826498087478163, 0.2740863224588144, 0.343...  0.382650
+6088   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...          1.0         6.0         I         A  [0.35399059187664866, 0.263934026609099, 0.382...  0.382075
+6089  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...          1.0         6.0         I         A  [0.3646332289465167, 0.26685959593015524, 0.36...  0.368507
+6091   3.10.1.3  national values shall be applicable to a defin...    4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.3344299046519605, 0.3394855153222992, 0.326...  0.339486
+6094    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         6.0         I         A  [0.34633095383757195, 0.27728551162689397, 0.3...  0.376384
+6097    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         3.0         I         A  [0.3840692075142759, 0.3692223793456476, 0.246...  0.384069
+
+ Iteration : 1
+
+Least Confidence Calculations...8 Rows
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+6091   3.10.1.3  national values shall be applicable to a defin...    4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.3344299046519605, 0.3394855153222992, 0.326...  0.339486  0.660514
+6084    4.4.1.2  information received shall not influence the t...    4.7.1.4  the train running number shall consist of a ma...          1.0         3.0         I         A  [0.3524180605498865, 0.3415775866621799, 0.306...  0.352418  0.647582
+6085    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         4.0         I         A  [0.35668326965518843, 0.36381127354638515, 0.2...  0.363811  0.636189
+6089  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...          1.0         6.0         I         A  [0.3646332289465167, 0.26685959593015524, 0.36...  0.368507  0.631493
+6094    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         6.0         I         A  [0.34633095383757195, 0.27728551162689397, 0.3...  0.376384  0.623616
+6088   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...          1.0         6.0         I         A  [0.35399059187664866, 0.263934026609099, 0.382...  0.382075  0.617925
+6087   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...          1.0         3.0         I         A  [0.3826498087478163, 0.2740863224588144, 0.343...  0.382650  0.617350
+6097    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         3.0         I         A  [0.3840692075142759, 0.3692223793456476, 0.246...  0.384069  0.615931
+
+Most Uncertain Sample : 
+req1_id                                                   3.10.1.3
+req1             national values shall be applicable to a defin...
+req2_id                                                    4.4.1.2
+req2             information received shall not influence the t...
+BinaryClass                                                      1
+MultiClass                                                       4
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3344299046519605, 0.3394855153222992, 0.326...
+maxProb                                                   0.339486
+lconf                                                     0.660514
+Name: 6091, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (3.10.1.3) : national values shall be applicable to a defined area
+Requirement 2 (4.4.1.2) : information received shall not influence the traction unit(s) with in-operative cabs
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+ Iteration : 2
+
+Least Confidence Calculations...7 Rows
+     req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+0    4.4.1.2  information received shall not influence the t...    4.7.1.4  the train running number shall consist of a ma...          1.0         3.0         I         A  [0.3524180605498865, 0.3415775866621799, 0.306...  0.352418  0.647582
+1    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         4.0         I         A  [0.35668326965518843, 0.36381127354638515, 0.2...  0.363811  0.636189
+4  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...          1.0         6.0         I         A  [0.3646332289465167, 0.26685959593015524, 0.36...  0.368507  0.631493
+5    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         6.0         I         A  [0.34633095383757195, 0.27728551162689397, 0.3...  0.376384  0.623616
+3   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...          1.0         6.0         I         A  [0.35399059187664866, 0.263934026609099, 0.382...  0.382075  0.617925
+2   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...          1.0         3.0         I         A  [0.3826498087478163, 0.2740863224588144, 0.343...  0.382650  0.617350
+6    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...          1.0         3.0         I         A  [0.3840692075142759, 0.3692223793456476, 0.246...  0.384069  0.615931
+
+Most Uncertain Sample : 
+req1_id                                                    4.4.1.2
+req1             information received shall not influence the t...
+req2_id                                                    4.7.1.4
+req2             the train running number shall consist of a ma...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3524180605498865, 0.3415775866621799, 0.306...
+maxProb                                                   0.352418
+lconf                                                     0.647582
+Name: 0, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.4.1.2) : information received shall not influence the traction unit(s) with in-operative cabs
+Requirement 2 (4.7.1.4) : the train running number shall consist of a maximum of 8 numeric digits
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 4
+
+Manually Annotated Combinations... 2Rows 
+    req1_id                                               req1  req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  3.10.1.3  national values shall be applicable to a defin...  4.4.1.2  information received shall not influence the t...           1          3         I         M
+0   4.4.1.2  information received shall not influence the t...  4.7.1.4  the train running number shall consist of a ma...           1          4         I         M
+
+Annotated Data : 8 Rows 
+     req1_id                                               req1    req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0   3.10.1.3  national values shall be applicable to a defin...    4.4.1.2  information received shall not influence the t...           1          3         I         M
+0    4.4.1.2  information received shall not influence the t...    4.7.1.4  the train running number shall consist of a ma...           1          4         I         M
+0    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...           1          4         I         A
+1   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...           1          3         I         A
+2   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...           1          6         I         A
+3  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...           1          6         I         A
+4    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         A
+5    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...           1          3         I         A
+
+Final Predictions : 14 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  3.1.1.1c  if the supervision is performed by a rbc it sh...  4.1.3.5b  the supervised shunting speed shall be indicat...           1          4         I         I
+1   4.3.7.1  a train shall be supervised to its static and ...   4.6.4.7  when a train has received an emergency stop et...           1          4         I         I
+2  4.1.2.11  stored train data shall be offered to the driv...  4.3.10.7        the following information shall be recorded           1          3         I         I
+3   4.3.6.5  visual and acoustic warnings to the driver abo...  4.9.10.2  the co-operative revocation of the ma shall be...           1          6         I         I
+4  4.5.2.5b  the supervised speed shall not be shown on the...   4.9.9.1  the on board shall be capable of sending train...           1          4         I         I
+5   4.3.6.3  the indication provided shall enable the drive...  5.2.1.2a  the occurrence of a failure shall be displayed...           1          3         I         I
+6  3.10.1.3  national values shall be applicable to a defin...   4.4.1.2  information received shall not influence the t...           1          3         I         M
+7   4.4.1.2  information received shall not influence the t...   4.7.1.4  the train running number shall consist of a ma...           1          4         I         M
+8   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          4         I         A
+9  4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          3         I         A
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+2         2               138                   5866            94         3228      804             28            0.901741                      0.75          1748         1776       2480     0.9            0.9         0.9
+3         3               140                   5944            14         4197     1047             28            0.866285                  0.714286          1771         1808       2505    0.87           0.87        0.87
+4         4               142                   5950             6         4251     1062             28            0.865348                      0.75          1774         1812       2506    0.87           0.87        0.87
+
+Iteration : 5
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 6092 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 6 Rows 
+        req1_id                                               req1    req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+6092    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...           1          4         I         A
+6093   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...           1          3         I         A
+6094   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...           1          6         I         A
+6095  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...           1          6         I         A
+6096    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         A
+6097    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...           1          3         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 4260
+Train Set Value Count : 
+4.0    1420
+6.0    1420
+3.0    1420
+Name: MultiClass, dtype: int64
+Test Set Size : 1062
+Test Set Value Count : 
+6.0    354
+4.0    354
+3.0    354
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.8549905838041432
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       0.85      0.81      0.83       354
+           4       0.85      0.87      0.86       354
+           6       0.87      0.89      0.88       354
+
+    accuracy                           0.85      1062
+   macro avg       0.85      0.85      0.85      1062
+weighted avg       0.85      0.85      0.85      1062
+
+
+Confusion Matrix : 
+[[286  34  34]
+ [ 32 307  15]
+ [ 18  21 315]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.7142857142857143
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 6
+Prediction Results :  6 Rows 
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6092    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.3821953236866477, 0.2736150233300014, 0.344...  0.382195
+6093   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...            1           4         I         A  [0.3087028187749091, 0.3959096163834109, 0.295...  0.395910
+6094   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...            1           3         I         A  [0.36517759089548907, 0.2914730981937701, 0.34...  0.365178
+6095  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...            1           3         I         A  [0.39423380796177515, 0.3049676941046521, 0.30...  0.394234
+6096    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...            1           6         I         A  [0.3451376394381274, 0.27961625348641567, 0.37...  0.375246
+6097    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...            1           3         I         A  [0.3704920707496142, 0.35820714166525364, 0.27...  0.370492
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 0 Rows
+Empty DataFrame
+Columns: [req1_id, req1, req2_id, req2, BinaryClass, MultiClass, BLabelled, MLabelled, predictedProb, maxProb]
+Index: []
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 6 Rows
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6092    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.3821953236866477, 0.2736150233300014, 0.344...  0.382195
+6093   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...            1           4         I         A  [0.3087028187749091, 0.3959096163834109, 0.295...  0.395910
+6094   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...            1           3         I         A  [0.36517759089548907, 0.2914730981937701, 0.34...  0.365178
+6095  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...            1           3         I         A  [0.39423380796177515, 0.3049676941046521, 0.30...  0.394234
+6096    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...            1           6         I         A  [0.3451376394381274, 0.27961625348641567, 0.37...  0.375246
+6097    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...            1           3         I         A  [0.3704920707496142, 0.35820714166525364, 0.27...  0.370492
+
+ Iteration : 1
+
+Least Confidence Calculations...6 Rows
+        req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+6094   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...            1           3         I         A  [0.36517759089548907, 0.2914730981937701, 0.34...  0.365178  0.634822
+6097    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...            1           3         I         A  [0.3704920707496142, 0.35820714166525364, 0.27...  0.370492  0.629508
+6096    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...            1           6         I         A  [0.3451376394381274, 0.27961625348641567, 0.37...  0.375246  0.624754
+6092    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.3821953236866477, 0.2736150233300014, 0.344...  0.382195  0.617805
+6095  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...            1           3         I         A  [0.39423380796177515, 0.3049676941046521, 0.30...  0.394234  0.605766
+6093   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...            1           4         I         A  [0.3087028187749091, 0.3959096163834109, 0.295...  0.395910  0.604090
+
+Most Uncertain Sample : 
+req1_id                                                   3.9.1.2d
+req1             for transitions to and from national operation...
+req2_id                                                    4.1.8.3
+req2             the on board shall supervise the train against...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.36517759089548907, 0.2914730981937701, 0.34...
+maxProb                                                   0.365178
+lconf                                                     0.634822
+Name: 6094, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (3.9.1.2d) : for transitions to and from national operation (stm) the etcs shall request an acknowledgement by the driver
+Requirement 2 (4.1.8.3) : the on board shall supervise the train against a ceiling speed
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+ Iteration : 2
+
+Least Confidence Calculations...5 Rows
+     req1_id                                               req1    req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+4    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...            1           3         I         A  [0.3704920707496142, 0.35820714166525364, 0.27...  0.370492  0.629508
+3    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...            1           6         I         A  [0.3451376394381274, 0.27961625348641567, 0.37...  0.375246  0.624754
+0    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.3821953236866477, 0.2736150233300014, 0.344...  0.382195  0.617805
+2  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...            1           3         I         A  [0.39423380796177515, 0.3049676941046521, 0.30...  0.394234  0.605766
+1   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...            1           4         I         A  [0.3087028187749091, 0.3959096163834109, 0.295...  0.395910  0.604090
+
+Most Uncertain Sample : 
+req1_id                                                    4.1.8.2
+req1             unfitted operation shall be possible if select...
+req2_id                                                  4.6.12.5a
+req2             after the acknowledgement the driver shall be ...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3704920707496142, 0.35820714166525364, 0.27...
+maxProb                                                   0.370492
+lconf                                                     0.629508
+Name: 4, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.8.2) : unfitted operation shall be possible if selected by the driver at start up
+Requirement 2 (4.6.12.5a) : after the acknowledgement the driver shall be able to continue the movement
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 4
+
+Manually Annotated Combinations... 2Rows 
+    req1_id                                               req1    req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...           1          3         I         M
+0   4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...           1          4         I         M
+
+Annotated Data : 6 Rows 
+     req1_id                                               req1    req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...           1          3         I         M
+0    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...           1          4         I         M
+0    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+1   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...           1          4         I         A
+2  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...           1          3         I         A
+3    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         A
+
+Final Predictions : 6 Rows 
+     req1_id                                               req1    req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0   3.9.1.2d  for transitions to and from national operation...    4.1.8.3  the on board shall supervise the train against...           1          3         I         M
+1    4.1.8.2  unfitted operation shall be possible if select...  4.6.12.5a  after the acknowledgement the driver shall be ...           1          4         I         M
+2    3.9.1.6  the current operational status shall be indica...   4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+3   4.1.1.3a  at start up the on board equipment shall perfo...    4.4.1.2  information received shall not influence the t...           1          4         I         A
+4  4.1.2.14b  the change of driver identification during a j...    4.4.1.2  information received shall not influence the t...           1          3         I         A
+5    3.9.1.1  the etcs trainborne equipment shall be capable...   4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         A
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+2         2               138                   5866            94         3228      804             28            0.901741                      0.75          1748         1776       2480     0.9            0.9         0.9
+3         3               140                   5944            14         4197     1047             28            0.866285                  0.714286          1771         1808       2505    0.87           0.87        0.87
+4         4               142                   5950             6         4251     1062             28            0.865348                      0.75          1774         1812       2506    0.87           0.87        0.87
+5         5               144                   5950             4         4260     1062             28            0.854991                  0.714286          1775         1813       2506    0.85           0.85        0.85
+
+Iteration : 6
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 6094 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 4 Rows 
+        req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+6094    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          3         I         A
+6095   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          4         I         A
+6096  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...           1          3         I         A
+6097    3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 4260
+Train Set Value Count : 
+4.0    1420
+6.0    1420
+3.0    1420
+Name: MultiClass, dtype: int64
+Test Set Size : 1065
+Test Set Value Count : 
+6.0    355
+4.0    355
+3.0    355
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.8666666666666667
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       0.88      0.83      0.85       355
+           4       0.82      0.90      0.86       355
+           6       0.91      0.87      0.89       355
+
+    accuracy                           0.87      1065
+   macro avg       0.87      0.87      0.87      1065
+weighted avg       0.87      0.87      0.87      1065
+
+
+Confusion Matrix : 
+[[293  41  21]
+ [ 25 320  10]
+ [ 14  31 310]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.7142857142857143
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 4
+Prediction Results :  4 Rows 
+        req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6094    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...            1           3         I         A  [0.3775225999367063, 0.3589863453228442, 0.263...  0.377523
+6095   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...            1           4         I         A  [0.30364983062907913, 0.35697112933734776, 0.3...  0.356971
+6096  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...            1           3         I         A  [0.4084468485334402, 0.321924984664182, 0.2696...  0.408447
+6097    3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...            1           3         I         A  [0.3979923947686037, 0.32949985138682414, 0.27...  0.397992
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 1 Rows
+        req1_id                                               req1  req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6096  4.1.2.14b  the change of driver identification during a j...  4.4.1.2  information received shall not influence the t...            1           3         I         I  [0.4084468485334402, 0.321924984664182, 0.2696...  0.408447
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 3 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6094   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.3775225999367063, 0.3589863453228442, 0.263...  0.377523
+6095  4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.30364983062907913, 0.35697112933734776, 0.3...  0.356971
+6097   3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         3.0         I         A  [0.3979923947686037, 0.32949985138682414, 0.27...  0.397992
+
+ Iteration : 1
+
+Least Confidence Calculations...3 Rows
+       req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+6095  4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...          1.0         4.0         I         A  [0.30364983062907913, 0.35697112933734776, 0.3...  0.356971  0.643029
+6094   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.3775225999367063, 0.3589863453228442, 0.263...  0.377523  0.622477
+6097   3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         3.0         I         A  [0.3979923947686037, 0.32949985138682414, 0.27...  0.397992  0.602008
+
+Most Uncertain Sample : 
+req1_id                                                   4.1.1.3a
+req1             at start up the on board equipment shall perfo...
+req2_id                                                    4.4.1.2
+req2             information received shall not influence the t...
+BinaryClass                                                      1
+MultiClass                                                       4
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.30364983062907913, 0.35697112933734776, 0.3...
+maxProb                                                   0.356971
+lconf                                                     0.643029
+Name: 6095, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.1.3a) : at start up the on board equipment shall perform an automatic self-test
+Requirement 2 (4.4.1.2) : information received shall not influence the traction unit(s) with in-operative cabs
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 7Invalid Input. Allowed Values -- 3 / 4 / 6 In order to exit from the program. Enter 'exit'
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (4.1.1.3a) : at start up the on board equipment shall perform an automatic self-test
+Requirement 2 (4.4.1.2) : information received shall not influence the traction unit(s) with in-operative cabs
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 3
+
+ Iteration : 2
+
+Least Confidence Calculations...2 Rows
+   req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+0  3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...          1.0         3.0         I         A  [0.3775225999367063, 0.3589863453228442, 0.263...  0.377523  0.622477
+1  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...          1.0         3.0         I         A  [0.3979923947686037, 0.32949985138682414, 0.27...  0.397992  0.602008
+
+Most Uncertain Sample : 
+req1_id                                                    3.9.1.6
+req1             the current operational status shall be indica...
+req2_id                                                   4.1.6.1a
+req2             the etcs trainborne equipment shall be capable...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3775225999367063, 0.3589863453228442, 0.263...
+maxProb                                                   0.377523
+lconf                                                     0.622477
+Name: 0, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (3.9.1.6) : the current operational status shall be indicated to the driver on the dmi
+Requirement 2 (4.1.6.1a) : the etcs trainborne equipment shall be capable of being isolated
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 4
+
+Manually Annotated Combinations... 2Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          3         I         M
+0   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          4         I         M
+
+Annotated Data : 3 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          3         I         M
+0   3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          4         I         M
+0   3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          3         I         A
+
+Final Predictions : 4 Rows 
+     req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.1.2.14b  the change of driver identification during a j...   4.4.1.2  information received shall not influence the t...           1          3         I         I
+1   4.1.1.3a  at start up the on board equipment shall perfo...   4.4.1.2  information received shall not influence the t...           1          3         I         M
+2    3.9.1.6  the current operational status shall be indica...  4.1.6.1a  the etcs trainborne equipment shall be capable...           1          4         I         M
+3    3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          3         I         A
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+2         2               138                   5866            94         3228      804             28            0.901741                      0.75          1748         1776       2480     0.9            0.9         0.9
+3         3               140                   5944            14         4197     1047             28            0.866285                  0.714286          1771         1808       2505    0.87           0.87        0.87
+4         4               142                   5950             6         4251     1062             28            0.865348                      0.75          1774         1812       2506    0.87           0.87        0.87
+5         5               144                   5950             4         4260     1062             28            0.854991                  0.714286          1775         1813       2506    0.85           0.85        0.85
+6         6               146                   5951             1         4260     1065             28            0.866667                  0.714286          1777         1814       2506    0.87           0.87        0.87
+
+Iteration : 7
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 6097 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 1 Rows 
+      req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+6097  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          3         I         A
+
+----------------------------------------------------------------------------------------------------
+Creating Classifier....
+Performing Balancing of Data....
+
+Training Set Size : 4266
+Train Set Value Count : 
+4.0    1422
+6.0    1422
+3.0    1422
+Name: MultiClass, dtype: int64
+Test Set Size : 1065
+Test Set Value Count : 
+6.0    355
+4.0    355
+3.0    355
+Name: MultiClass, dtype: int64
+
+Training Model.....
+NB Classifier Test Score : 0.8751173708920188
+
+Classification Report : 
+
+              precision    recall  f1-score   support
+
+           3       0.88      0.82      0.85       355
+           4       0.85      0.91      0.88       355
+           6       0.90      0.90      0.90       355
+
+    accuracy                           0.88      1065
+   macro avg       0.88      0.88      0.87      1065
+weighted avg       0.88      0.88      0.87      1065
+
+
+Confusion Matrix : 
+[[291  37  27]
+ [ 24 322   9]
+ [ 16  20 319]]
+
+
+Validating Classifier...
+
+Classifier Validation Set Score : 0.7142857142857143
+----------------------------------------------------------------------------------------------------
+
+Predicting Labels....
+Total Labels Predicted : 1
+Prediction Results :  1 Rows 
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6097  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...            1           3         I         A  [0.3685226706539763, 0.35089415475568364, 0.28...  0.368523
+
+Analyzing Predictions... Based on the Maximum Probability Value for each combination.
+
+Looking for Confident Predictions.... for which Confidence Value >= 0.4
+
+Confident Predictions : 0 Rows
+Empty DataFrame
+Columns: [req1_id, req1, req2_id, req2, BinaryClass, MultiClass, BLabelled, MLabelled, predictedProb, maxProb]
+Index: []
+
+Segregating the doubtful predictions...
+
+Doubtful Predictions : 1 Rows
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb
+6097  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...            1           3         I         A  [0.3685226706539763, 0.35089415475568364, 0.28...  0.368523
+
+ Iteration : 1
+
+Least Confidence Calculations...1 Rows
+      req1_id                                               req1   req2_id                                               req2  BinaryClass  MultiClass BLabelled MLabelled                                      predictedProb   maxProb     lconf
+6097  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...            1           3         I         A  [0.3685226706539763, 0.35089415475568364, 0.28...  0.368523  0.631477
+
+Most Uncertain Sample : 
+req1_id                                                    3.9.1.1
+req1             the etcs trainborne equipment shall be capable...
+req2_id                                                   4.1.3.2a
+req2             transfer to shunting on driver’s selection sha...
+BinaryClass                                                      1
+MultiClass                                                       3
+BLabelled                                                        I
+MLabelled                                                        A
+predictedProb    [0.3685226706539763, 0.35089415475568364, 0.28...
+maxProb                                                   0.368523
+lconf                                                     0.631477
+Name: 6097, dtype: object
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (3.9.1.1) : the etcs trainborne equipment shall be capable of supervising the following operational states
+Requirement 2 (4.1.3.2a) : transfer to shunting on driver’s selection shall only be possible when stationary
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- Invalid Input. Allowed Values -- 3 / 4 / 6 In order to exit from the program. Enter 'exit'
+
+Please provide the dependency type for the following requirements.
+
+Requirement 1 (3.9.1.1) : the etcs trainborne equipment shall be capable of supervising the following operational states
+Requirement 2 (4.1.3.2a) : transfer to shunting on driver’s selection shall only be possible when stationary
+Please select one of the following choices. 
+3 - Requires 
+4 - Similar 
+6 - Others 
+Enter your Choice here :   
+Value provided by the user :- 6
+
+Manually Annotated Combinations... 1Rows 
+   req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         M
+
+Annotated Data : 1 Rows 
+   req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         M
+
+Final Predictions : 1 Rows 
+   req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  3.9.1.1  the etcs trainborne equipment shall be capable...  4.1.3.2a  transfer to shunting on driver’s selection sha...           1          6         I         M
+
+Updated Database : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Analysis DataFrame : 
+  Iteration ManuallyAnnotated IntelligentlyAnnotated ToBeAnnotated TrainingSize TestSize ValidationSize ClassifierTestScore ClassifierValidationScore RequiresCount SimilarCount OtherCount f1Score precisionScore recallScore
+0         0               134                      0          5964            -        -             28                   -                         -            37           82         15       -              -           -
+1         1               136                   4517          1445           36        9             28                   1                      0.75          1404         1344       1905       1              1           1
+2         2               138                   5866            94         3228      804             28            0.901741                      0.75          1748         1776       2480     0.9            0.9         0.9
+3         3               140                   5944            14         4197     1047             28            0.866285                  0.714286          1771         1808       2505    0.87           0.87        0.87
+4         4               142                   5950             6         4251     1062             28            0.865348                      0.75          1774         1812       2506    0.87           0.87        0.87
+5         5               144                   5950             4         4260     1062             28            0.854991                  0.714286          1775         1813       2506    0.85           0.85        0.85
+6         6               146                   5951             1         4260     1065             28            0.866667                  0.714286          1777         1814       2506    0.87           0.87        0.87
+7         7               147                   5951             0         4266     1065             28            0.875117                  0.714286          1777         1814       2507    0.87           0.88        0.88
+
+Iteration : 8
+
+Splitting Labelled Data and Unlabelled Data
+
+Labelled Data : 6098 Rows 
+    req1_id                                               req1   req2_id                                               req2 BinaryClass MultiClass BLabelled MLabelled
+0  4.2.3.6a  the train shall be supervised according to tra...   4.3.7.1  a train shall be supervised to its static and ...           1          4         M         M
+1  4.3.3.2c    the release speed shall be indicated on the dmi   4.5.2.4       actual speed shall still be shown on the dmi           1          4         M         M
+2   4.1.7.1  the etcs trainborne equipment shall be capable...   4.1.7.2  the dmi shall display or be compatible with in...           1          3         M         M
+3  4.1.3.5b  the supervised shunting speed shall be indicat...   4.3.6.4  the driver shall know the distance to the next...           1          4         M         M
+4  4.3.9.1c  the roll away/reverse movement intervention sh...  4.6.4.1c  route unsuitability shall be indicated on the dmi           1          4         M         M
+5   4.1.2.9  the driver shall be able to consult train data...  4.1.2.11  stored train data shall be offered to the driv...           1          3         M         M
+6  4.6.12.2  operation of the train trip shall be indicated...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+7   3.9.1.6  the current operational status shall be indica...  4.8.10.2              information shall be shown on the dmi           1          3         M         M
+8   4.3.7.1  a train shall be supervised to its static and ...   4.3.9.3  after releasing the emergency brake etcs will ...           1          3         M         M
+9   3.9.1.4  if an etcs equipped train passes a level trans...   3.9.1.5  if an etcs equipped train passes a level trans...           1          6         M         M
+
+Unlabelled Data : 0 Rows 
+Empty DataFrame
+Columns: [req1_id, req1, req2_id, req2, BinaryClass, MultiClass, BLabelled, MLabelled]
+Index: []
+There are no more Unlabelled Data Points....
+Output Analysis is available at : /Users/ikagarjotsingh/Documents/UCal/Internship/ActiveLearnerTool/ActiveLearnerTool/tool/static/data/Logs/2020-01-22/17-29-22-NB-NB-LC-2.csv
+Logs are available at : /Users/ikagarjotsingh/Documents/UCal/Internship/ActiveLearnerTool/ActiveLearnerTool/tool/static/data/Logs/2020-01-22/17-29-22-NB-NB-LC-2.txt
