@@ -1,4 +1,4 @@
-input : ertmsCombinedUpdated.csv
+input : Processes_Pairs_blackLineSafety-LowestLevel.csv
 dependencyTypeNeeded : y
 initManualAnnotAvail : y
 classifier : NB

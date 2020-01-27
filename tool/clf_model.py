@@ -12,6 +12,7 @@ from textblob import TextBlob
 from sklearn.utils import shuffle
 from sklearn.ensemble import VotingClassifier
 from sklearn.model_selection import StratifiedKFold
+import ast
 #from nltk.classify.scikitlearn import SklearnClassifier
 
 def createInitialTrainingSet(df_data,count,label):
@@ -135,12 +136,12 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     #y_test = df_testSet.loc[:,targetLabel]
     
     #Combining the requirement 1 and requirement 2 in a single column.
-    df_trainSet['req'] = df_trainSet['req1']+" "+df_trainSet['req2']
-    df_testSet['req'] = df_testSet['req1']+" "+df_testSet['req2']
+    #df_trainSet['req'] = df_trainSet['req1']+" "+df_trainSet['req2']
+    #df_testSet['req'] = df_testSet['req1']+" "+df_testSet['req2']
     
-    X_train = df_trainSet.loc[:,'req']
+    X_train = df_trainSet.loc[:,['req1','req2']]
     y_train = df_trainSet.loc[:,targetLabel]
-    X_test = df_testSet.loc[:,'req']
+    X_test = df_testSet.loc[:,['req1','req2']]
     y_test = df_testSet.loc[:,targetLabel]
     
     #############################################################################################################
@@ -158,7 +159,8 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     logs.writeLog("\n\nTraining Model.....")
     #Initialize Count Vectorizer which in a way performs Bag of Words on X_train
     #count_vect = CountVectorizer(tokenizer=lambda doc: doc, analyzer=split_into_lemmas, lowercase=False, stop_words='english')
-    count_vect = CountVectorizer(lowercase = False, stop_words='english')
+    #count_vect = CountVectorizer(lowercase = False, stop_words='english')
+    count_vect = CountVectorizer(tokenizer=my_tokenizer,lowercase=False)
     X_train_counts= count_vect.fit_transform(np.array(X_train))
     
     #feature_names = count_vect.get_feature_names()  #--- Can be used for analysis if needed.
@@ -238,8 +240,8 @@ def predictLabels(cv,tfidf,clf,df_toBePredictedData,targetLabel):
     predicts and returns the labels for the input data in a form of DataFrame.
     '''
     #predictData = np.array(df_toBePredictedData.loc[:,['req1','req2','BLabelled','MLabelled']])
-    df_toBePredictedData['req']=df_toBePredictedData['req1']+" "+df_toBePredictedData['req2']
-    predictData = np.array(df_toBePredictedData.loc[:,'req'])
+    #df_toBePredictedData['req']=df_toBePredictedData['req1']+" "+df_toBePredictedData['req2']
+    predictData = np.array(df_toBePredictedData.loc[:,['req1','req2']])
     #logs.writeLog(str(df_toBePredictedData))
     
     predict_counts = cv.transform(predictData)
@@ -285,8 +287,8 @@ def predictLabels(cv,tfidf,clf,df_toBePredictedData,targetLabel):
 #ten fold cross validation for Blackline safety data set
 def Tenfoldvalidation(cv,tfidf,clf_model,df_validationSet):
     
-    df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
-    predictData = np.array(df_validationSet.loc[:,'req'])
+    #df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
+    predictData = np.array(df_validationSet.loc[:,['req1','req2']])
     #logs.writeLog(str(predictData))
     actualLabels = np.array(df_validationSet.loc[:,'BinaryClass']).astype('int')
     predict_counts = cv.transform(predictData)
@@ -303,8 +305,8 @@ def Tenfoldvalidation(cv,tfidf,clf_model,df_validationSet):
 
 def validateClassifier(cv,tfidf,clf_model,df_validationSet,targetLabel):
     print ("\nCalculating Validation Score.....\n")
-    df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
-    predictData = np.array(df_validationSet.loc[:,'req'])
+    #df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
+    predictData = np.array(df_validationSet.loc[:,['req1','req2']])
     #logs.writeLog(str(predictData))
     actualLabels = np.array(df_validationSet.loc[:,targetLabel]).astype('int')
     predict_counts = cv.transform(predictData)
@@ -320,3 +322,8 @@ def split_into_lemmas(text):
     text = str(text)
     words = TextBlob(text).words
     return [word.lemmatize() for word in words]
+
+def my_tokenizer(arr):
+    req1_list = ast.literal_eval(arr[0])
+    req2_list = ast.literal_eval(arr[1])
+    return req1_list+req2_list

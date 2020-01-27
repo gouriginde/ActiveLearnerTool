@@ -257,7 +257,7 @@ def main():
     input("Hit Enter to Proceed....")
     
     if dependencyTypeNeeded == 'y':
-        df_rqmtComb.drop(columns = ['req'],inplace=True)
+        #df_rqmtComb.drop(columns = ['req'],inplace=True)
         logs.writeLog("\n\nStep 2 :- Learning MultiClass Label\n")
         df_rqmtCombDependent = df_rqmtComb[df_rqmtComb['BinaryClass']==1]   #Filtering only the Dependent Requirement Combinations for low level classification
         df_rqmtCombInDependent = df_rqmtComb[df_rqmtComb['BinaryClass']==0]
