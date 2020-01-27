@@ -92,7 +92,7 @@ def validateArguments(df_args):
         #print ("Validating Arguments....")
         if not os.path.exists(os.getcwd()+"/static/data/"+df_args.loc[0,'input']):
             raise("")
-        elif ((df_args.loc[0,'dependencyTypeNeeded'] not in ['y','n']) or (df_args.loc[0,'initManualAnnotAvail'] not in ['y','n']) or (df_args.loc[0,'classifier'] not in ['RF','NB','SVM']) or (df_args.loc[0,'samplingType'] not in ['leastConfidence','minMargin','entropy']) ):
+        elif ((df_args.loc[0,'dependencyTypeNeeded'] not in ['y','n']) or (df_args.loc[0,'initManualAnnotAvail'] not in ['y','n']) or (df_args.loc[0,'classifier'] not in ['RF','NB','SVM','ensemble']) or (df_args.loc[0,'samplingType'] not in ['leastConfidence','minMargin','entropy']) ):
             raise ("")
         elif (float(df_args.loc[0,'testsize']) not in [x/10 for x in range(0,11)]):
             raise ("")

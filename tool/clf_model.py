@@ -10,6 +10,9 @@ from sklearn.model_selection import cross_val_score,train_test_split
 from sklearn.metrics import f1_score,precision_score,recall_score,confusion_matrix,classification_report
 from textblob import TextBlob
 from sklearn.utils import shuffle
+from sklearn.ensemble import VotingClassifier
+from sklearn.model_selection import StratifiedKFold
+#from nltk.classify.scikitlearn import SklearnClassifier
 
 def createInitialTrainingSet(df_data,count,label):
     
@@ -126,11 +129,20 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     df_testSet = shuffle(df_testSet)
 
     #Split Train Test Sets into X_train,y_train,X_test,y_test   (Similar to Train Test Split....)
-    X_train = df_trainSet.loc[:,['req1','req2']]
+    #X_train = df_trainSet.loc[:,['req1','req2']] #Special characters are included in this as input is a list. 
+    #y_train = df_trainSet.loc[:,targetLabel]
+    #X_test = df_testSet.loc[:,['req1','req2']]
+    #y_test = df_testSet.loc[:,targetLabel]
+    
+    #Combining the requirement 1 and requirement 2 in a single column.
+    df_trainSet['req'] = df_trainSet['req1']+" "+df_trainSet['req2']
+    df_testSet['req'] = df_testSet['req1']+" "+df_testSet['req2']
+    
+    X_train = df_trainSet.loc[:,'req']
     y_train = df_trainSet.loc[:,targetLabel]
-    X_test = df_testSet.loc[:,['req1','req2']]
+    X_test = df_testSet.loc[:,'req']
     y_test = df_testSet.loc[:,targetLabel]
-
+    
     #############################################################################################################
     
     #Train / Test Split (80/20)
@@ -145,22 +157,25 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     
     logs.writeLog("\n\nTraining Model.....")
     #Initialize Count Vectorizer which in a way performs Bag of Words on X_train
-    count_vect = CountVectorizer(tokenizer=lambda doc: doc, analyzer=split_into_lemmas, lowercase=False, stop_words='english')
+    #count_vect = CountVectorizer(tokenizer=lambda doc: doc, analyzer=split_into_lemmas, lowercase=False, stop_words='english')
+    count_vect = CountVectorizer(lowercase = False, stop_words='english')
     X_train_counts= count_vect.fit_transform(np.array(X_train))
     
-    #feature_names = count_vect.get_feature_names()  --- Can be used for analysis if needed.
+    #feature_names = count_vect.get_feature_names()  #--- Can be used for analysis if needed.
     #print ("\nFeature names : ", feature_names)
     #print (len(feature_names))
     #print ("\nBag Of Words :\n" ,repr(X_train_counts))
+    #print (X_train_counts.toarray())
+    #print (X_train_counts.toarray().shape)
+    #input ("...............")
     
-
     tfidf_transformer = TfidfTransformer()
     X_train_tfidf= tfidf_transformer.fit_transform(X_train_counts)
     #print ("\nAfter TFIDF Transformation: \n",repr(X_train_tfidf))
     
     X_test_counts = count_vect.transform(np.array(X_test))
     X_test_tfidf = tfidf_transformer.transform(X_test_counts)
-        
+    
     #Random Forest Classifier Creation
     if clf == "RF" :
         clf_model = RandomForestClassifier().fit(X_train_tfidf, np.array(y_train).astype('int'))
@@ -180,7 +195,18 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     #Support Vector Machine Classifier Creation.
     elif clf == "SVM":
         clf_model = SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape='ovr', degree=3, gamma=1.0, kernel='rbf', max_iter=-1, probability=True, random_state=None, shrinking=True, tol=0.001, verbose=False).fit(X_train_tfidf,np.array(y_train).astype('int'))
-
+    
+    '''
+    #Ensemble Creation
+    elif clf == "ensemble":
+        training = zip(X_train_tfidf,np.array(y_train).astype('int'))
+        names = ['Random Forest','Naive Bayes','Support Vector Classifier']
+        classifiers = [RandomForestClassifier(),MultinomialNB(),SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape='ovr', degree=3, gamma=1.0, kernel='rbf', max_iter=-1, probability=True, random_state=None, shrinking=True, tol=0.001, verbose=False)]
+        models = zip(names,classifiers)
+        print (type(models))
+        clf_model = VotingClassifier(estimators=models,voting='hard',n_jobs=-1)
+        clf_model = clf_model.fit(X_train_tfidf,np.array(y_train).astype('int')) #n_jobs = -1 makes allows models to be created in parallel (using all the cores, else we can mention 2 for using 2 cores)
+    '''
     predict_labels = clf_model.predict(X_test_tfidf)
     actualLabels = np.array(y_test).astype('int')
     labelClasses = list(set(actualLabels))   #np.array(y_train).astype('int')
@@ -212,7 +238,8 @@ def predictLabels(cv,tfidf,clf,df_toBePredictedData,targetLabel):
     predicts and returns the labels for the input data in a form of DataFrame.
     '''
     #predictData = np.array(df_toBePredictedData.loc[:,['req1','req2','BLabelled','MLabelled']])
-    predictData = np.array(df_toBePredictedData.loc[:,['req1','req2']])
+    df_toBePredictedData['req']=df_toBePredictedData['req1']+" "+df_toBePredictedData['req2']
+    predictData = np.array(df_toBePredictedData.loc[:,'req'])
     #logs.writeLog(str(df_toBePredictedData))
     
     predict_counts = cv.transform(predictData)
@@ -254,10 +281,30 @@ def predictLabels(cv,tfidf,clf,df_toBePredictedData,targetLabel):
         df_toBePredictedData['maxProb'] = np.amax(predict_prob,axis=1)
     
     return df_toBePredictedData    #f1,precision,recall,clf_pred_score,acc
+    
+#ten fold cross validation for Blackline safety data set
+def Tenfoldvalidation(cv,tfidf,clf_model,df_validationSet):
+    
+    df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
+    predictData = np.array(df_validationSet.loc[:,'req'])
+    #logs.writeLog(str(predictData))
+    actualLabels = np.array(df_validationSet.loc[:,'BinaryClass']).astype('int')
+    predict_counts = cv.transform(predictData)
+    predict_tfidf = tfidf.transform(predict_counts)
+    print ("Inside Validate Classifier ")
+    #print ("Predicted Labels : ",str(clf_model.predict(predict_tfidf)))
+    #print ("Actual Labels : ",str(actualLabels))
+    #clf_val_score = clf_model.score(predict_tfidf,actualLabels)
+    crossv = StratifiedKFold(5)
+    scores = cross_val_score(clf_model, predict_tfidf, actualLabels, cv=crossv) #https://scikit-learn.org/stable/modules/cross_validation.html
+    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+
+    return scores.mean()
 
 def validateClassifier(cv,tfidf,clf_model,df_validationSet,targetLabel):
     print ("\nCalculating Validation Score.....\n")
-    predictData = np.array(df_validationSet.loc[:,['req1','req2']])
+    df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
+    predictData = np.array(df_validationSet.loc[:,'req'])
     #logs.writeLog(str(predictData))
     actualLabels = np.array(df_validationSet.loc[:,targetLabel]).astype('int')
     predict_counts = cv.transform(predictData)
