@@ -1,0 +1,404 @@
+comb_id,req1,req1_id,req2,req2_id,similarity,cosine,BinaryClass,MultiClass,BLabelled,MLabelled
+19298,it shall be possible to send plain text messages from track to train,4.8.8.1,it shall be possible to send fixed text messages from track to train,4.8.9.1,0,0.876351105,1,3,M,M
+14651,when changing to a lower speed level the front end of the train shall respect the dynamic train speed profile,4.3.2.2a,when changing to a higher speed level the rear end of the train shall respect the static train speed profile,4.3.2.2b,0,0.81438335,1,2,M,M
+15242,the release speed shall be indicated on the dmi,4.3.3.2c,actual speed shall be indicated on the dmi,4.3.51a,0,0.771651025,1,2,M,M
+10114,the train shall leave partial supervision when the trainborne equipment is not operative any longer when shunting is selected or when full supervision is available,4.1.4.6,the trainborne equipment shall remain in full supervision until the trainborne equipment is not active any longer when shunting is selected or when partial supervision information is received,4.1.5.5,0,0.760907109,1,1,M,M
+9720,in partial supervision the train shall be supervised according to train speed and distance data available,4.1.4.4a,the train shall be supervised according to train speed data available,4.2.3.6a,0,0.753833371,1,2,M,M
+,,,,,,,,,,
+12290,the etcs on-board shall be capable of receiving track description from the trackside,4.1.1.1,the etcs on-board shall be capable of receiving information regarding air tightness from the trackside,4.8.2.1,0,0.706077774,1,1,M,M
+15905,actual speed shall be indicated on the dmi,4.3.51a,actual speed shall still be shown on the dmi,4.5.2.4,0,0.706077774,1,3,M,M
+,,,,,,,,,,
+5962,the driver shall be able to consult train data when the train is stationary or moving,4.1.2.9,the driver shall be able to override the function when the train is stationary,4.6.4.2,0,0.698530102,1,1,M,M
+18301,a special indication shall be shown on the dmi,4.5.2.5a,information shall be shown on the dmi,4.8.10.2,0,0.673520505,1,3,M,M
+18887,operation of the train trip shall be indicated on the dmi,4.6.12.2,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.673157451,1,2,M,M
+1376,the current application level shall be indicated on the dmi,3.2.1.3d,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,0,0.671356907,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+17558,it shall be possible to use multiple traction units without isolating the etcs trainborne equipment on traction unit(s) with an in-operative cab,4.4.1.1,it shall be possible to use tandem traction units without isolating the etcs trainborne equipment on the tandem traction unit,4.4.2.1,0,0.658480836,1,3,M,M
+19175,the etcs on-board shall be capable of receiving information about pantograph and power supply from the trackside,4.8.1.1,the etcs on-board shall be capable of receiving information regarding air tightness from the trackside,4.8.2.1,0,0.657433972,1,2,M,M
+15283,the release speed shall be indicated on the dmi,4.3.3.2c,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.653147742,1,2,M,M
+2496,if as a result of an automatic transition except for transitions to and from national operation (stm) the responsibility for the driver increases the etcs shall seek an acknowledgement from the driver whether the train is stationary or not,3.9.1.2c,for transitions to and from national operation (stm) the etcs shall request an acknowledgement by the driver,3.9.1.2d,0,0.652988665,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+12287,the etcs on-board shall be capable of receiving track description from the trackside,4.1.1.1,the etcs on-board shall be capable of receiving information about pantograph and power supply from the trackside,4.8.1.1,0,0.649891352,1,3,M,M
+,,,,,,,,,,
+1461,the current application level shall be indicated on the dmi,3.2.1.3d,the release speed shall be indicated on the dmi,4.3.3.2c,0,0.647328634,1,2,M,M
+,,,,,,,,,,
+16217,visual and acoustic warnings to the driver about possible intervention from etcs shall be given to enable the driver to react and avoid intervention,4.3.6.5,within the braking curve area a warning shall be given to the driver to enable him to react and avoid intervention from etcs equipment at least 5 sec before the intervention,4.3.7.2,0,0.645874645,1,3,M,M
+,,,,,,,,,,
+6981,the following data may be entered manually by the driver or from train memory,4.1.2.16,"the following data may be entered manually by the driver provided by external sources
+",4.1.2.16,0,0.637029056,1,3,M,M
+15765,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.628616845,1,2,M,M
+3675,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the release speed shall be indicated on the dmi,4.3.3.2c,0,0.625546886,1,2,M,M
+,,,,,,,,,,
+17034,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.621829438,1,1,M,M
+19015,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.620525482,0,0,M,M
+8776,the supervised shunting speed shall be indicated to the driver on request,4.1.3.5b,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.620005495,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+18270,a special indication shall be shown on the dmi,4.5.2.5a,the supervised speed shall not be shown on the dmi,4.5.2.5b,0,0.574381355,0,0,M,M
+1413,the current application level shall be indicated on the dmi,3.2.1.3d,partial supervision shall be indicated on the dmi,4.1.4.3,0,0.574381355,1,2,M,M
+1468,the current application level shall be indicated on the dmi,3.2.1.3d,actual speed shall be indicated on the dmi,4.3.51a,0,0.574381355,1,2,M,M
+1511,the current application level shall be indicated on the dmi,3.2.1.3d,route unsuitability shall be indicated on the dmi,4.6.4.1c,0,0.574381355,1,2,M,M
+18625,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.571737963,1,2,M,M
+,,,,,,,,,,
+19512,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.569594758,0,0,M,M
+,,,,,,,,,,
+18628,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.568264752,0,0,M,M
+7812,to prevent unauthorised use of the function permission shall be obtained from the rbc if the train is operating under the control of the rbc,4.1.3.2c,on request of the rbc the driver shall have the possibility to confirm that the track ahead of him until the end of the on sight section is clear,4.2.3.6d,0,0.567730091,0,0,M,M
+,,,,,,,,,,
+13876,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.567096638,1,2,M,M
+,,,,,,,,,,
+1515,the current application level shall be indicated on the dmi,3.2.1.3d,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.566644161,1,2,M,M
+18919,operation of the train trip shall be indicated on the dmi,4.6.12.2,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.566644161,1,2,M,M
+18632,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.565012028,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+15275,the release speed shall be indicated on the dmi,4.3.3.2c,actual speed shall still be shown on the dmi,4.5.2.4,0,0.563254509,1,2,M,M
+7900,to prevent unauthorised use of the function permission shall be obtained from the rbc if the train is operating under the control of the rbc,4.1.3.2c,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.563084639,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+13144,the target distance to be displayed on the dmi shall be based on the most restrictive braking curve,4.2.2.2,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.562359522,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+15296,the release speed shall be indicated on the dmi,4.3.3.2c,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.557405929,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+17053,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.556657581,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+16624,the driver shall be able to release an etcs emergency brake application when stationary,4.3.7.4b,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,0,0.552949609,1,2,M,M
+,,,,,,,,,,
+3825,the etcs on-board shall be capable of receiving national values from the trackside to adapt to national requirements,3.10.1.1,the etcs on-board shall be capable of receiving track description from the trackside,4.1.1.1,0,0.552814525,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+18216,actual speed shall still be shown on the dmi,4.5.2.4,a special indication shall be shown on the dmi,4.5.2.5a,0,0.550779634,1,2,M,M
+3685,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the driver shall know the distance to the next point defining the indicated braking curve and the permitted speed allowed this shall be shown to the driver in a way that is understandable and logical,4.3.6.4,0,0.550401894,1,2,M,M
+18426,if supervised by an rbc it shall be possible to command an emergency stop to all trains in a particular area or to a specific train,4.6.4.1a,it shall be possible to command an immediate train stop,4.6.4.1b,0,0.547913354,0,0,M,M
+3729,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.547577338,1,2,M,M
+,,,,,,,,,,
+11225,isolation of the etcs trainborne equipment shall disconnect the etcs trainborne equipment from the vehicle braking system,4.1.6.6,the etcs trainborne equipment shall be able to determine the location of the entire train,4.3.4.1,0,0.545882762,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+17035,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.54350531,0,0,M,M
+19024,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,the driver shall be able to use the reversing function without needing to re-confirm the train data,4.9.10.5,0,0.54350531,0,0,M,M
+3661,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,0,0.543132147,1,2,M,M
+,,,,,,,,,,
+11313,isolation of the etcs trainborne equipment shall disconnect the etcs trainborne equipment from the vehicle braking system,4.1.6.6,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,5.2.1.1,0,0.54215647,0,0,M,M
+8026,permission received shall be indicated to the driver,4.1.3.2d,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.541911937,1,2,M,M
+9643,partial supervision shall be indicated on the dmi,4.1.4.3,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.541911937,1,2,M,M
+15913,actual speed shall be indicated on the dmi,4.3.51a,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.541911937,1,2,M,M
+18621,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,route unsuitability shall be indicated on the dmi,4.6.4.1c,0,0.541911937,1,2,M,M
+16195,the driver shall know the distance to the next point defining the indicated braking curve and the permitted speed allowed this shall be shown to the driver in a way that is understandable and logical,4.3.6.4,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.541508055,0,0,M,M
+3736,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.541135629,1,2,M,M
+16953,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.540997013,1,2,M,M
+,,,,,,,,,,
+9649,partial supervision shall be indicated on the dmi,4.1.4.3,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.539773523,1,2,M,M
+15919,actual speed shall be indicated on the dmi,4.3.51a,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.539773523,1,2,M,M
+18714,route unsuitability shall be indicated on the dmi,4.6.4.1c,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.539773523,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+1708,the driver shall acknowledge the level transitions if requested from trackside if the driver does not acknowledge after the transition the brake shall be applied if the driver acknowledges afterwards the brake can be released,3.2.1.5,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.539596158,1,2,M,M
+,,,,,,,,,,
+15328,the release speed shall be indicated on the dmi,4.3.3.2c,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.537601088,1,2,M,M
+15308,the release speed shall be indicated on the dmi,4.3.3.2c,information shall be shown on the dmi,4.8.10.2,0,0.537415854,1,3,M,M
+13901,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,information shall be shown on the dmi,4.8.10.2,0,0.537006899,1,3,M,M
+,,,,,,,,,,
+1481,the current application level shall be indicated on the dmi,3.2.1.3d,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,0,0.536177092,1,2,M,M
+8770,the supervised shunting speed shall be indicated to the driver on request,4.1.3.5b,the supervised speed shall not be shown on the dmi,4.5.2.5b,0,0.536177092,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+5340,the driver shall be able to select train data entry on the dmi,4.1.2.2,stored train data shall be offered to the driver to be confirmed when data entry starts,4.1.2.11,0,0.532411495,1,3,M,M
+16582,if the train or the shunting movement exceeds the permitted ceiling speed by a certain harmonised margin the trainborne equipment shall execute a brake intervention until the actual speed does not exceed permitted speed; then the driver shall be able to release the brake,4.3.7.3,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.530624035,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+13940,on request of the rbc the driver shall have the possibility to confirm that the track ahead of him until the end of the on sight section is clear,4.2.3.6d,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,0,0.528485424,1,2,M,M
+15496,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.526549711,0,0,M,M
+,,,,,,,,,,
+15782,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,5.2.1.1,0,0.525859107,0,0,M,M
+,,,,,,,,,,
+15662,the etcs trainborne equipment shall be able to determine the location of the entire train,4.3.4.1,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.524793852,1,3,M,M
+18622,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,the driver shall be able to override the function when the train is stationary,4.6.4.2,0,0.524757131,0,0,M,M
+18648,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.524757131,0,0,M,M
+9861,the train shall have the capability of being supervised to a ceiling speed,4.1.4.4b,the train shall as a minimum be supervised to a ceiling speed; the supervised speed shall not be shown on the dmi unless selected by the driver,4.2.3.6b,0,0.524632345,1,3,M,M
+,,,,,,,,,,
+18664,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.524308593,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+15652,the etcs trainborne equipment shall be able to determine the location of the entire train,4.3.4.1,the driver shall be able to override the function when the train is stationary,4.6.4.2,0,0.521969695,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+18764,the driver shall be able to override the function when the train is stationary,4.6.4.2,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.520050968,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+1522,the current application level shall be indicated on the dmi,3.2.1.3d,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.519213456,1,2,M,M
+19274,the etcs on-board shall be capable of receiving information regarding air tightness from the trackside,4.8.2.1,the etcs on-board shall be capable of sending to the trackside train integrity information detected by a system outside etcs,4.9.5.1,0,0.519039027,1,1,M,M
+3616,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,permission received shall be indicated to the driver,4.1.3.2d,0,0.519011706,1,2,M,M
+3627,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,partial supervision shall be indicated on the dmi,4.1.4.3,0,0.519011706,1,2,M,M
+3682,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,actual speed shall be indicated on the dmi,4.3.51a,0,0.519011706,1,2,M,M
+3725,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,route unsuitability shall be indicated on the dmi,4.6.4.1c,0,0.519011706,1,2,M,M
+3695,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,0,0.518135446,1,2,M,M
+11186,isolation of the etcs trainborne equipment shall disconnect the etcs trainborne equipment from the vehicle braking system,4.1.6.6,the etcs trainborne equipment shall be capable of receiving information from the national train control systems by means of the stm,4.1.7.1,0,0.517906519,0,0,M,M
+15302,the release speed shall be indicated on the dmi,4.3.3.2c,when the plain text message appears on the dmi the driver shall be alerted,4.8.8.3,0,0.517366343,0,0,M,M
+1993,the etcs trainborne equipment shall be capable of supervising the following operational states,3.9.1.1,the etcs trainborne equipment shall be capable of receiving information from the national train control systems by means of the stm,4.1.7.1,0,0.517282042,0,0,M,M
+8738,the supervised shunting speed shall be indicated to the driver on request,4.1.3.5b,the driver shall know the distance to the next point defining the indicated braking curve and the permitted speed allowed this shall be shown to the driver in a way that is understandable and logical,4.3.6.4,0,0.516116938,1,2,M,M
+,,,,,,,,,,
+5995,the driver shall be able to consult train data when the train is stationary or moving,4.1.2.9,the driver shall be able to use the reversing function without needing to re-confirm the train data,4.9.10.5,0,0.514904272,0,0,M,M
+,,,,,,,,,,
+5467,the driver shall be able to select train data entry on the dmi,4.1.2.2,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.514734963,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+10088,this ceiling speed shall not be shown continually on the dmi but may be shown momentarily when selected by the driver,4.1.4.4c,information shall be shown on the dmi,4.8.10.2,0,0.512259796,1,3,M,M
+19173,the etcs on-board shall be capable of receiving information about pantograph and power supply from the trackside,4.8.1.1,the etcs trainborne equipment shall indicate on the dmi the information regarding pantograph and power supply,4.8.1.5a,0,0.512150058,1,3,M,M
+18779,the driver shall be able to override the function when the train is stationary,4.6.4.2,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.512149199,0,0,M,M
+,,,,,,,,,,
+7924,permission received shall be indicated to the driver,4.1.3.2d,the supervised shunting speed shall be indicated to the driver on request,4.1.3.5b,0,0.510751223,1,2,M,M
+8015,permission received shall be indicated to the driver,4.1.3.2d,the driver shall select an override control according to the permission received,4.5.2.2a,0,0.510751223,0,0,M,M
+8735,the supervised shunting speed shall be indicated to the driver on request,4.1.3.5b,actual speed shall be indicated on the dmi,4.3.51a,0,0.510751223,1,2,M,M
+9615,partial supervision shall be indicated on the dmi,4.1.4.3,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,0,0.510751223,1,2,M,M
+15885,actual speed shall be indicated on the dmi,4.3.51a,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,0,0.510751223,1,2,M,M
+16955,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,route unsuitability shall be indicated on the dmi,4.6.4.1c,0,0.510751223,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+18960,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.510516521,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+12299,the etcs on-board shall be capable of receiving track description from the trackside,4.1.1.1,the etcs on-board shall be capable of sending to the trackside train integrity information detected by a system outside etcs,4.9.5.1,0,0.508992239,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+15658,the etcs trainborne equipment shall be able to determine the location of the entire train,4.3.4.1,after the acknowledgement the driver shall be able to continue the movement,4.6.12.5a,0,0.506443214,0,0,M,M
+13983,on request of the rbc the driver shall have the possibility to confirm that the track ahead of him until the end of the on sight section is clear,4.2.3.6d,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.505740991,0,0,M,M
+9668,partial supervision shall be indicated on the dmi,4.1.4.3,information shall be shown on the dmi,4.8.10.2,0,0.505605559,1,3,M,M
+15938,actual speed shall be indicated on the dmi,4.3.51a,information shall be shown on the dmi,4.8.10.2,0,0.505605559,1,3,M,M
+18733,route unsuitability shall be indicated on the dmi,4.6.4.1c,information shall be shown on the dmi,4.8.10.2,0,0.505605559,1,3,M,M
+19153,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.504426999,0,0,M,M
+13624,the train shall be supervised according to train speed data available,4.2.3.6a,a train shall be supervised to its static and dynamic train speed profiles,4.3.7.1,0,0.503871157,1,2,M,M
+16959,the roll away/reverse movement intervention shall be indicated on the dmi,4.3.9.1c,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.503871157,1,2,M,M
+13596,the train shall be supervised according to train speed data available,4.2.3.6a,the train shall as a minimum be supervised to a ceiling speed; the supervised speed shall not be shown on the dmi unless selected by the driver,4.2.3.6b,0,0.503499072,1,3,M,M
+3726,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the driver shall be able to override the function when the train is stationary,4.6.4.2,0,0.503470529,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+1554,the current application level shall be indicated on the dmi,3.2.1.3d,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.503102612,1,2,M,M
+,,,,,,,,,,
+7365,if the onboard fails to contact the rbc when awakening the driver shall be asked to enter the rbc contact details,4.1.2.17,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,0,0.503102612,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+3768,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.503040187,1,2,M,M
+1534,the current application level shall be indicated on the dmi,3.2.1.3d,information shall be shown on the dmi,4.8.10.2,0,0.502929265,1,3,M,M
+19489,information shall be shown on the dmi,4.8.10.2,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.502929265,1,3,M,M
+15471,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,the driver shall be able to override the function when the train is stationary,4.6.4.2,0,0.502853608,0,0,M,M
+,,,,,,,,,,
+14445,the etcs trainborne equipment calculates the static train speed profile on the basis of infrastructure data and train data,4.3.1.4a,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,5.2.1.1,0,0.502636322,1,3,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+1707,the driver shall acknowledge the level transitions if requested from trackside if the driver does not acknowledge after the transition the brake shall be applied if the driver acknowledges afterwards the brake can be released,3.2.1.5,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.50153264,1,2,M,M
+11055,when the etcs trainborne equipment is isolated the system shall not show any etcs information other than the fact that the system is isolated,4.1.6.5,isolation of the etcs trainborne equipment shall disconnect the etcs trainborne equipment from the vehicle braking system,4.1.6.6,0,0.500549548,1,1,M,M
+3918,the etcs on-board shall be capable of receiving national values from the trackside to adapt to national requirements,3.10.1.1,the etcs on-board shall be capable of receiving information regarding air tightness from the trackside,4.8.2.1,0,0.500477407,1,2,M,M
+,,,,,,,,,,
+10924,the etcs trainborne equipment shall be capable of being isolated,4.1.6.1a,isolation of the etcs trainborne equipment shall disconnect the etcs trainborne equipment from the vehicle braking system,4.1.6.6,0,0.499747603,1,3,M,M
+11415,the etcs trainborne equipment shall be capable of receiving information from the national train control systems by means of the stm,4.1.7.1,the etcs on-board shall be capable of receiving information regarding air tightness from the trackside,4.8.2.1,0,0.499700175,1,2,M,M
+19686,if the train is equipped with two operational radios there shall be no performance penalty as a result of a transition from one rbc to another (train spacing and train speed,4.9.12.2,if the train is equipped with only one operational radio passing from one rbc to another shall still be possible but might result in a performance penalty,4.9.12.3,0,0.499642907,1,1,M,M
+13828,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,the release speed shall be indicated on the dmi,4.3.3.2c,0,0.499310363,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+13093,the target distance to be displayed on the dmi shall be based on the most restrictive braking curve,4.2.2.2,the supervised speed shall not be shown on the dmi,4.5.2.5b,0,0.496215752,0,0,M,M
+,,,,,,,,,,
+15616,the etcs trainborne equipment shall be able to determine the location of the entire train,4.3.4.1,if the train or the shunting movement exceeds the permitted ceiling speed by a certain harmonised margin the trainborne equipment shall execute a brake intervention until the actual speed does not exceed permitted speed; then the driver shall be able to release the brake,4.3.7.3,0,0.496036193,0,0,M,M
+19492,the etcs on-board shall be capable of sending to the trackside train integrity information detected by a system outside etcs,4.9.5.1,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.495941156,1,2,M,M
+,,,,,,,,,,
+15751,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.495458522,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+5967,the driver shall be able to consult train data when the train is stationary or moving,4.1.2.9,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.493486804,0,0,M,M
+,,,,,,,,,,
+5841,the driver shall be able to consult train data when the train is stationary or moving,4.1.2.9,stored train data shall be offered to the driver to be confirmed when data entry starts,4.1.2.11,0,0.493183663,1,3,M,M
+18175,when the train passes the stop signal the train trip function shall be suppressed,4.5.2.3,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.492970971,0,0,M,M
+9771,in partial supervision the train shall be supervised according to train speed and distance data available,4.1.4.4a,it shall be possible to drive the train backwards in a supervised way (speed and distance) according to information received from trackside,4.4.7.1,0,0.49277074,0,0,M,M
+13727,the train shall as a minimum be supervised to a ceiling speed; the supervised speed shall not be shown on the dmi unless selected by the driver,4.2.3.6b,actual speed shall be indicated on the dmi,4.3.51a,0,0.492632281,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+11322,the etcs trainborne equipment shall be capable of receiving information from the national train control systems by means of the stm,4.1.7.1,the etcs on-board shall be capable of receiving track description from the trackside,4.1.1.1,0,0.492201634,1,2,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+5164,the dmi shall indicate the result of the self-test,4.1.1.4c,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.491086745,1,2,M,M
+19145,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,when the plain text message appears on the dmi the driver shall be alerted,4.8.8.3,0,0.490919886,0,0,M,M
+11841,the on board shall supervise the train against a ceiling speed,4.1.8.3,the train shall as a minimum be supervised to a ceiling speed; the supervised speed shall not be shown on the dmi unless selected by the driver,4.2.3.6b,0,0.490891123,1,3,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+15476,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.489428411,0,0,M,M
+16362,the driver shall have the possibility to select the language this does not concern non pre-defined texts sent from the trackside,4.3.6.6,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.489372605,0,0,M,M
+18644,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,information shall be shown on the dmi,4.8.10.2,0,0.489186077,1,3,M,M
+3751,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.488943005,0,0,M,M
+,,,,,,,,,,
+18182,when the train passes the stop signal the train trip function shall be suppressed,4.5.2.3,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.488537052,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+11573,unfitted operation shall be possible if ordered by trackside,4.1.8.1,unfitted operation shall be possible if selected by the driver at start up,4.1.8.2,0,0.487190904,1,3,M,M
+16176,the driver shall know the distance to the next point defining the indicated braking curve and the permitted speed allowed this shall be shown to the driver in a way that is understandable and logical,4.3.6.4,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.48697361,0,0,M,M
+,,,,,,,,,,
+9871,the train shall have the capability of being supervised to a ceiling speed,4.1.4.4b,when changing to a higher speed level the rear end of the train shall respect the static train speed profile,4.3.2.2b,0,0.486812078,0,0,M,M
+,,,,,,,,,,
+15276,the release speed shall be indicated on the dmi,4.3.3.2c,a special indication shall be shown on the dmi,4.5.2.5a,0,0.486415696,1,2,M,M
+,,,,,,,,,,
+15330,if the release speed is calculated on board it shall ensure that the train will stop before reaching the danger point,4.3.3.2d,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,0,0.485446294,1,3,M,M
+,,,,,,,,,,
+1663,the driver shall acknowledge the level transitions if requested from trackside if the driver does not acknowledge after the transition the brake shall be applied if the driver acknowledges afterwards the brake can be released,3.2.1.5,the driver shall have the possibility to select the language this does not concern non pre-defined texts sent from the trackside,4.3.6.6,0,0.485200099,0,0,M,M
+1560,the driver shall acknowledge the level transitions if requested from trackside if the driver does not acknowledge after the transition the brake shall be applied if the driver acknowledges afterwards the brake can be released,3.2.1.5,if as a result of an automatic transition except for transitions to and from national operation (stm) the responsibility for the driver increases the etcs shall seek an acknowledgement from the driver whether the train is stationary or not,3.9.1.2c,0,0.485094979,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+1528,the current application level shall be indicated on the dmi,3.2.1.3d,when the plain text message appears on the dmi the driver shall be alerted,4.8.8.3,0,0.484166354,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+6629,the entry of driver identification and the selection of the language shall be possible,4.1.2.14a,the information regarding lowering and raising of the pantograph and opening/closing of the circuit breaker shall be provided separately and in combinations,4.8.1.6,0,0.483901037,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+15741,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,the driver shall be able to override the function when the train is stationary,4.6.4.2,0,0.483416714,0,0,M,M
+15767,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.483416714,0,0,M,M
+5119,the dmi shall indicate the result of the self-test,4.1.1.4c,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.483166929,1,2,M,M
+10964,the etcs trainborne equipment shall be capable of being isolated,4.1.6.1a,the etcs trainborne equipment shall be able to determine the location of the entire train,4.3.4.1,0,0.483083528,0,0,M,M
+,,,,,,,,,,
+7436,if the onboard fails to contact the rbc when awakening the driver shall be asked to enter the rbc contact details,4.1.2.17,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.482978642,0,0,M,M
+,,,,,,,,,,
+13838,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,the driver shall know the distance to the next point defining the indicated braking curve and the permitted speed allowed this shall be shown to the driver in a way that is understandable and logical,4.3.6.4,0,0.48272898,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+7408,if the onboard fails to contact the rbc when awakening the driver shall be asked to enter the rbc contact details,4.1.2.17,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.480989003,0,0,M,M
+,,,,,,,,,,
+15738,on lines fitted with rbc the etcs trainborne equipment shall be able to transmit the location of the entire train to the rbc,4.3.4.2,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.480989003,0,0,M,M
+,,,,,,,,,,
+1637,the driver shall acknowledge the level transitions if requested from trackside if the driver does not acknowledge after the transition the brake shall be applied if the driver acknowledges afterwards the brake can be released,3.2.1.5,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,0,0.480893477,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+15468,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,the emergency stop shall be indicated to the driver on the dmi,4.6.4.8,0,0.479725774,0,0,M,M
+6505,the entry of driver identification and the selection of the language shall be possible,4.1.2.14a,to prevent unauthorised use of the function permission shall be obtained from the rbc if the train is operating under the control of the rbc,4.1.3.2c,0,0.479428208,0,0,M,M
+5464,the driver shall be able to select train data entry on the dmi,4.1.2.2,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.479411337,0,0,M,M
+2974,in case the transition has to be acknowledged and the driver fails to acknowledge as required the etcs shall initiate a brake application,3.9.1.2e,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,0,0.479411337,0,0,M,M
+,,,,,,,,,,
+19184,the etcs on-board shall be capable of receiving information about pantograph and power supply from the trackside,4.8.1.1,the etcs on-board shall be capable of sending to the trackside train integrity information detected by a system outside etcs,4.9.5.1,0,0.479300237,1,3,M,M
+14028,on request of the rbc the driver shall have the possibility to confirm that the track ahead of him until the end of the on sight section is clear,4.2.3.6d,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.479265734,0,0,M,M
+13112,the target distance to be displayed on the dmi shall be based on the most restrictive braking curve,4.2.2.2,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.479178437,0,0,M,M
+3930,the etcs on-board shall be capable of receiving national values from the trackside to adapt to national requirements,3.10.1.1,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.479080712,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+18341,the supervised speed shall not be shown on the dmi,4.5.2.5b,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.478237765,0,0,M,M
+8803,the supervised shunting speed shall be indicated to the driver on request,4.1.3.5b,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.478039255,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+13128,the target distance to be displayed on the dmi shall be based on the most restrictive braking curve,4.2.2.2,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.477538708,0,0,M,M
+5134,the dmi shall indicate the result of the self-test,4.1.1.4c,the etcs trainborne equipment shall indicate on the dmi the information regarding pantograph and power supply,4.8.1.5a,0,0.477359564,1,2,M,M
+,,,,,,,,,,
+15435,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,if the train or the shunting movement exceeds the permitted ceiling speed by a certain harmonised margin the trainborne equipment shall execute a brake intervention until the actual speed does not exceed permitted speed; then the driver shall be able to release the brake,4.3.7.3,0,0.477310548,0,0,M,M
+,,,,,,,,,,
+14148,etcs shall calculate the permitted speed for the train for all locations of the authorised movement,4.3.1.2a,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,0,0.477004588,0,0,M,M
+16546,if the train or the shunting movement exceeds the permitted ceiling speed by a certain harmonised margin the trainborne equipment shall execute a brake intervention until the actual speed does not exceed permitted speed; then the driver shall be able to release the brake,4.3.7.3,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,0,0.476077604,0,0,M,M
+5389,the driver shall be able to select train data entry on the dmi,4.1.2.2,the target distance to be displayed on the dmi shall be based on the most restrictive braking curve,4.2.2.2,0,0.475786303,0,0,M,M
+15500,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,the new target location shall be checked for acceptance by the on board,4.9.10.3,0,0.475345149,0,0,M,M
+14010,on request of the rbc the driver shall have the possibility to confirm that the track ahead of him until the end of the on sight section is clear,4.2.3.6d,the driver shall be able to confirm the train integrity to the rbc manually the confirmation requires the train to be stationary,4.9.5.4,0,0.47514944,1,2,M,M
+7917,to prevent unauthorised use of the function permission shall be obtained from the rbc if the train is operating under the control of the rbc,4.1.3.2c,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,5.2.1.1,0,0.474545513,0,0,M,M
+18334,the supervised speed shall not be shown on the dmi,4.5.2.5b,operation of the train trip shall be indicated on the dmi,4.6.12.2,0,0.474493294,0,0,M,M
+18899,operation of the train trip shall be indicated on the dmi,4.6.12.2,information shall be shown on the dmi,4.8.10.2,0,0.474329805,1,3,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+19277,the etcs on-board shall be capable of receiving information regarding air tightness from the trackside,4.8.2.1,the following train data shall be sent from the on board to the trackside,4.9.9.2,0,0.473645031,1,2,M,M
+13945,on request of the rbc the driver shall have the possibility to confirm that the track ahead of him until the end of the on sight section is clear,4.2.3.6d,the driver shall know the distance to the next point defining the indicated braking curve and the permitted speed allowed this shall be shown to the driver in a way that is understandable and logical,4.3.6.4,0,0.473595195,0,0,M,M
+12320,it shall be possible to send information on adhesion conditions from trackside,4.1.1.3a,it shall also be possible to allow the driver to change the adhesion conditions; in this case information from trackside has priority,4.1.1.3b,0,0.47353909,1,3,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+3230,if an etcs equipped train passes a level transition to a line fitted with more than one level the onboard shall switch to the highest level according to the priority given by trackside for which it is equipped,3.9.1.4,if an etcs equipped train passes a level transition to one or more levels for which it is not equipped etcs shall initiate a brake application,3.9.1.5,0,0.471671431,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+12301,the etcs on-board shall be capable of receiving track description from the trackside,4.1.1.1,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.470531278,1,1,M,M
+5972,the driver shall be able to consult train data when the train is stationary or moving,4.1.2.9,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.470079831,1,3,M,M
+19331,when the plain text message appears on the dmi the driver shall be alerted,4.8.8.3,the on board shall be capable of sending train data to the trackside after confirmation by the driver or when entering the rbc area,4.9.9.1,0,0.469891964,0,0,M,M
+,,,,,,,,,,
+3759,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,the driver shall be able to use the reversing function without needing to re-confirm the train data,4.9.10.5,0,0.469666112,0,0,M,M
+3748,the current operational status shall be indicated to the driver on the dmi,3.9.1.6,information shall be shown on the dmi,4.8.10.2,0,0.469342404,1,3,M,M
+,,,,,,,,,,
+11316,the etcs trainborne equipment shall be capable of receiving information from the national train control systems by means of the stm,4.1.7.1,the dmi shall display or be compatible with information from national train control systems this may mean displaying the information shown by the national system,4.1.7.2,0,0.469227938,1,3,M,M
+15138,where failure to apply the full service brake is detected the emergency brake shall stop the train in rear of the danger point,4.3.2.7,if there are failures of the trainborne equipment which compromise the safety of train supervision the etcs trainborne equipment shall immediately command the brake and bring the train to a stop,5.2.1.1,0,0.469062573,1,2,M,M
+13722,the train shall as a minimum be supervised to a ceiling speed; the supervised speed shall not be shown on the dmi unless selected by the driver,4.2.3.6b,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,0,0.468596344,0,0,M,M
+,,,,,,,,,,
+17033,when the traction unit has come to a standstill the driver shall be able to release the emergency brake,4.3.9.2,the emergency brake shall be applied until the traction unit is stationary,4.6.12.3,0,0.467989498,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+15102,where failure to apply the full service brake is detected the emergency brake shall stop the train in rear of the danger point,4.3.2.7,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.467698114,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+1447,the current application level shall be indicated on the dmi,3.2.1.3d,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,0,0.467269047,1,2,M,M
+13921,the target distance shall not be shown on the dmi unless selected by the driver,4.2.3.6c,the occurrence of a failure shall be displayed on the dmi,5.2.1.2a,0,0.467269047,1,2,M,M
+11871,the on board shall supervise the train against a ceiling speed,4.1.8.3,if the train or the shunting movement exceeds the permitted ceiling speed by a certain harmonised margin the trainborne equipment shall execute a brake intervention until the actual speed does not exceed permitted speed; then the driver shall be able to release the brake,4.3.7.3,0,0.46691829,1,2,M,M
+,,,,,,,,,,
+14717,when changing to a lower speed level the front end of the train shall respect the dynamic train speed profile,4.3.2.2a,on demand the position of the front end of the train at the time of the demand shall be indicated on the dmi this shall be possible while the train is moving or stationary,4.7.3.2,0,0.466888958,0,0,M,M
+16581,if the train or the shunting movement exceeds the permitted ceiling speed by a certain harmonised margin the trainborne equipment shall execute a brake intervention until the actual speed does not exceed permitted speed; then the driver shall be able to release the brake,4.3.7.3,when the traction unit is stationary the driver shall be required to acknowledge the train trip condition this acknowledgement will release the emergency brake,4.6.12.4,0,0.466619933,1,1,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+4967,the test shall require no action on the part of the driver,4.1.1.4b,when the plain text message appears on the dmi the driver shall be alerted,4.8.8.3,0,0.465989097,0,0,M,M
+,,,,,,,,,,
+,,,,,,,,,,
+7827,to prevent unauthorised use of the function permission shall be obtained from the rbc if the train is operating under the control of the rbc,4.1.3.2c,"when the train is stationary or after a certain time (eg the time for ""route releasing"" of the overlap the release speed calculation shall be based on the distance to the danger point (if calculated on-board) the condition for this change shall be defined for each target as infrastructure data",4.3.3.3,0,0.46587263,0,0,M,M
+,,,,,,,,,,
+9749,in partial supervision the train shall be supervised according to train speed and distance data available,4.1.4.4a,a train shall be supervised to its static and dynamic train speed profiles,4.3.7.1,0,0.465291532,1,3,M,M
