@@ -178,37 +178,29 @@ def createClassifier(clf,splitratio,df_labelledData,targetLabel):
     X_test_counts = count_vect.transform(np.array(X_test))
     X_test_tfidf = tfidf_transformer.transform(X_test_counts)
     
+    rf_model = RandomForestClassifier()
+    nb_model = MultinomialNB()
+    svm_model = SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape='ovr', degree=3, gamma=1.0, kernel='rbf', max_iter=-1, probability=True, random_state=None, shrinking=True, tol=0.001, verbose=False)
+    
     #Random Forest Classifier Creation
     if clf == "RF" :
-        clf_model = RandomForestClassifier().fit(X_train_tfidf, np.array(y_train).astype('int'))
+        clf_model = rf_model.fit(X_train_tfidf, np.array(y_train).astype('int'))
         
-        #Cross Validation Code Snippet...
-        #clf_rdf = RandomForestClassifier()
-        #scores = cross_val_score(clf_rdf,X_train_tfidf,y_train,cv=5)
-        #logs.writeLog ("\nRandom Forest Classifier Cross Validation Score : "+str(scores.mean()))
-    
-        #predicted = clf_rdf.predict(X_test_tfidf)
-        #print ("Prediction quality:" + str(np.mean(predicted == y_test)))
-
     #Naive Bayes Classifier Creation
     elif clf == "NB":
-        clf_model = MultinomialNB().fit(X_train_tfidf,np.array(y_train).astype('int'))
+        clf_model = nb_model.fit(X_train_tfidf,np.array(y_train).astype('int'))
 
     #Support Vector Machine Classifier Creation.
     elif clf == "SVM":
-        clf_model = SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape='ovr', degree=3, gamma=1.0, kernel='rbf', max_iter=-1, probability=True, random_state=None, shrinking=True, tol=0.001, verbose=False).fit(X_train_tfidf,np.array(y_train).astype('int'))
+        clf_model = svm_model.fit(X_train_tfidf,np.array(y_train).astype('int'))
     
-    '''
     #Ensemble Creation
     elif clf == "ensemble":
-        training = zip(X_train_tfidf,np.array(y_train).astype('int'))
-        names = ['Random Forest','Naive Bayes','Support Vector Classifier']
-        classifiers = [RandomForestClassifier(),MultinomialNB(),SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape='ovr', degree=3, gamma=1.0, kernel='rbf', max_iter=-1, probability=True, random_state=None, shrinking=True, tol=0.001, verbose=False)]
-        models = zip(names,classifiers)
-        print (type(models))
-        clf_model = VotingClassifier(estimators=models,voting='hard',n_jobs=-1)
-        clf_model = clf_model.fit(X_train_tfidf,np.array(y_train).astype('int')) #n_jobs = -1 makes allows models to be created in parallel (using all the cores, else we can mention 2 for using 2 cores)
-    '''
+        #Predict_proba works only when Voting = 'soft'
+        #n_jobs = -1 makes allows models to be created in parallel (using all the cores, else we can mention 2 for using 2 cores)
+        clf_model = VotingClassifier(estimators=[('RF', rf_model), ('NB', nb_model),('SVM',svm_model)], voting='soft',n_jobs=-1)  
+        clf_model.fit(X_train_tfidf,np.array(y_train).astype('int'))
+
     predict_labels = clf_model.predict(X_test_tfidf)
     actualLabels = np.array(y_test).astype('int')
     labelClasses = list(set(actualLabels))   #np.array(y_train).astype('int')

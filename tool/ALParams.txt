@@ -1,7 +1,7 @@
 input : Processes_Pairs_blackLineSafety-LowestLevel.csv
 dependencyTypeNeeded : y
 initManualAnnotAvail : y
-classifier : NB
+classifier : ensemble
 testsize : 0.2
 trainingCount : 10 
 samplingType : leastConfidence
