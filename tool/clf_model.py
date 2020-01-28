@@ -36,6 +36,8 @@ def createInitialTrainingSet(df_data,count,label):
             #Get the requirements
             req1_id = selection.loc[0,'req1_id']
             req2_id = selection.loc[0,'req2_id']
+            req1_original = selection.loc[0,'original_req1']
+            req2_original = selection.loc[0,'original_req2']
             req1 = selection.loc[0,'req1']   
             req2 = selection.loc[0,'req2']
             
@@ -43,12 +45,12 @@ def createInitialTrainingSet(df_data,count,label):
             df_data.drop(index=selectedIndex,inplace=True)  #Drops the particular requirement combination from the original DataFrame
             
             df_userAnnot = pd.DataFrame(columns = df_data.columns)
-            userAnnot = getManualAnnotation(req1_id,req2_id,req1,req2,label) #User provides the annotation for the requirement combination
+            userAnnot = getManualAnnotation(req1_id,req2_id,req1_original,req2_original,label) #User provides the annotation for the requirement combination
             
             if userAnnot == "exit":
                 raise Exception ('\nExited the Program successfully!')
             
-            df_userAnnot = df_userAnnot.append({'req1_id':req1_id,'req1':req1,'req2_id':req2_id,'req2':req2,'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+            df_userAnnot = df_userAnnot.append({'req1_id':req1_id,'original_req1':original_req1,'req1':req1,'req2_id':req2_id,'original_req2':original_req2,'req2':req2,'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
             logs.createAnnotationsFile(df_userAnnot)
             
             df_data = pd.concat([df_data,df_userAnnot],axis=0) #Manually Annotated Values are concatenated with the original dataset and the resultant is returned.
@@ -62,6 +64,8 @@ def createInitialTrainingSet(df_data,count,label):
             #Get the requirements
             req1_id = selection.loc[0,'req1_id']
             req2_id = selection.loc[0,'req2_id']
+            req1_original = selection.loc[0,'original_req1']
+            req2_original = selection.loc[0,'original_req2']
             req1 = selection.loc[0,'req1']   
             req2 = selection.loc[0,'req2']
         
@@ -69,12 +73,12 @@ def createInitialTrainingSet(df_data,count,label):
             df_data.drop(index=selectedIndex,inplace=True)  #Drops the particular requirement combination from the original DataFrame
             
             df_userAnnot = pd.DataFrame(columns = df_data.columns)
-            userAnnot = getManualAnnotation(req1_id,req2_id,req1,req2,label) #User provides the annotation for the requirement combination
+            userAnnot = getManualAnnotation(req1_id,req2_id,req1_original,req2_original,label) #User provides the annotation for the requirement combination
             
             if userAnnot == "exit":
                 raise Exception ('\nExited the Program successfully!')
             
-            df_userAnnot = df_userAnnot.append({'req1_id':req1_id,'req1':req1,'req2_id':req2_id,'req2':req2,'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':'M','MLabelled':'M'},ignore_index=True)   #Added BinaryClass as 1 because we are learning the MultiClass labels only for the dependent Combinations (for which BinaryClass is 1)
+            df_userAnnot = df_userAnnot.append({'req1_id':req1_id,'original_req1':original_req1,'req1':req1,'req2_id':req2_id,'original_req2':original_req2,'req2':req2,'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':'M','MLabelled':'M'},ignore_index=True)   #Added BinaryClass as 1 because we are learning the MultiClass labels only for the dependent Combinations (for which BinaryClass is 1)
             logs.createAnnotationsFile(df_userAnnot)
 
             df_data = pd.concat([df_data,df_userAnnot],axis=0) #Manually Annotated Values are concatenated with the original dataset and the resultant is returned.

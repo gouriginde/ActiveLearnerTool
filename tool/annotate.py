@@ -40,7 +40,7 @@ def analyzePredictions(args,df_predictions,targetLabel,confidence):
     df_ConfidentPredictions[labelColumn]='I'  
     logs.writeLog("\n\nConfident Predictions : "+str(len(df_ConfidentPredictions))+" Rows\n"+str(df_ConfidentPredictions[:10]))
     
-    df_ConfidentPredictions=df_ConfidentPredictions[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]  #Remove the extra columns.
+    df_ConfidentPredictions=df_ConfidentPredictions[['req1_id','original_req1','req1','req2_id','original_req2','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]  #Remove the extra columns.
     
     #Predictions which are not part of the ConfidentPredictions
     logs.writeLog("\n\nSegregating the doubtful predictions...")
@@ -89,8 +89,8 @@ def annotUncertainSamples(args,df_uncertainSamples,targetLabel):
             sample = df_uncertainSamples.loc[indexValue,:]
             logs.writeLog("\n\nMost Uncertain Sample : \n"+str(sample))
             
-            df_userAnnot = pd.DataFrame(columns = ['req1_id','req2_id','req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled'])
-            userAnnot = getManualAnnotation(sample['req1_id'],sample['req2_id'],sample['req1'],sample['req2'],targetLabel)   #Passes the requirements to the user and requests annotation.
+            df_userAnnot = pd.DataFrame(columns = ['req1_id','req2_id','original_req1','original_req2','req1','req2','BinaryClass','MultiClass','BLabelled','MLabelled'])
+            userAnnot = getManualAnnotation(sample['req1_id'],sample['req2_id'],sample['original_req1'],sample['original_req2'],targetLabel)   #Passes the requirements to the user and requests annotation.
             
             if userAnnot == "exit":
                 #Dump df_trainingSet into Annotations.csv (These are the manual annotations done before active learning actually starts)
@@ -103,14 +103,14 @@ def annotUncertainSamples(args,df_uncertainSamples,targetLabel):
 
             if targetLabel == "BinaryClass":
                 #Add the newly annotated combination in the manuallyAnnotatedDf
-                df_userAnnot = df_userAnnot.append({'req1_id':sample['req1_id'],'req1':sample['req1'],'req2_id':sample['req2_id'],'req2':sample['req2'],'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+                df_userAnnot = df_userAnnot.append({'req1_id':sample['req1_id'],'original_req1':sample['original_req1'],'req1':sample['req1'],'req2_id':sample['req2_id'],'original_req2':sample['original_req2'],'req2':sample['req2'],'BinaryClass':userAnnot,'MultiClass':0,'BLabelled':'M','MLabelled':'A'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
                 logs.createAnnotationsFile(df_userAnnot)
             
                 df_manuallyAnnotated = pd.concat([df_manuallyAnnotated,df_userAnnot])
                 #logs.writeLog("Manually Annotated DataFrame : \n"+str(manuallyAnnotatedDf))
             else:
                 #Add the newly annotated combination in the manuallyAnnotatedDf
-                df_userAnnot = df_userAnnot.append({'req1_id':sample['req1_id'],'req1':sample['req1'],'req2_id':sample['req2_id'],'req2':sample['req2'],'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':sample['BLabelled'],'MLabelled':'M'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
+                df_userAnnot = df_userAnnot.append({'req1_id':sample['req1_id'],'original_req1':sample['original_req1'],'req1':sample['req1'],'req2_id':sample['req2_id'],'original_req2':sample['original_req2'],'req2':sample['req2'],'BinaryClass':1,'MultiClass':userAnnot,'BLabelled':sample['BLabelled'],'MLabelled':'M'},ignore_index=True)  #Added MultiClass as 0 because when we are learning BinaryClass... MultiClass can contain a dummy value.
                 logs.createAnnotationsFile(df_userAnnot)
             
                 df_manuallyAnnotated = pd.concat([df_manuallyAnnotated,df_userAnnot])
@@ -119,11 +119,11 @@ def annotUncertainSamples(args,df_uncertainSamples,targetLabel):
         iteration+=1
     
     #Remove all the extra columns. df now contains only combinations marked 'A'
-    df_uncertainSamples=df_uncertainSamples[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
+    df_uncertainSamples=df_uncertainSamples[['req1_id','original_req1','req1','req2_id','original_req2','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
     #logs.writeLog(str(df_uncertainSamples))
 
     #Remove all the extra columns. df now contains only combinations marked 'M'
-    df_manuallyAnnotated=df_manuallyAnnotated[['req1_id','req1','req2_id','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
+    df_manuallyAnnotated=df_manuallyAnnotated[['req1_id','original_req1','req1','req2_id','original_req2','req2','BinaryClass','MultiClass','BLabelled','MLabelled']]
     logs.writeLog("\n\nManually Annotated Combinations... "+str(len(df_manuallyAnnotated))+"Rows \n"+str(df_manuallyAnnotated[:10]))
     
     return pd.concat([df_manuallyAnnotated,df_uncertainSamples],axis=0)

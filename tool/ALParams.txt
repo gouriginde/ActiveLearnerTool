@@ -1,4 +1,4 @@
-input : Processes_Pairs_blackLineSafety-LowestLevel.csv
+input : Processed_Merged_Pairs_blackLineSafety-LowestLevel.csv
 dependencyTypeNeeded : y
 initManualAnnotAvail : y
 classifier : ensemble
