@@ -42,14 +42,14 @@ def createLogs(fPath,args,comments):
     return logFilePath,outputFilePath
 
 def writeLog(content):
-    file = open(logFilePath,"a")
+    file = open(logFilePath,"a", encoding='utf-8')
     file.write(content)
     file.close()
     print (content)
     return None
 
 def addOutputToExcel(df,comment):
-    file = open(outputFilePath,"a")
+    file = open(outputFilePath,"a", encoding='utf-8')
     file.write(comment)
     file.close()
     print (comment)
