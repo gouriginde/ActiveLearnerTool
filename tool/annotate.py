@@ -139,8 +139,8 @@ def getManualAnnotation(req1_id,req2_id,req1,req2,target):
         while True:  #While loop to make sure the user provides proper input. 
     
             logs.writeLog ("\n\nAre the following Requirements Dependent or Not?")
-            logs.writeLog ("\n\nRequirement 1 ("+req1_id+") : "+str(req1))
-            logs.writeLog ("\nRequirement 2 ("+req2_id+") : "+str(req2))
+            logs.writeLog ("\n\nRequirement 1 ("+str(req1_id)+") : "+str(req1))
+            logs.writeLog ("\nRequirement 2 ("+str(req2_id)+") : "+str(req2))
             logs.writeLog ("\nPlease enter 1 for Dependent, 0 for Independent   :   ")
             userAnnotation = input("")
             if userAnnotation in ['1','0']:
@@ -159,8 +159,8 @@ def getManualAnnotation(req1_id,req2_id,req1,req2,target):
         while True:  #While loop to make sure the user provides proper input. 
     
             logs.writeLog ("\n\nPlease provide the dependency type for the following requirements.")
-            logs.writeLog ("\n\nRequirement 1 ("+req1_id+") : "+str(req1))
-            logs.writeLog ("\nRequirement 2 ("+req2_id+") : "+str(req2))
+            logs.writeLog ("\n\nRequirement 1 ("+str(req1_id)+") : "+str(req1))
+            logs.writeLog ("\nRequirement 2 ("+str(req2_id)+") : "+str(req2))
             #logs.writeLog ("\nPlease select one of the following choices. \n1 - AND\n2 - OR \n3 - Requires \n4 - Similar \n5 - Cannot Say \nEnter your Choice here :   ")   #Removed 0 - Independent
             #logs.writeLog ("\nPlease select one of the following choices. \n3 - Requires \n4 - Similar \n6 - Others \nEnter your Choice here :   ")   #Removed 0 - Independent
             logs.writeLog ("\nPlease select one of the following choices. \n1 - Requires \n2 - Reflects \n3 - Conflicts \nEnter your Choice here :   ")   
