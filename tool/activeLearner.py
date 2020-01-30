@@ -41,7 +41,7 @@ def getData(fPath):
     3. Shuffles the requirement combinations
     '''
 
-    df_data = pd.read_csv(fPath,',',encoding="utf-8")#ISO-8859-1
+    df_data = pd.read_csv(fPath,',',encoding="utf-8",error_bad_lines=False)#ISO-8859-1
     df_data['BLabelled'].fillna('A',inplace=True)
     df_data['MLabelled'].fillna('A',inplace=True)
     df_data['BinaryClass'].fillna(0,inplace=True)    
