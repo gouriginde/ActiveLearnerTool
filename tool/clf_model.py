@@ -280,24 +280,29 @@ def predictLabels(cv,tfidf,clf,df_toBePredictedData,targetLabel):
     
     return df_toBePredictedData    #f1,precision,recall,clf_pred_score,acc
     
-#ten fold cross validation for Blackline safety data set
-def Tenfoldvalidation(cv,tfidf,clf_model,df_validationSet):
+#five and ten fold cross validation for Blackline safety data set
+def Crossfoldvalidation(cv,tfidf,clf_model,df_validationSet,targetLabel):
     
     #df_validationSet['req'] = df_validationSet['req1']+" "+df_validationSet['req2']
     predictData = np.array(df_validationSet.loc[:,['req1','req2']])
     #logs.writeLog(str(predictData))
-    actualLabels = np.array(df_validationSet.loc[:,'BinaryClass']).astype('int')
+    actualLabels = np.array(df_validationSet.loc[:,targetLabel]).astype('int')
     predict_counts = cv.transform(predictData)
     predict_tfidf = tfidf.transform(predict_counts)
-    print ("Inside Validate Classifier ")
+    #print ("Inside Validate Classifier ")
     #print ("Predicted Labels : ",str(clf_model.predict(predict_tfidf)))
     #print ("Actual Labels : ",str(actualLabels))
     #clf_val_score = clf_model.score(predict_tfidf,actualLabels)
-    crossv = StratifiedKFold(5)
-    scores = cross_val_score(clf_model, predict_tfidf, actualLabels, cv=crossv) #https://scikit-learn.org/stable/modules/cross_validation.html
-    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-
-    return scores.mean()
+    crossv_5 = StratifiedKFold(5)
+    scores_5 = cross_val_score(clf_model, predict_tfidf, actualLabels, cv=crossv_5) #https://scikit-learn.org/stable/modules/cross_validation.html
+    #logs.writeLog("Accuracy: %0.2f (+/- %0.2f)" % (scores_5.mean(), scores_5.std() * 2))
+    crossv_10 = StratifiedKFold(10)
+    scores_10 = cross_val_score(clf_model,predict_tfidf,actualLabels,cv=crossv_10)
+    #logs.writeLog("Accuracy: %0.2f (+/- %0.2f)" % (scores_10.mean(), scores_10.std() * 2))
+    scores_5 = str(round(scores_5.mean(),2)) +"(+/- "+str(round(scores_5.std()*2,2))+")"
+    scores_10 = str(round(scores_10.mean(),2)) +"(+/- "+str(round(scores_10.std()*2,2))+")"
+    
+    return scores_5,scores_10
 
 def validateClassifier(cv,tfidf,clf_model,df_validationSet,targetLabel):
     print ("\nCalculating Validation Score.....\n")
