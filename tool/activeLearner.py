@@ -138,6 +138,7 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
         logs.writeLog("\nSplitting Labelled Data and Unlabelled Data\n")
         
         df_labelledData = df_rqmts[df_rqmts[labelColumn].isin(['M','I'])] #Training Data
+        df_labelledData[targetLabel] = df_labelledData[targetLabel].astype('int')
         logs.writeLog('\nLabelled Data : '+str(len(df_labelledData))+' Rows \n'+str(df_labelledData[:10])+"\n")
         
         df_unlabelledData = df_rqmts[df_rqmts[labelColumn]=='A']  #Test Data
@@ -179,7 +180,7 @@ def learnTargetLabel(args,df_rqmts,targetLabel):
         logs.writeLog("\n\nClassifier Validation Set Score : "+str(classifierValidationScore))
         
         logs.writeLog ("\n\nEvaluating 5 fold and 10 fold Cross Validation Scores...")
-        cf5_score,cf10_score = Crossfoldvalidation(countVectorizer,tfidfTransformer,classifier,df_validationSet,targetLabel)
+        cf5_score,cf10_score = Crossfoldvalidation(countVectorizer,tfidfTransformer,classifier,df_labelledData,targetLabel)
         
         logs.writeLog("\n\n5 fold Cross Validation Score : "+str(cf5_score))
         logs.writeLog("\n\n10 fold Cross Validation Score : "+str(cf10_score))
