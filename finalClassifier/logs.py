@@ -10,23 +10,13 @@ def createLogs(fPath,args,comments):
     current_time = datetime.datetime.now().strftime("%H-%M-%S")
     if not os.path.exists(fPath+"/"+current_date):
         os.makedirs(fPath+"/"+current_date)
-    global logFilePath,outputFilePath#,resultsPath,annotationsPath
-    logFilePath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-"+comments+".txt"
-    outputFilePath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-"+comments+".csv"
-    #resultsPath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-RESULTS-"+comments+".csv"
-    #annotationsPath = fPath+"/"+current_date+"/"+current_time+"-"+args.loc[0,'classifiersList']+"-ANNOTATIONS-"+comments+".csv"
-    for fPath in [logFilePath,outputFilePath]:
-        file = open(fPath,'a')
-        file.write("\n"+100*"-"+"\nArguments :- \n")
-        for col in args.columns:
-            file.write(str(col)+" : "+str(args.loc[0,str(col)])+"\n")
-        #for col in args.index.tolist():
-        #    file.write(str(col)+" : "+str(args.loc[0,str(col)])+"\n")
-        file.write(100*"-")
-        file.close()
-
+    global logFilePath,outputFilePath
+    logFilePath = fPath+"/"+current_date+"/"+current_time+"-"+args+"-"+str(comments)+".txt"
+    outputFilePath = fPath+"/"+current_date+"/"+current_time+"-"+args+"-"+str(comments)+".csv"
+    logFile = open(logFilePath,'w')
+    logFile.close()
     return logFilePath,outputFilePath
-    
+
 def getArguments(fName):
     '''
     Reads the arguments available in the file and converts them into a data frame.

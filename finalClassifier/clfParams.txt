@@ -1,6 +1,0 @@
-labelledData : ertms.csv
-validationData : ermtsValidation.csv
-tobepredicted : b
-classifiersList : RF
-testsize : 0.2
-comments : RF-binaryclass
