@@ -168,22 +168,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-'''
-1) Remove binary class option - D
-2) Read whole dataset and balance data for multiclass - D
-4) Process data from NLP pipeline (Combine Train+Test+Validation; no need to split)
-3) Add only ensemble model (Hard Voting)
-5) Provide model and do cross_validation (5 and 10)
-6) Repeate KFold (SKLearn)
-
-
-Add NLP to Final Classifier
-Add Ensemble to Final Classifier
-
-Print Confusion Matrix 
-'''
