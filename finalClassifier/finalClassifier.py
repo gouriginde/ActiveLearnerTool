@@ -27,11 +27,12 @@ def get_args():
     parser = argparse.ArgumentParser(description="This script takes the requirement combinations as input and computes the cross fold validations.", formatter_class = argparse.ArgumentDefaultsHelpFormatter)
     
     parser.add_argument("--input","-i",type=str,required = True, help="path to requirement combinations data file")
+    parser.add_argument("--app","-a",type=str,required=False,default='AL',choices = ['AL','DD'],help="Enter the application for which you want to use Final Classifier [AL/DD]")
     parser.add_argument("--comments","-c",type=str,required=False,help="Any comments you wish to add in the logs for tracking purpose.")
         
     return parser.parse_args()
 
-def getData(fPath):
+def getData(fPath,app,cols):
     '''
     Fetches data from the file path provided
     1. Removes rows with NaN values.
@@ -39,19 +40,20 @@ def getData(fPath):
     '''
 
     df_data = pd.read_csv(fPath,',',encoding="utf-8")#ISO-8859-1
-    df_data = df_data[['req1','req2','MultiClass','MLabelled']]   #ignores columns except [req1,req2,MultiClass]
-    df_data = df_data[(df_data['MultiClass']!=0) & (df_data['MLabelled']!='A')]
-    df_data.dropna(inplace=True)
-    
+    df_data = df_data[cols]   #ignores columns except [req1,req2,MultiClass]
+        
+    if app=='AL':
+        df_data = df_data[(df_data['MultiClass']!=0) & (df_data['MLabelled']!='A')]
+
+    df_data.dropna(inplace=True)    
     return df_data
 
-def balanceData(df_labelledData):
+def balanceData(df_labelledData,targetLabel):
     '''
     Balances the data as per MultiClass Values
     
     returns Balanced dataset
     '''
-    targetLabel = 'MultiClass'
     df_labelledData[targetLabel] = df_labelledData[targetLabel].astype('int')    #Making sure the values are integer only and not float... 
     
     stats = df_labelledData[targetLabel].value_counts()  #Returns a series of number of different types of TargetLabels (values) available with their count.
@@ -73,12 +75,12 @@ def balanceData(df_labelledData):
 
     return df_BalancedSet
 
-def nlpPipeline(df_data):
+def nlpPipeline(df_data,targetLabel):
     '''
     Passes the given dataset through NLP pipeline and returns features and labels.
     '''
     features = df_data.loc[:,['req1','req2']]
-    labels = np.array(df_data.loc[:,'MultiClass'].astype('int'))
+    labels = np.array(df_data.loc[:,targetLabel].astype('int'))
     
     count_vect = CountVectorizer(tokenizer=my_tokenizer,lowercase=False)
     features_count = count_vect.fit_transform(np.array(features))
@@ -103,20 +105,28 @@ def main():
     options = vars(args)  #Stores the arguments as dictionary ; used in logs
     
     ifileName = args.input     
+    app = args.app
     comments = args.comments
  
+    if app == "AL":
+        targetLabel = 'MultiClass'
+        cols = ['req1','req2','MultiClass','MLabelled']
+    else:
+        targetLabel = 'Dependency'
+        cols = ['req1','req2','Dependency']
+
     logFilePath,OFilePath = logs.createLogs(currentFileDir+"/static/data/Logs","ensemble",comments)   #Creates the log file, default value is os.getcwd()+"/static/data/logs/" 
 
     #Extract and remove NaN's from the data file
-    df_rqmtDataOriginal = getData(currentFileDir+"/static/data/"+ifileName)   
+    df_rqmtDataOriginal = getData(currentFileDir+"/static/data/"+ifileName,app,cols)   
     logs.writeLog("\n\nData Fetched from the combinations file : "+str(len(df_rqmtDataOriginal))+" Rows \n"+str(df_rqmtDataOriginal[:10]))
-    
+    input (".......")
     #Perform data balancing on complete dataset; pass features through nlp pipeline
     logs.writeLog("\n\nPerforming Balancing of Data....")
-    df_rqmtBalanced = balanceData(df_rqmtDataOriginal)
+    df_rqmtBalanced = balanceData(df_rqmtDataOriginal,targetLabel)
     
     logs.writeLog("\n\nPreparing DataSet for classification....")
-    features,labels = nlpPipeline(df_rqmtBalanced)
+    features,labels = nlpPipeline(df_rqmtBalanced,targetLabel)
     
     logs.writeLog("\n\nDefining Ensemble Model...")
     
