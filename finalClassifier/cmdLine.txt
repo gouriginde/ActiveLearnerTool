@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 python3 finalClassifier.py -i 10-53-18-ensemble-RESULTS-Ensemble.csv -a 'AL'
+=======
+python3 finalClassifier.py -i 10-53-18-ensemble-RESULTS-Ensemble.csv
+>>>>>>> bc5076dfdb78baa4d50159c60da04c0822812778
